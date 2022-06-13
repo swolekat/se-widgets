@@ -1,11 +1,3 @@
-/*
-  "widgetUpdateUrl": {
-    "type": "hidden",
-    "value": "https://github.com/StreamElements/widgets/blob/master/WheelOfFortune/"
-  }
- */
-
-
 let fieldData, apiToken;
 
 const sayMessage = (message) => {
@@ -56,4 +48,3 @@ window.addEventListener('onWidgetLoad', function (obj) {
     fieldData = obj.detail.fieldData;
     apiToken = obj.detail.channel.apiToken;
 });
-
