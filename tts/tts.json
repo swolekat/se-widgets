@@ -243,6 +243,22 @@
       "Naayf": "Naayf"
     }
   },
+  "doRaidStuff": {
+    "label": "Do Raid Stuff",
+    "group": "Raid",
+    "type": "dropdown",
+    "value": "false",
+    "options": {
+      "true": "Yes",
+      "false": "No"
+    }
+  },
+  "raidTime": {
+    "label": "How Long? (seconds)",
+    "group": "Raid",
+    "type": "text",
+    "value": "600"
+  },
   "widgetName": {
     "type": "hidden",
     "value": "TTS by Swolekat"
