@@ -4,7 +4,8 @@ const sayMessage = (message, messageVoice) => {
     const {volume, bannedWords} = fieldData;
 
     const bannedArray = bannedWords.split(',');
-    const messageHasBannedWords = bannedArray.some(word => message.toLowerCase().includes(word));
+    const sanitizedMessage = message.replace(/\W/g, '').toLowerCase();
+    const messageHasBannedWords = bannedArray.some(word => sanitizedMessage.includes(word));
     if(messageHasBannedWords){
         return;
     }
