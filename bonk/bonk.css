@@ -24,7 +24,7 @@ html, body {
 .bonk {
     position: absolute;
     bottom: 50%;
-    left: 0;
+    left: 10%;
     transition: all 1000ms;
     transform: rotate(0deg);
     transform-origin: 100% 100%;
