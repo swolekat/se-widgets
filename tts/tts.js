@@ -35,8 +35,13 @@ const raids = [];
 const voices = ['Nicole', 'Russel', 'Raveena', 'Amy', 'Brian', 'Emma', 'Joanna', 'Matthew', 'Salli'];
 
 const handleRaid = (obj) => {
+    const { raidLimit } = fieldData;
     const {event} = obj?.detail || {};
     const name = event?.name;
+    const amount = event?.amount;
+    if(amount < raidLimit) {
+        return;
+    }
     raids.push({
         name,
         time: (new Date()).getTime(),
