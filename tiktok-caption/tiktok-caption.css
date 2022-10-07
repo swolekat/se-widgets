@@ -1,0 +1,23 @@
+.main-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.text-container {
+    width: 50%;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.caption-text {
+    font-size: 72px;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    transform: rotate(-15deg);
+    color: #fff;
+    -webkit-text-stroke: 2px #000;
+    text-align: center;
+}
