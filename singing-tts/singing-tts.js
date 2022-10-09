@@ -22,7 +22,7 @@ const sayMessage = (message) => {
     fetch('https://tiktok-tts.weilnet.workers.dev/api/generation', {
         method: 'POST',
         body: JSON.stringify({
-            text: message,
+            text: message.substr(0, 300),
             voice
         }),
         headers: {
