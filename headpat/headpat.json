@@ -1,5 +1,5 @@
 {
-  "bonkCommand": {
+  "patCommand": {
     "type": "text",
     "label": "Headpat Command",
     "value": "!headpat"

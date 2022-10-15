@@ -23,11 +23,8 @@ html, body {
 
 .hand {
     position: absolute;
-    bottom: 50%;
-    left: 20%;
-    transition: all 1000ms;
-    transform: rotate(0deg);
-    transform-origin: 100% 100%;
+    bottom: 20%;
+    left: 0;
     display: block;
     height: 50%;
 }
