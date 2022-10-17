@@ -12,15 +12,16 @@ const formatTime = t => {
     const minutes = Math.floor(t/60);
     const seconds = t % 60;
 
-    return `${minutes}:${seconds < 10 ? '' : '0'}${seconds}`;
+    return `${minutes}:${seconds > 10 ? '' : '0'}${seconds}`;
 };
 
 const hide = () => mainContainer.className = 'main-container hidden';
 const show = () => mainContainer.className = 'main-container';
 
 const tick = () => {
-    timeRemaining = timeRemaining -1;
+    timeRemaining = timeRemaining - 1;
     timer.innerHTML = formatTime(timeRemaining);
+    show();
     if(timeRemaining !== 0){
         return;
     }
@@ -37,7 +38,6 @@ const start = (duration) => {
     if(interval){
         clearInterval(interval);
     }
-    show();
     interval = setInterval(tick, 1000);
 };
 
@@ -51,7 +51,6 @@ const end = () => {
 const restart = () => {
     timeRemaining = time + 1;
     if(!interval){
-        show();
         interval = setInterval(tick, 1000);
     }
 };
@@ -86,8 +85,8 @@ const handleMessage = (obj) => {
     const startsWithRestart = text.toLowerCase().startsWith(restartCommand.toLowerCase());
 
     if(startsWithStart){
-        const duration = text.toLowerCase().replace(startCommand, '').trim();
-        start(duration);
+        const duration = text.toLowerCase().replace(startCommand.toLowerCase(), '').trim();
+        start(Number.parseInt(duration));
         return;
     }
 
@@ -112,8 +111,10 @@ window.addEventListener('onEventReceived', function (obj) {
 window.addEventListener('onWidgetLoad', function (obj) {
     fieldData = obj.detail.fieldData;
 
-    const {fontSize, fontName, fontColor, volume} = fieldData;
-    timer.style = `font-size: ${fontSize}px; font-family: '${fontName}'; color: ${fontColor};`;
+    const {volume, preview} = fieldData;
+    if(preview){
+        show();
+    }
     sound.volume = volume;
 });
 

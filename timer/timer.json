@@ -1,4 +1,8 @@
 {
+  "preview": {
+    "type": "checkbox",
+    "label": "Preview"
+  },
   "startCommand": {
     "type": "text",
     "label": "Start Command",
@@ -17,7 +21,7 @@
   "privileges": {
     "type": "dropdown",
     "label": "Who can participate:",
-    "value": "everybody",
+    "value": "broadcaster",
     "options": {
       "everybody": "Everybody",
       "subs": "Subs + VIPs + Mods",
@@ -36,8 +40,8 @@
   },
   "fontSize": {
     "type": "number",
-    "label": "Count",
-    "value": 32,
+    "label": "Font Size",
+    "value": 96,
     "min": 0,
     "max": 100,
     "step": 1
