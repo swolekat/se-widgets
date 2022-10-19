@@ -3,7 +3,7 @@ let fieldData, apiToken;
 const sayMessage = (message, messageVoice) => {
     const {volume, bannedWords} = fieldData;
 
-    const bannedArray = bannedWords.split(',');
+    const bannedArray = (bannedWords || '').split(',').filter(w => !!w);
     const sanitizedMessage = message.replace(/\W/g, '').toLowerCase();
     const messageHasBannedWords = bannedArray.some(word => sanitizedMessage.includes(word));
     if(messageHasBannedWords){
