@@ -12,7 +12,7 @@ const formatTime = t => {
     const minutes = Math.floor(t/60);
     const seconds = t % 60;
 
-    return `${minutes}:${seconds > 10 ? '' : '0'}${seconds}`;
+    return `${minutes}:${seconds >= 10 ? '' : '0'}${seconds}`;
 };
 
 const hide = () => mainContainer.className = 'main-container hidden';
