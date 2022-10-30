@@ -1,0 +1,176 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.main-container {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.main-container.hidden {
+    display: none;
+}
+
+.pointer-core {
+    position: absolute;
+    z-index: 100;
+}
+
+.pointer-core:after {
+     content: "";
+     position: absolute;
+     top: -6px;
+     left: -6px;
+     width: 12px;
+     height: 12px;
+     background: radial-gradient(yellow, yellow, orange, crimson);
+     border-radius: 100%;
+     opacity: 0.75;
+     transition: all 160ms ease-in-out;
+ }
+
+.bullet {
+    position: absolute;
+    z-index: 0
+}
+
+.bullet:after {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    width: 12px;
+    height: 12px;
+    background: rgba(220,20,60,.65);
+    border-radius: 100%
+}
+
+.bullet:first-child:after {
+    transform: scale(.14286);
+    -webkit-filter: blur(3.8px);
+    filter: blur(3.8px)
+}
+
+.bullet:nth-child(2):after {
+    transform: scale(.28571);
+    -webkit-filter: blur(3.6px);
+    filter: blur(3.6px)
+}
+
+.bullet:nth-child(3):after {
+    transform: scale(.42857);
+    -webkit-filter: blur(3.4px);
+    filter: blur(3.4px)
+}
+
+.bullet:nth-child(4):after {
+    transform: scale(.57143);
+    -webkit-filter: blur(3.2px);
+    filter: blur(3.2px)
+}
+
+.bullet:nth-child(5):after {
+    transform: scale(.71429);
+    -webkit-filter: blur(3px);
+    filter: blur(3px)
+}
+
+.bullet:nth-child(6):after {
+    transform: scale(.85714);
+    -webkit-filter: blur(2.8px);
+    filter: blur(2.8px)
+}
+
+.bullet:nth-child(7):after {
+    transform: scale(1);
+    -webkit-filter: blur(2.6px);
+    filter: blur(2.6px)
+}
+
+.bullet:nth-child(8):after {
+    transform: scale(1.14286);
+    -webkit-filter: blur(2.4px);
+    filter: blur(2.4px)
+}
+
+.bullet:nth-child(9):after {
+    transform: scale(1.28571);
+    -webkit-filter: blur(2.2px);
+    filter: blur(2.2px)
+}
+
+.bullet:nth-child(10):after {
+    transform: scale(1.42857);
+    -webkit-filter: blur(2px);
+    filter: blur(2px)
+}
+
+.bullet:nth-child(11):after {
+    transform: scale(1.57143);
+    -webkit-filter: blur(1.8px);
+    filter: blur(1.8px)
+}
+
+.bullet:nth-child(12):after {
+    transform: scale(1.71429);
+    -webkit-filter: blur(1.6px);
+    filter: blur(1.6px)
+}
+
+.bullet:nth-child(13):after {
+    transform: scale(1.85714);
+    -webkit-filter: blur(1.4px);
+    filter: blur(1.4px)
+}
+
+.bullet:nth-child(14):after {
+    transform: scale(2);
+    -webkit-filter: blur(1.2px);
+    filter: blur(1.2px)
+}
+
+.bullet:nth-child(15):after {
+    transform: scale(2.14286);
+    -webkit-filter: blur(1px);
+    filter: blur(1px)
+}
+
+.bullet:nth-child(16):after {
+    transform: scale(2.28571);
+    -webkit-filter: blur(.8px);
+    filter: blur(.8px)
+}
+
+.bullet:nth-child(17):after {
+    transform: scale(2.42857);
+    -webkit-filter: blur(.6px);
+    filter: blur(.6px)
+}
+
+.bullet:nth-child(18):after {
+    transform: scale(2.57143);
+    -webkit-filter: blur(.4px);
+    filter: blur(.4px)
+}
+
+.bullet:nth-child(19):after {
+    transform: scale(2.71429);
+    -webkit-filter: blur(.2px);
+    filter: blur(.2px)
+}
+
+.bullet:nth-child(20):after {
+    transform: scale(2.85714);
+    -webkit-filter: blur(0);
+    filter: blur(0)
+}
