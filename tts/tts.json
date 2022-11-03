@@ -256,8 +256,8 @@
   "raidTime": {
     "label": "How Long? (seconds)",
     "group": "Raid",
-    "type": "text",
-    "value": "600"
+    "type": "number",
+    "value": 600
   },
   "raidLimit": {
     "label": "Minimum Number of Raiders",
@@ -267,6 +267,47 @@
     "min": 0,
     "max": 100,
     "step": 1
+  },
+  "doEverybodyStuff": {
+    "label": "Do Everybody Stuff",
+    "group": "Everybody TTS",
+    "type": "dropdown",
+    "value": "false",
+    "options": {
+      "true": "Yes",
+      "false": "No"
+    }
+  },
+  "everybodyPrivileges": {
+    "type": "dropdown",
+    "group": "Everybody TTS",
+    "label": "Who can participate:",
+    "value": "broadcaster",
+    "options": {
+      "everybody": "Everybody",
+      "subs": "Subs + VIPs + Mods",
+      "vips": "VIPs + Mods",
+      "mods": "Mods",
+      "broadcaster": "Broadcaster"
+    }
+  },
+  "everybodyEnableCommand": {
+    "label": "Command to enable tts for everybody",
+    "group": "Everybody TTS",
+    "type": "text",
+    "value": "!enableEverybodyTts"
+  },
+  "everybodyDisableCommand": {
+    "label": "Do Raid Stuff",
+    "group": "Everybody TTS",
+    "type": "text",
+    "value": "!disableEverybodyTts"
+  },
+  "everybodyTime": {
+    "label": "How long for it to be enabled? (seconds)",
+    "group": "Everybody TTS",
+    "type": "number",
+    "value": 300
   },
   "widgetName": {
     "type": "hidden",

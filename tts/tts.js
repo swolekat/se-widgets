@@ -16,10 +16,10 @@ const sayMessage = (message, messageVoice) => {
     myAudio.play();
 };
 
-const checkPrivileges = (data) => {
+const checkPrivileges = (data, privileges) => {
     const {tags, userId} = data;
     const {mod, subscriber, badges} = tags;
-    const required = fieldData.privileges;
+    const required = privileges || fieldData.privileges;
     const isMod = parseInt(mod);
     const isSub = parseInt(subscriber);
     const isVip = (badges.indexOf("vip") !== -1);
@@ -33,6 +33,8 @@ const checkPrivileges = (data) => {
 
 const raids = [];
 const voices = ['Nicole', 'Russel', 'Raveena', 'Amy', 'Brian', 'Emma', 'Joanna', 'Matthew', 'Salli'];
+let isEnabledForEverybody = false;
+let everybodyTimeout = undefined;
 
 const handleRaid = (obj) => {
     const { raidLimit } = fieldData;
@@ -57,16 +59,57 @@ const getActiveRaiders = () => {
     return raids.filter(({time}) => now.getTime() - time < raidTime * 1000).map(({name}) => name);
 };
 
+const handleEverybodyCommands = (obj) => {
+    const {doEverybodyStuff, everybodyPrivileges, everybodyEnableCommand, everybodyDisableCommand, everybodyTime } = fieldData;
+    const data = obj.detail.event.data;
+    const {text} = data;
+    if(!doEverybodyStuff){
+        return false;
+    }
+
+    const messageIsEnable = text.toLowerCase().startsWith(everybodyEnableCommand.toLowerCase());
+    const messageIsDisable = text.toLowerCase().startsWith(everybodyDisableCommand.toLowerCase());
+    if((!messageIsEnable && !messageIsDisable) || !checkPrivileges(data, everybodyPrivileges)){
+        return false;
+    }
+    if(messageIsEnable){
+        isEnabledForEverybody = true;
+        everybodyTimeout = setTimeout(() => {
+            isEnabledForEverybody = false;
+            clearTimeout(everybodyTimeout);
+            everybodyTimeout = undefined;
+        }, everybodyTime * 1000);
+        return true;
+    }
+    isEnabledForEverybody = false;
+    clearTimeout(everybodyTimeout);
+    everybodyTimeout = undefined;
+    return true;
+};
+
 const handleMessage = (obj) => {
     const {ttsCommand, voice} = fieldData;
     const data = obj.detail.event.data;
     const {text, userId, displayName} = data;
+
+    const isEverybodyCommand = handleEverybodyCommands(obj);
+    if(isEverybodyCommand){
+        return;
+    }
+
+    const userVoice = voices[Number.parseInt(userId) % voices.length];
+
+    if(isEnabledForEverybody) {
+        sayMessage(text.toLowerCase().trim(), userVoice);
+        return;
+    }
+
     const activeRaiders = getActiveRaiders();
     if(activeRaiders.includes(displayName)) {
-        const raiderVoice = voices[Number.parseInt(userId) % voices.length];
-        sayMessage(text.toLowerCase().trim(), raiderVoice);
+        sayMessage(text.toLowerCase().trim(), userVoice);
+        return;
     }
-    const textStartsWithCommand = text.toLowerCase().startsWith(ttsCommand.toLowerCase())
+    const textStartsWithCommand = text.toLowerCase().startsWith(ttsCommand.toLowerCase());
     if (!textStartsWithCommand || !checkPrivileges(data)) {
         return;
     }
