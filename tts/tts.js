@@ -88,7 +88,7 @@ const handleEverybodyCommands = (obj) => {
 };
 
 const handleMessage = (obj) => {
-    const {ttsCommand, voice} = fieldData;
+    const {ttsCommand, voice, everybodyBotFilters} = fieldData;
     const data = obj.detail.event.data;
     const {text, userId, displayName} = data;
 
@@ -100,6 +100,13 @@ const handleMessage = (obj) => {
     const userVoice = voices[Number.parseInt(userId) % voices.length];
 
     if(isEnabledForEverybody) {
+        if(text.startsWith('!')){
+            return;
+        }
+        const bots = everybodyBotFilters.split(',');
+        if(bots.find(b => b.toLowerCase().equals(displayName.toLowerCase()))){
+            return;
+        }
         sayMessage(text.toLowerCase().trim(), userVoice);
         return;
     }

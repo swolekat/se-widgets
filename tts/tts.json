@@ -309,6 +309,12 @@
     "type": "number",
     "value": 300
   },
+  "everybodyBotFilters": {
+    "label": "Bots to filter out",
+    "group": "Everybody TTS",
+    "type": "text",
+    "value": 'StreamElements,Moobot,Nightbot'
+  },
   "widgetName": {
     "type": "hidden",
     "value": "TTS by Swolekat"
