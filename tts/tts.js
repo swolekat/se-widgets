@@ -104,7 +104,7 @@ const handleMessage = (obj) => {
             return;
         }
         const bots = everybodyBotFilters.split(',');
-        if(bots.find(b => b.toLowerCase().equals(displayName.toLowerCase()))){
+        if(bots.find(b => b.toLowerCase() === displayName.toLowerCase())){
             return;
         }
         sayMessage(text.toLowerCase().trim(), userVoice);
