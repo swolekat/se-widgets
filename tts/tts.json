@@ -281,7 +281,7 @@
   "everybodyPrivileges": {
     "type": "dropdown",
     "group": "Everybody TTS",
-    "label": "Who can participate:",
+    "label": "Who can use these commands?",
     "value": "broadcaster",
     "options": {
       "everybody": "Everybody",
@@ -298,7 +298,7 @@
     "value": "!enableEverybodyTts"
   },
   "everybodyDisableCommand": {
-    "label": "Do Raid Stuff",
+    "label": "Command to disable tts for everybody",
     "group": "Everybody TTS",
     "type": "text",
     "value": "!disableEverybodyTts"
