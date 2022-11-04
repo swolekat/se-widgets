@@ -313,7 +313,7 @@
     "label": "Bots to filter out",
     "group": "Everybody TTS",
     "type": "text",
-    "value": 'StreamElements,Moobot,Nightbot'
+    "value": "StreamElements,Moobot,Nightbot"
   },
   "widgetName": {
     "type": "hidden",
