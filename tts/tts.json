@@ -243,6 +243,32 @@
       "Naayf": "Naayf"
     }
   },
+  "globalShutoffCommand": {
+    "type": "text",
+    "group": "Global Shutoff",
+    "label": "Command to turn off ALL tts",
+    "value": "!stopAllTTS"
+  },
+  "globalEnableCommand": {
+    "type": "text",
+    "group": "Global Shutoff",
+    "label": "Command to turn on ALL tts",
+    "value": "!startAllTTS"
+  },
+  "globalShutOffPrivileges": {
+    "type": "dropdown",
+    "group": "Global Shutoff",
+    "label": "Who can participate:",
+    "value": "broadcaster",
+    "options": {
+      "everybody": "Everybody",
+      "subs": "Subs + VIPs + Mods",
+      "vips": "VIPs + Mods",
+      "mods": "Mods",
+      "broadcaster": "Broadcaster"
+    }
+  },
+
   "doRaidStuff": {
     "label": "Do Raid Stuff",
     "group": "Raid",

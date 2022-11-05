@@ -35,6 +35,7 @@ const raids = [];
 const voices = ['Nicole', 'Russel', 'Raveena', 'Amy', 'Brian', 'Emma', 'Joanna', 'Matthew', 'Salli'];
 let isEnabledForEverybody = false;
 let everybodyTimeout = undefined;
+let isEnabled = true;
 
 const handleRaid = (obj) => {
     const { raidLimit } = fieldData;
@@ -87,6 +88,24 @@ const handleEverybodyCommands = (obj) => {
     return true;
 };
 
+const handleShutoffCommands = (obj) => {
+    const {globalShutoffCommand, globalEnableCommand, globalShutOffPrivileges} = fieldData;
+    const data = obj.detail.event.data;
+    const {text} = data;
+
+    const messageIsEnable = text.toLowerCase().startsWith(globalEnableCommand.toLowerCase());
+    const messageIsDisable = text.toLowerCase().startsWith(globalShutoffCommand.toLowerCase());
+    if((!messageIsEnable && !messageIsDisable) || !checkPrivileges(data, globalShutOffPrivileges)){
+        return false;
+    }
+    if(messageIsEnable){
+        isEnabled = true;
+        return true;
+    }
+    isEnabled = false;
+    return true;
+};
+
 const handleMessage = (obj) => {
     const {ttsCommand, voice, everybodyBotFilters} = fieldData;
     const data = obj.detail.event.data;
@@ -94,6 +113,15 @@ const handleMessage = (obj) => {
 
     const isEverybodyCommand = handleEverybodyCommands(obj);
     if(isEverybodyCommand){
+        return;
+    }
+
+    const isShutoffCommand = handleShutoffCommands(obj);
+    if(isShutoffCommand){
+        return;
+    }
+
+    if(!isEnabled) {
         return;
     }
 
