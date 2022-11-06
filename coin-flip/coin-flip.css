@@ -17,11 +17,14 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
+    width: 100%;
 }
 
 .coin-wrapper {
     height: 50%;
     width: 50%;
+    position: relative;
 }
 
 .coin {
@@ -33,11 +36,120 @@ html, body {
     transform-style: preserve-3d;
 }
 
-.front {
+.front, .front:after, .back, .back:after {
     height: 100%;
     width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.front {
+    z-index: -1;
+}
+
+.front:after {
+    content: '';
+    background-image: url("https://swolekat.github.io/se-widgets/assets/coin-flip/heads.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 4;
 }
 
 .back {
+    z-index: 1;
+    transform: rotateY(180deg) translateZ(10px);
+}
+.back:after {
+    content: '';
+    background-image: url("https://swolekat.github.io/se-widgets/assets/coin-flip/tails.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    z-index: -4;
+    transform: rotate(180deg);
+}
 
+.coin.tails-to-heads {
+    animation: tails-to-heads 1s linear 1;
+}
+.coin.heads-to-heads {
+    animation: heads-to-heads 1s linear 1;
+}
+.coin.tails-to-tails {
+    animation: tails-to-tails 1s linear 1 normal forwards;
+}
+.coin.heads-to-tails {
+    animation: heads-to-tails 1s linear 1 normal forwards;
+}
+
+@keyframes heads-to-tails {
+    0% {
+        transform: rotateX(0) scale(1);
+    }
+    25% {
+        transform: rotateX(225deg) scale(1.8);
+    }
+    50% {
+        transform: rotateX(450deg) scale(2.3);
+    }
+    75% {
+        transform: rotateX(675deg) scale(1.8);
+    }
+    100% {
+        transform: rotateX(900deg) scale(1);
+    }
+}
+@keyframes tails-to-heads {
+    0% {
+        transform: rotateX(180deg) scale(1);
+    }
+    25% {
+        transform: rotateX(405deg) scale(1.8);
+    }
+    50% {
+        transform: rotateX(630deg) scale(2.3);
+    }
+    75% {
+        transform: rotateX(855deg) scale(1.8);
+    }
+    100% {
+        transform: rotateX(1080deg) scale(1);
+    }
+}
+@keyframes heads-to-heads {
+    0% {
+        transform: rotateX(0) scale(1);
+    }
+    25% {
+        transform: rotateX(180deg) scale(1.8);
+    }
+    50% {
+        transform: rotateX(360deg) scale(2.3);
+    }
+    75% {
+        transform: rotateX(540deg) scale(1.8);
+    }
+    100% {
+        transform: rotateX(720deg) scale(1);
+    }
+}
+@keyframes tails-to-tails {
+    0% {
+        transform: rotateX(180deg) scale(1);
+    }
+    25% {
+        transform: rotateX(360deg) scale(1.8);
+    }
+    50% {
+        transform: rotateX(540deg) scale(2.3);
+    }
+    75% {
+        transform: rotateX(720deg) scale(1.8);
+    }
+    100% {
+        transform: rotateX(900deg) scale(1);
+    }
 }

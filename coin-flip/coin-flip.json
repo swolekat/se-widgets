@@ -3,20 +3,10 @@
     "type": "checkbox",
     "label": "Preview"
   },
-  "startCommand": {
+  "flipCommand": {
     "type": "text",
     "label": "Start Command",
-    "value": "!startTimer"
-  },
-  "endCommand": {
-    "type": "text",
-    "label": "End Command",
-    "value": "!endTimer"
-  },
-  "restartCommand": {
-    "type": "text",
-    "label": "Restart Command",
-    "value": "!restartTimer"
+    "value": "!flipCoin"
   },
   "privileges": {
     "type": "dropdown",
@@ -30,35 +20,9 @@
       "broadcaster": "Broadcaster"
     }
   },
-  "volume": {
-    "type": "slider",
-    "label": "Volume",
-    "value": 1,
-    "min": 0,
-    "max": 1,
-    "steps": 0.1
-  },
-  "fontSize": {
-    "type": "number",
-    "label": "Font Size",
-    "value": 96,
-    "min": 0,
-    "max": 100,
-    "step": 1
-  },
-  "fontName": {
-    "type": "googleFont",
-    "label": "Select a font:",
-    "value": "Roboto"
-  },
-  "fontColor": {
-    "type": "colorpicker",
-    "label": "Some color",
-    "value": "#0000FF"
-  },
   "widgetName": {
     "type": "hidden",
-    "value": "Timer by Swolekat"
+    "value": "Coin Flip by Swolekat"
   },
   "widgetAuthor": {
     "type": "hidden",
