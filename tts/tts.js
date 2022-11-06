@@ -32,7 +32,7 @@ const checkPrivileges = (data, privileges) => {
 };
 
 const raids = [];
-const voices = ['Nicole', 'Russel', 'Raveena', 'Amy', 'Brian', 'Emma', 'Joanna', 'Matthew', 'Salli'];
+const voices = ['Nicole', 'Russell', 'Raveena', 'Amy', 'Brian', 'Emma', 'Joanna', 'Matthew', 'Salli'];
 let isEnabledForEverybody = false;
 let everybodyTimeout = undefined;
 let isEnabled = true;
