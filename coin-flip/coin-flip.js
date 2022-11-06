@@ -56,6 +56,7 @@ const handleMessage = (obj) => {
         currentFace = nextFace;
         setTimeout(() => {
             hide();
+            coin.className = `coin ${currentFace}`;
             isFlipping = false;
         }, 5000);
     }, 2000);
@@ -70,6 +71,8 @@ window.addEventListener('onEventReceived', function (obj) {
 
 window.addEventListener('onWidgetLoad', function (obj) {
     fieldData = obj.detail.fieldData;
+    currentFace = getNextFace();
+    coin.className = `coin ${currentFace}`;
 
     if(fieldData.preview){
         show();

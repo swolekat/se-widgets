@@ -36,6 +36,10 @@ html, body {
     transform-style: preserve-3d;
 }
 
+.coin.tails {
+    transform: rotateX(180deg);
+}
+
 .front, .front:after, .back, .back:after {
     height: 100%;
     width: 100%;
