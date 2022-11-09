@@ -4,8 +4,9 @@ const leaderboardContents = document.getElementById('leaderboard-contents');
 
 let chatterData = [];
 
-const renderChatter = (userName, index) => {
-    return `<div class="chatter">${index + 1}. ${userName}</div>`
+const renderChatter = (chatter, index) => {
+    const {name, count} = chatter;
+    return `<div class="chatter">${index + 1}. ${name} ${count}</div>`
 };
 
 const renderLeaderboardData = (topChatters) => {
@@ -16,7 +17,7 @@ const renderLeaderboardData = (topChatters) => {
 const calculateLeaderboardData = () => {
     const numberOfPlaces = fieldData.numberOfPlaces || 3;
     const sortedChatterData = chatterData.sort((a, b) => b.count - a.count);
-    const topChatters = sortedChatterData.slice(0, numberOfPlaces).map(chatter => chatter.name);
+    const topChatters = sortedChatterData.slice(0, numberOfPlaces);
     return JSON.parse(JSON.stringify(topChatters));
 };
 
