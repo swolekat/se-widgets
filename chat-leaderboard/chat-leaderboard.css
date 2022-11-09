@@ -1,0 +1,54 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+    font-family: "{{fontName}}", sans-serif;
+    color: {{fontColor}};
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    font-size: {{fontSize}}px;
+}
+
+.main-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+hr {
+    border-top: 5px solid {{fontColor}};
+    margin: 10px;
+}
+
+.title {
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+}
+
+.leaderboard-contents {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.chatter {
+    margin-bottom: 10px;
+    font-size: 0.3rem;
+}
+
+.chatter:first-child {
+    font-size: 0.7rem;
+    color: #d99310;
+}
+
+.chatter:nth-child(2) {
+    font-size: 0.5rem;
+    color: #706f6f;
+}
