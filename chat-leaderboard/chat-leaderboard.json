@@ -7,7 +7,7 @@
   "ignoredUsers": {
     "type": "text",
     "label": "Ignored Users",
-    "value": "StreamElements,Moobot,Nightbot"
+    "value": "StreamElements,Moobot,Nightbot,WizeBot"
   },
   "numberOfPlaces": {
     "type": "number",
