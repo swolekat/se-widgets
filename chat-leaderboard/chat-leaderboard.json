@@ -9,6 +9,11 @@
     "label": "Ignored Users",
     "value": "StreamElements,Moobot,Nightbot,WizeBot"
   },
+  "ignoreBroadcaster": {
+    "type": "checkbox",
+    "label": "Ignore Broadcaster",
+    "value": true
+  },
   "numberOfPlaces": {
     "type": "number",
     "label": "Number of Places",
@@ -32,6 +37,16 @@
     "type": "colorpicker",
     "label": "Some color",
     "value": "#000000"
+  },
+  "textAlign": {
+    "type": "dropdown",
+    "label": "Text Align",
+    "value": "left",
+    "options": {
+      "left": "Left",
+      "right": "Right",
+      "center": "Center"
+    }
   },
   "widgetName": {
     "type": "hidden",

@@ -1,4 +1,5 @@
 let fieldData;
+let broadcasterName;
 
 const leaderboardContents = document.getElementById('leaderboard-contents');
 
@@ -22,9 +23,13 @@ const calculateLeaderboardData = () => {
 };
 
 const shouldIgnoreUser = (userName) => {
+    const ignoreBroadcaster = fieldData.ignoreBroadcaster;
+    if(ignoreBroadcaster && userName.toLowerCase() === broadcasterName.toLowerCase()){
+        return true;
+    }
     const ignoredUsersString = fieldData.ignoredUsers || '';
     const ignoredUsers = ignoredUsersString.split(',');
-    return ignoredUsers.find(u => u.toLowerCase() === userName.toLowerCase());
+    return ignoredUsers.find(u => u.trim().toLowerCase() === userName.toLowerCase());
 };
 
 const incrementUser = (userName) => {
@@ -60,5 +65,6 @@ window.addEventListener('onEventReceived', function (obj) {
 
 window.addEventListener('onWidgetLoad', function (obj) {
     fieldData = obj.detail.fieldData;
+    broadcasterName = obj.detail.channel.username;
 });
 

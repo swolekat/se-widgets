@@ -41,6 +41,7 @@ hr {
 .chatter {
     margin-bottom: 10px;
     font-size: 0.3rem;
+    text-align: {{textAlign}};
 }
 
 .chatter:first-child {
