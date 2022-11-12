@@ -6,7 +6,7 @@ let isSpeakingMessage = false;
 const queuedMessages = [];
 
 const sayMessage = (message) => {
-    const {volume, bannedWords} = fieldData;
+    const {volume, bannedWords, voice} = fieldData;
 
     const bannedArray = (bannedWords || '').split(',').filter(w => !!w);
     const sanitizedMessage = message.replace(/\W/g, '').toLowerCase();
@@ -26,7 +26,7 @@ const sayMessage = (message) => {
         method: 'POST',
         body: JSON.stringify({
             text: message.substr(0, 300),
-            voice: 'en_us_001'
+            voice
         }),
         headers: {
             "Content-type": "application/json"

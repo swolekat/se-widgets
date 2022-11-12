@@ -29,6 +29,39 @@
     "max": 1,
     "steps": 0.1
   },
+  "voice": {
+    "type": "dropdown",
+    "label": "TTS Voice",
+    "value": "en_us_001",
+    "options": {
+      "en_us_001": "US Female",
+      "en_us_006": "US Male 1",
+      "en_us_007": "US Male 2",
+      "en_us_009": "US Male 3",
+      "en_us_010": "US Male 4",
+      "en_uk_001": "UK Male 1",
+      "en_uk_003": "UK Male 2",
+      "en_au_001": "AU Female",
+      "en_au_002": "AU Male",
+      "fr_001": "FR Male 1",
+      "fr_002": "FR Male 2",
+      "de_001": "DE Female",
+      "de_002": "DE Male",
+      "es_002": "ES Male",
+      "es_mx_002": "MX Male",
+      "br_003": "BR Female 2",
+      "br_004": "BR Female 3",
+      "br_005": "BR Male",
+      "id_001": "ID Female",
+      "jp_001": "JP Female 1",
+      "jp_003": "JP Female 2",
+      "jp_005": "JP Female 3",
+      "jp_006": "JP Male",
+      "kr_002": "KR Male 1",
+      "kr_004": "KR Male 2",
+      "kr_003": "KR Female"
+    }
+  },
   "widgetName": {
     "type": "hidden",
     "value": "Tiktok Caption by Swolekat"
