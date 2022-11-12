@@ -23,7 +23,7 @@ const calculateLeaderboardData = () => {
 
 const shouldIgnoreUser = (userName) => {
     const ignoredUsersString = fieldData.ignoredUsers || '';
-    const ignoredUsers = ignoredUsersString.split('');
+    const ignoredUsers = ignoredUsersString.split(',');
     return ignoredUsers.find(u => u.toLowerCase() === userName.toLowerCase());
 };
 
