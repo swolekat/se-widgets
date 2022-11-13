@@ -32,7 +32,11 @@ const shouldIgnoreUser = (userName) => {
     return ignoredUsers.find(u => u.trim().toLowerCase() === userName.toLowerCase());
 };
 
-const incrementUser = (userName) => {
+const incrementUser = (userName, text) => {
+    const minimumNumberOfCharacters = fieldData.minimumNumberOfCharacters || 0;
+    if(text.length < minimumNumberOfCharacters){
+        return;
+    }
     if(shouldIgnoreUser(userName)){
         return;
     }
@@ -48,7 +52,8 @@ const handleMessage = (obj) => {
     const data = obj.detail.event.data;
     const currentTopChatters = calculateLeaderboardData();
     const userName = data.displayName;
-    incrementUser(userName);
+    const text = data.text;
+    incrementUser(userName, text);
     const newTopChatters = calculateLeaderboardData();
     if(JSON.stringify(newTopChatters) === JSON.stringify(currentTopChatters)){
         return;

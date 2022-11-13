@@ -21,6 +21,13 @@
     "min": 1,
     "step": 1
   },
+  "minimumNumberOfCharacters": {
+    "type": "number",
+    "label": "Minimum Number of Characters to Count",
+    "value": 20,
+    "min": 1,
+    "step": 1
+  },
   "fontName": {
     "type": "googleFont",
     "label": "Select a font:",
