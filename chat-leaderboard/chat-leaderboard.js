@@ -48,12 +48,29 @@ const incrementUser = (userName, text) => {
     matchingElement.count += 1;
 };
 
+const createEmoteRegex = (emotes) => {
+    const regexStrings = emotes.sort().reverse().map(string => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+    const regex = `(?<=\\s|^)(?:${regexStrings.join('|')})(?=\\s|$|[.,!])`;
+    return new RegExp(regex, 'g')
+}
+
+const htmlEncode  = (text) => text.replace(/[\<\>\"\'\^\=]/g, char => `&#${char.charCodeAt(0)};`);
+const processText = (text, emotes) => {
+    const ignoreEmotes = fieldData.ignoreEmotes;
+    if(!ignoreEmotes){
+        return text;
+    }
+    const emoteRegex = createEmoteRegex(emotes.map(e => htmlEncode(e.name)))
+    return text.split(emoteRegex).join('');
+};
+
 const handleMessage = (obj) => {
     const data = obj.detail.event.data;
     const currentTopChatters = calculateLeaderboardData();
     const userName = data.displayName;
-    const text = data.text;
-    incrementUser(userName, text);
+    const {text, emotes} = data;
+    const processedText = processText(text, emotes);
+    incrementUser(userName, processedText);
     const newTopChatters = calculateLeaderboardData();
     if(JSON.stringify(newTopChatters) === JSON.stringify(currentTopChatters)){
         return;

@@ -14,6 +14,11 @@
     "label": "Ignore Broadcaster",
     "value": true
   },
+  "ignoreEmotes": {
+    "type": "checkbox",
+    "label": "Ignore Emotes",
+    "value": true
+  },
   "numberOfPlaces": {
     "type": "number",
     "label": "Number of Places",
