@@ -4,6 +4,11 @@
     "label": "TTS Command",
     "value": "!tts"
   },
+  "ignoreEmotes": {
+    "type": "checkbox",
+    "label": "Ignore Emotes",
+    "value": true
+  },
   "bannedWords": {
     "type": "text",
     "label": "Banned words, comma separated",
@@ -351,7 +356,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "1.0"
+    "value": "2.0"
   },
   "widgetUpdateUrl": {
     "type": "hidden",

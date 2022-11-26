@@ -37,6 +37,21 @@ let isEnabledForEverybody = false;
 let everybodyTimeout = undefined;
 let isEnabled = true;
 
+const createEmoteRegex = (emotes) => {
+    const regexStrings = emotes.sort().reverse().map(string => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+    const regex = `(?<=\\s|^)(?:${regexStrings.join('|')})(?=\\s|$|[.,!])`;
+    return new RegExp(regex, 'g')
+}
+
+const processText = (text, emotes) => {
+    const ignoreEmotes = fieldData.ignoreEmotes;
+    if(!ignoreEmotes){
+        return text;
+    }
+    const emoteRegex = createEmoteRegex(emotes.map(e => htmlEncode(e.name)))
+    return text.split(emoteRegex).join('');
+};
+
 const handleRaid = (obj) => {
     const { raidLimit } = fieldData;
     const {event} = obj?.detail || {};
@@ -109,7 +124,7 @@ const handleShutoffCommands = (obj) => {
 const handleMessage = (obj) => {
     const {ttsCommand, voice, everybodyBotFilters} = fieldData;
     const data = obj.detail.event.data;
-    const {text, userId, displayName} = data;
+    const {text, userId, displayName, emotes} = data;
 
     const isEverybodyCommand = handleEverybodyCommands(obj);
     if(isEverybodyCommand){
@@ -127,6 +142,10 @@ const handleMessage = (obj) => {
 
     const userVoice = voices[Number.parseInt(userId) % voices.length];
 
+    const processedText = processText(text, emotes);
+    const ignoreEmotes = fieldData.ignoreEmotes;
+    const textToSay = ignoreEmotes ? processedText : text;
+
     if(isEnabledForEverybody) {
         if(text.startsWith('!')){
             return;
@@ -135,13 +154,13 @@ const handleMessage = (obj) => {
         if(bots.find(b => b.toLowerCase() === displayName.toLowerCase())){
             return;
         }
-        sayMessage(text.toLowerCase().trim(), userVoice);
+        sayMessage(textToSay.toLowerCase().trim(), userVoice);
         return;
     }
 
     const activeRaiders = getActiveRaiders();
     if(activeRaiders.includes(displayName)) {
-        sayMessage(text.toLowerCase().trim(), userVoice);
+        sayMessage(textToSay.toLowerCase().trim(), userVoice);
         return;
     }
     const textStartsWithCommand = text.toLowerCase().startsWith(ttsCommand.toLowerCase());
@@ -149,7 +168,7 @@ const handleMessage = (obj) => {
         return;
     }
 
-    sayMessage(text.toLowerCase().replace(ttsCommand.toLowerCase(), '').trim(), voice);
+    sayMessage(textToSay.toLowerCase().replace(ttsCommand.toLowerCase(), '').trim(), voice);
 };
 
 window.addEventListener('onEventReceived', function (obj) {
