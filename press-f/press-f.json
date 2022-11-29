@@ -28,7 +28,7 @@
   "privileges": {
     "type": "dropdown",
     "label": "Who can participate:",
-    "value": "everybody",
+    "value": "broadcaster",
     "options": {
       "everybody": "Everybody",
       "subs": "Subs + VIPs + Mods",
