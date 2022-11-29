@@ -21,156 +21,83 @@ html, body {
     display: none;
 }
 
-.pointer-core {
+.prompt {
     position: absolute;
-    z-index: 100;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.pointer-core:after {
-     content: "";
-     position: absolute;
-     top: -6px;
-     left: -6px;
-     width: 12px;
-     height: 12px;
-     background: radial-gradient(yellow, yellow, orange, crimson);
-     border-radius: 100%;
-     opacity: 0.75;
-     transition: all 160ms ease-in-out;
- }
+@keyframes pulse {
+    from {transform: scale(0.75);}
+    to {transform: scale(1.25);}
+}
 
-.bullet {
+.prompt-image {
+    animation: pulse 2s alternate-reverse infinite;
+}
+
+.prompt.top-left {
+    top: 50px;
+    left: 50px;
+    transform: none;
+}
+
+.prompt.top-center {
+    top: 50px;
+    transform: translateX(-50%);
+}
+
+.prompt.top-right {
+    top: 50px;
+    left: calc(100% - 50px);
+    transform: none;
+}
+
+.prompt.left {
+    left: 50px;
+    transform: translateY(-50%);
+}
+
+.prompt.right {
+    left: calc(100% - 50px);
+    transform: translateY(-50%);
+}
+
+.prompt.bottom-left {
+    top: calc(100% - 50px);
+    left: 50px;
+    transform: none;
+}
+
+.prompt.bottom-center {
+    top: calc(100% - 50px);
+    transform: translateX(-50%);
+}
+
+.prompt.bottom-right {
+    top: calc(100% - 50px);
+    left: calc(100% - 50px);
+    transform: none;
+}
+
+.roses {
     position: absolute;
-    z-index: 0
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
 
-.bullet:after {
-    content: "";
+.rose {
     position: absolute;
-    top: -6px;
-    left: -6px;
-    width: 12px;
-    height: 12px;
-    background: rgba(220,20,60,.65);
-    border-radius: 100%
+    background-image: url("https://swolekat.github.io/se-widgets/assets/press-f/rose.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    transition: all 2s ease-in-out;
 }
 
-.bullet:first-child:after {
-    transform: scale(.14286);
-    -webkit-filter: blur(3.8px);
-    filter: blur(3.8px)
-}
-
-.bullet:nth-child(2):after {
-    transform: scale(.28571);
-    -webkit-filter: blur(3.6px);
-    filter: blur(3.6px)
-}
-
-.bullet:nth-child(3):after {
-    transform: scale(.42857);
-    -webkit-filter: blur(3.4px);
-    filter: blur(3.4px)
-}
-
-.bullet:nth-child(4):after {
-    transform: scale(.57143);
-    -webkit-filter: blur(3.2px);
-    filter: blur(3.2px)
-}
-
-.bullet:nth-child(5):after {
-    transform: scale(.71429);
-    -webkit-filter: blur(3px);
-    filter: blur(3px)
-}
-
-.bullet:nth-child(6):after {
-    transform: scale(.85714);
-    -webkit-filter: blur(2.8px);
-    filter: blur(2.8px)
-}
-
-.bullet:nth-child(7):after {
-    transform: scale(1);
-    -webkit-filter: blur(2.6px);
-    filter: blur(2.6px)
-}
-
-.bullet:nth-child(8):after {
-    transform: scale(1.14286);
-    -webkit-filter: blur(2.4px);
-    filter: blur(2.4px)
-}
-
-.bullet:nth-child(9):after {
-    transform: scale(1.28571);
-    -webkit-filter: blur(2.2px);
-    filter: blur(2.2px)
-}
-
-.bullet:nth-child(10):after {
-    transform: scale(1.42857);
-    -webkit-filter: blur(2px);
-    filter: blur(2px)
-}
-
-.bullet:nth-child(11):after {
-    transform: scale(1.57143);
-    -webkit-filter: blur(1.8px);
-    filter: blur(1.8px)
-}
-
-.bullet:nth-child(12):after {
-    transform: scale(1.71429);
-    -webkit-filter: blur(1.6px);
-    filter: blur(1.6px)
-}
-
-.bullet:nth-child(13):after {
-    transform: scale(1.85714);
-    -webkit-filter: blur(1.4px);
-    filter: blur(1.4px)
-}
-
-.bullet:nth-child(14):after {
-    transform: scale(2);
-    -webkit-filter: blur(1.2px);
-    filter: blur(1.2px)
-}
-
-.bullet:nth-child(15):after {
-    transform: scale(2.14286);
-    -webkit-filter: blur(1px);
-    filter: blur(1px)
-}
-
-.bullet:nth-child(16):after {
-    transform: scale(2.28571);
-    -webkit-filter: blur(.8px);
-    filter: blur(.8px)
-}
-
-.bullet:nth-child(17):after {
-    transform: scale(2.42857);
-    -webkit-filter: blur(.6px);
-    filter: blur(.6px)
-}
-
-.bullet:nth-child(18):after {
-    transform: scale(2.57143);
-    -webkit-filter: blur(.4px);
-    filter: blur(.4px)
-}
-
-.bullet:nth-child(19):after {
-    transform: scale(2.71429);
-    -webkit-filter: blur(.2px);
-    filter: blur(.2px)
-}
-
-.bullet:nth-child(20):after {
-    transform: scale(2.85714);
-    -webkit-filter: blur(0);
-    filter: blur(0)
+.rose.out {
+    transition: all 3s ease-in-out;
 }

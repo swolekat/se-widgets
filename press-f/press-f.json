@@ -4,7 +4,7 @@
     "label": "Press F Command",
     "value": "!payRespects"
   },
-  "durations": {
+  "duration": {
     "type": "number",
     "label": "Duration (in seconds)",
     "value": 60
@@ -40,11 +40,11 @@
 
   "widgetName": {
     "type": "hidden",
-    "value": "Press F to Pay Respects by Swolekat"
+    "value": "Press F to Pay Respects"
   },
   "widgetAuthor": {
     "type": "hidden",
-    "value": "swolekat"
+    "value": "Swolekat"
   },
   "widgetVersion": {
     "type": "hidden",

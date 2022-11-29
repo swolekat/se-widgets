@@ -1,87 +1,65 @@
 let fieldData;
 
 const mainContainer = document.getElementById('main-container');
-const pointerCore = document.getElementById('pointer-core');
+const roses = document.getElementById('roses');
 
-const numberOfSegments = 15;
-let destination = [0, 0];
-let endTimeout = undefined;
-let laserUpdateInterval = undefined;
-let positions = [];
-let velocity = 0;
+let isThrowing = false;
+let isThrowingTimeout;
 
-const getRandomPoint = () => {
-    const {width, height} = mainContainer.getBoundingClientRect();
-    return [Math.round(Math.random() * width), Math.round(Math.random() * height)];
-};
-
-const getRandomVelocity = () => {
-    return Math.round(Math.random() * 20) + 5;
-};
-
-const end = () => {
+const hide = () => {
     mainContainer.className = 'main-container hidden';
-    clearInterval(laserUpdateInterval);
-    endTimeout = undefined;
-    laserUpdateInterval = undefined;
+    roses.innerHTML = '';
 };
 
-const updatePoints = () => {
-    positions.forEach((position, index) => {
-        let element = document.getElementById(`${index}`);
-        element.style = `left: ${position[0]}px; bottom: ${position[1]}px;`;
-        if(index === 0){
-            pointerCore.style = `left: ${position[0]}px; bottom: ${position[1]}px;`;
-        }
-    });
-};
-
-const calculateNextCoordinate = (current, dest) => {
-    if(current === dest){
-        return dest;
-    }
-    if(current < dest){
-        return Math.min(current + velocity, dest);
-    }
-    return Math.max(current - velocity, dest);
-}
-
-const calculateNextPoint = (currentPoint) => {
-    const [currentPointX, currentPointY] = currentPoint;
-    const [destinationX, destinationY] = destination;
-    return [calculateNextCoordinate(currentPointX, destinationX), calculateNextCoordinate(currentPointY, destinationY)];
-};
-
-const moveLaser = () => {
-    const currentLaserPosition = positions[0];
-    if(currentLaserPosition[0] === destination[0] && currentLaserPosition[1] === destination[1]) {
-        destination = getRandomPoint();
-        velocity = getRandomVelocity();
-    }
-    positions.pop();
-    const nextPoint = calculateNextPoint(currentLaserPosition);
-    positions.unshift(nextPoint);
-    updatePoints();
-};
-
-const initalizeLaser = () => {
-    const { laserDuration } = fieldData;
-    if(endTimeout){
-        clearTimeout(endTimeout);
-        endTimeout = setTimeout(end, laserDuration * 1000);
-        return;
-    }
+const show = () => {
     mainContainer.className = 'main-container';
+};
 
-    const randomPoint = getRandomPoint();
-    for(let x = 0; x < numberOfSegments; x++){
-        positions.push(randomPoint);
+const createRose = () => {
+    const height = Math.round(Math.random() * 300) + 100;
+    const width = Math.round(Math.random() * 300) + 100;
+    const rose = document.createElement('div');
+    rose.className = 'rose';
+    rose.style.height = `${height}px`;
+    rose.style.width = `${width}px`;
+
+    return rose;
+};
+
+const throwRose = () => {
+    const roseItem = createRose();
+
+    const {height, width} = mainContainer.getBoundingClientRect();
+    const halfWidth = width / 2;
+    const halfHeight = height / 2;
+
+    const isLeft = Math.round(Math.random() * 1000) % 2 === 0;
+    const startingY = Math.round(Math.random() * halfHeight) + halfHeight;
+    const startingX = isLeft ? -200 : width + 200;
+    roseItem.style.transform = `rotate(${isLeft ? '90deg' : '-90deg'}`;
+    roseItem.style.top = `${height - startingY}px`;
+    roseItem.style.left = `${startingX}px`;
+    roses.appendChild(roseItem);
+
+    const endingHeightBase = 100;
+    let endingX = Math.round(Math.random() * halfWidth);
+    if(isLeft){
+        endingX += halfWidth;
     }
+    const endingY = endingHeightBase + Math.round(Math.random() * 100);
 
-    destination = getRandomPoint();
-    velocity = getRandomVelocity();
-    endTimeout = setTimeout(end, laserDuration * 1000);
-    laserUpdateInterval = setInterval(moveLaser, 17);
+
+    setTimeout(() => {
+        roseItem.style.top = `${height - (startingY * 1.4)}px`;
+        roseItem.style.left = `${isLeft ? (endingX - startingX) / 3 : (startingX - endingX) / 3}px`;
+        setTimeout(() => {
+            roseItem.className = 'rose out';
+            setTimeout(() => {
+                roseItem.style.top = `${height - endingY}px`;
+                roseItem.style.left = `${endingX}px`;
+            }, 100);
+        }, 2000);
+    }, 100);
 };
 
 
@@ -101,15 +79,25 @@ const checkPrivileges = (data) => {
 };
 
 const handleMessage = (obj) => {
-    const { laserCommand } = fieldData;
+    const { command, duration } = fieldData;
     const data = obj.detail.event.data;
     const {text} = data;
-    const textStartsWithCommand = text.toLowerCase().startsWith(laserCommand.toLowerCase());
+    if(isThrowing && text.toLowerCase() === 'f'){
+        throwRose();
+    }
+    const textStartsWithCommand = text.toLowerCase().startsWith(command.toLowerCase());
     if (!textStartsWithCommand || !checkPrivileges(data)) {
         return;
     }
-
-    initalizeLaser();
+    isThrowing = true;
+    if(isThrowingTimeout){
+        clearTimeout(isThrowingTimeout);
+    }
+    isThrowingTimeout = setTimeout(() => {
+        isThrowing = false;
+        hide();
+    }, duration * 1000);
+    show();
 };
 
 window.addEventListener('onEventReceived', function (obj) {
