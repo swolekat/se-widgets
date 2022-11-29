@@ -1,0 +1,57 @@
+{
+  "command": {
+    "type": "text",
+    "label": "Press F Command",
+    "value": "!payRespects"
+  },
+  "durations": {
+    "type": "number",
+    "label": "Duration (in seconds)",
+    "value": 60
+  },
+  "position": {
+    "type": "dropdown",
+    "label": "Command Position",
+    "value": "center",
+    "options": {
+      "center": "Center",
+      "top-left": "Top Left",
+      "top-center": "Top Center",
+      "top-right": "Top Right",
+      "center-left": "Left",
+      "center-right": "Right",
+      "bottom-left": "Bottom Left",
+      "bottom-center": "Bottom Center",
+      "bottom-right": "Bottom Right"
+    }
+  },
+  "privileges": {
+    "type": "dropdown",
+    "label": "Who can participate:",
+    "value": "everybody",
+    "options": {
+      "everybody": "Everybody",
+      "subs": "Subs + VIPs + Mods",
+      "vips": "VIPs + Mods",
+      "mods": "Mods",
+      "broadcaster": "Broadcaster"
+    }
+  },
+
+  "widgetName": {
+    "type": "hidden",
+    "value": "Press F to Pay Respects by Swolekat"
+  },
+  "widgetAuthor": {
+    "type": "hidden",
+    "value": "swolekat"
+  },
+  "widgetVersion": {
+    "type": "hidden",
+    "value": "0.1"
+  },
+  "widgetUpdateUrl": {
+    "type": "hidden",
+    "value": "https://github.com/swolekat/se-widgets/tree/main/laser"
+  }
+}
