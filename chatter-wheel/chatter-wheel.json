@@ -34,7 +34,7 @@
   "doTTS": {
     "group": "On Spin End",
     "type": "checkbox",
-    "label": "ignoreBroadcaster",
+    "label": "Do TTS when spin ends",
     "value": true
   },
   "ttsVoice": {
