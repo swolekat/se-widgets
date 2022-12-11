@@ -1,0 +1,12 @@
+html, body, .main-container, .main-container>img {
+    height: 100%;
+    width: 100%;
+}
+
+.main-container.hidden {
+    display: none;
+}
+
+.main-container>img {
+    object-fit: contain;
+}
