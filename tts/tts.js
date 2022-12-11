@@ -43,13 +43,15 @@ const createEmoteRegex = (emotes) => {
     return new RegExp(regex, 'g')
 }
 
+const htmlEncode  = (text) => text.replace(/[\<\>\"\'\^\=]/g, char => `&#${char.charCodeAt(0)};`);
 const processText = (text, emotes) => {
     const ignoreEmotes = fieldData.ignoreEmotes;
     if(!ignoreEmotes){
         return text;
     }
     const emoteRegex = createEmoteRegex(emotes.map(e => htmlEncode(e.name)))
-    return text.split(emoteRegex).join('');
+    const textParts = text.split(emoteRegex);
+    return textParts.join('');
 };
 
 const handleRaid = (obj) => {
@@ -122,7 +124,7 @@ const handleShutoffCommands = (obj) => {
 };
 
 const handleMessage = (obj) => {
-    const {ttsCommand, voice, everybodyBotFilters} = fieldData;
+    const {ttsCommand, voice, everybodyBotFilters, ignoreLinks} = fieldData;
     const data = obj.detail.event.data;
     const {text, userId, displayName, emotes} = data;
 
@@ -145,6 +147,10 @@ const handleMessage = (obj) => {
     const processedText = processText(text, emotes);
     const ignoreEmotes = fieldData.ignoreEmotes;
     const textToSay = ignoreEmotes ? processedText : text;
+    const textHasLinks = textToSay.includes('http://') || textToSay.includes('https://') || textToSay.includes('.com') || textToSay.includes('.tv') || textToSay.includes('.net') || textToSay.includes('.org');
+    if(ignoreLinks && textHasLinks){
+        return;
+    }
 
     if(isEnabledForEverybody) {
         if(text.startsWith('!')){

@@ -9,6 +9,11 @@
     "label": "Ignore Emotes",
     "value": true
   },
+  "ignoreLinks": {
+    "type": "checkbox",
+    "label": "Ignore Links",
+    "value": true
+  },
   "bannedWords": {
     "type": "text",
     "label": "Banned words, comma separated",
