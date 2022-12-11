@@ -6,7 +6,7 @@
   },
   "showDuration": {
     "type": "number",
-    "label": "Seconds to show after image is made (0 for always show)",
+    "label": "How long to show image (0 for always show)",
     "value": 0
   },
   "model": {
