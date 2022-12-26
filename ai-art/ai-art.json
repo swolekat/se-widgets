@@ -11,7 +11,7 @@
   },
   "model": {
     "type": "dropdown",
-    "label": "Ignore Emotes",
+    "label": "AI Art Model",
     "value": "stable_diffusion",
     "options": {
       "stable_diffusion": "stable_diffusion",
