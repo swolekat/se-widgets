@@ -56,7 +56,7 @@ const checkPrivileges = (data) => {
 };
 
 const handleMessage = (obj) => {
-    const {ttsCommand} = fieldData;
+    const ttsCommand = fieldData.ttsCommand;
     const data = obj.detail.event.data;
     const {text} = data;
     const textStartsWithCommand = text.toLowerCase().startsWith(ttsCommand.toLowerCase())
