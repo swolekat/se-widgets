@@ -124,7 +124,7 @@ const handleShutoffCommands = (obj) => {
 };
 
 const handleMessage = (obj) => {
-    const {ttsCommand, voice, everybodyBotFilters, ignoreLinks} = fieldData;
+    const {ttsCommand, voice, everybodyBotFilters, ignoreLinks, globalTTS} = fieldData;
     const data = obj.detail.event.data;
     const {text, userId, displayName, emotes} = data;
 
@@ -152,7 +152,7 @@ const handleMessage = (obj) => {
         return;
     }
 
-    if(isEnabledForEverybody) {
+    if(isEnabledForEverybody || globalTTS) {
         if(text.startsWith('!')){
             return;
         }

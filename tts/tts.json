@@ -345,6 +345,12 @@
     "type": "number",
     "value": 300
   },
+  "globalTTS": {
+    "label": "Say absolutely Everything",
+    "group": "Global TTS",
+    "type": "checkbox",
+    "value": false
+  },
   "everybodyBotFilters": {
     "label": "Bots to filter out",
     "group": "Everybody TTS",
@@ -361,7 +367,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "2.0"
+    "value": "2.1"
   },
   "widgetUpdateUrl": {
     "type": "hidden",
