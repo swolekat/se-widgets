@@ -58,6 +58,14 @@ const hide = () => {
 
 const checkId = (id) => {
     return new Promise(async (resolve) => {
+        const status = await fetch(`https://stablehorde.net/api/v2/generate/check/${id}`);
+        const data = await status.json();
+        resolve(data);
+    });
+}
+
+const checkStatus = (id) => {
+    return new Promise(async (resolve) => {
         const status = await fetch(`https://stablehorde.net/api/v2/generate/status/${id}`);
         const data = await status.json();
         resolve(data);
@@ -106,7 +114,8 @@ const makeArt = async (prompt) => {
         const checkData = await checkId(id);
         isDone = checkData?.finished;
         if(isDone){
-            image.src=`data:image/webp;base64,${checkData.generations[0].img}`;
+            const statusData = await checkStatus(id);
+            image.src=statusData.generations[0].img;
             show();
         } else {
             await wait();
