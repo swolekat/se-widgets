@@ -4,6 +4,11 @@
     "label": "Caption Command",
     "value": "!tiktok"
   },
+  "ignoreEmotes": {
+    "type": "checkbox",
+    "label": "Ignore Emotes",
+    "value": true
+  },
   "bannedWords": {
     "type": "text",
     "label": "Banned words, comma separated",
@@ -72,7 +77,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "1.0"
+    "value": "1.1"
   },
   "widgetUpdateUrl": {
     "type": "hidden",

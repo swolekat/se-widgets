@@ -5,7 +5,25 @@ const captionTextElement = document.getElementById('caption-text');
 let isSpeakingMessage = false;
 const queuedMessages = [];
 
-const sayMessage = (message) => {
+const createEmoteRegex = (emotes) => {
+    const regexStrings = emotes.sort().reverse().map(string => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+    const regex = `(?<=\\s|^)(?:${regexStrings.join('|')})(?=\\s|$|[.,!])`;
+    return new RegExp(regex, 'g')
+}
+
+const htmlEncode  = (text) => text.replace(/[\<\>\"\'\^\=]/g, char => `&#${char.charCodeAt(0)};`);
+const processText = (text, emotes) => {
+    const ignoreEmotes = fieldData.ignoreEmotes;
+    if(!ignoreEmotes){
+        return text.substr(0, 300);
+    }
+    const emoteRegex = createEmoteRegex(emotes.map(e => htmlEncode(e.name)))
+    const textParts = text.split(emoteRegex);
+    return textParts.join('').substr(0, 300);
+};
+
+
+const sayMessage = (message, emotes) => {
     const {volume, bannedWords, voice} = fieldData;
 
     const bannedArray = (bannedWords || '').split(',').filter(w => !!w);
@@ -16,16 +34,16 @@ const sayMessage = (message) => {
     }
 
     if(isSpeakingMessage){
-        queuedMessages.push(message);
+        queuedMessages.push({message, emotes});
     }
 
     isSpeakingMessage = true;
 
-
+    const processedText = processText(message, emotes);
     fetch('https://tiktok-tts.weilnet.workers.dev/api/generation', {
         method: 'POST',
         body: JSON.stringify({
-            text: message.substr(0, 300),
+            text: processedText,
             voice
         }),
         headers: {
@@ -36,7 +54,8 @@ const sayMessage = (message) => {
             if(!data){
                 isSpeakingMessage = false;
                 if(queuedMessages.length > 0){
-                    sayMessage(queuedMessages.pop());
+                    const queuedMessage = queuedMessages.pop();
+                    sayMessage(queuedMessage.message, queuedMessage.emotes);
                 }
                 return;
             }
@@ -44,13 +63,14 @@ const sayMessage = (message) => {
             myAudio.src = `data:audio/mp3;base64,${data}`;
             myAudio.volume = volume;
             myAudio.play();
-            captionTextElement.innerHTML = message;
+            captionTextElement.innerHTML = processedText;
             captionTextElement.style = `color: ${fieldData.fontColor}`;
             setTimeout(() => {
                 captionTextElement.innerHTML = '';
                 isSpeakingMessage = false;
                 if(queuedMessages.length > 0){
-                    sayMessage(queuedMessages.pop());
+                    const queuedMessage = queuedMessages.pop();
+                    sayMessage(queuedMessage.message, queuedMessage.emotes);
                 }
             }, 10000);
         });
@@ -74,13 +94,13 @@ const checkPrivileges = (data) => {
 const handleMessage = (obj) => {
     const {ttsCommand, voice} = fieldData;
     const data = obj.detail.event.data;
-    const {text} = data;
+    const {text, emotes} = data;
     const textStartsWithCommand = text.toLowerCase().startsWith(ttsCommand.toLowerCase())
     if (!textStartsWithCommand || !checkPrivileges(data)) {
         return;
     }
 
-    sayMessage(text.toLowerCase().replace(ttsCommand.toLowerCase(), '').trim());
+    sayMessage(text.substr(ttsCommand.length).trim(), emotes);
 };
 
 window.addEventListener('onEventReceived', function (obj) {
