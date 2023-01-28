@@ -1,8 +1,8 @@
 {
   "imageBackground": {
-    "label": "Image Bckground",
+    "label": "Image Background",
     "type": "text",
-    "value": "!"
+    "value": "https://swolekat.github.io/se-widgets/assets/classroom-chat/background.jfif"
   },
   "ignoreUserListLabel": {
     "label": "Ignore these users:",
@@ -41,7 +41,7 @@
   },
   "widgetName": {
     "type": "hidden",
-    "value": "Nth Chat by Swolekat"
+    "value": "Classroom Chat by Swolekat"
   },
   "widgetAuthor": {
     "type": "hidden",
