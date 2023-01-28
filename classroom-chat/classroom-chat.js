@@ -113,7 +113,6 @@ const createMessageHtml = ({
 const data = {};
 const MAX_MESSAGES = 50;
 let messages = [];
-let lastRenderedMessageId = '';
 
 window.addEventListener('onWidgetLoad', async obj => {
     processSessionData(obj.detail.session.data);
@@ -208,9 +207,9 @@ const getUrlFromEmoteSizeAndData = (data, emoteSize) => {
     return data.urls["1"];
 };
 
-const showMessage = (msgId, html) => {
+const showMessage = (msgId, html, messageIndex) => {
     const messageElementId = `.chat-message[data-message-id="${msgId}"]`;
-    document.getElementById('main').innerHTML = html;
+    document.getElementById(messageIndex).innerHTML = html;
 
     // must do the delay to calculate the dynamic width
     setTimeout(() => {
@@ -245,38 +244,58 @@ const getColorBasedOnId = (userId) => {
     return altColors[number % altColors.length];
 };
 
-const renderMessage = () => {
-    const messagesWithOffset = messages.filter((m) => m.messageIndex % data.numberOfChats === data.chatOffset);
-    const messageToRender = messagesWithOffset[messagesWithOffset.length -1];
-    if(!messageToRender){
-        return;
-    }
-    if(messageToRender.msgId === lastRenderedMessageId){
-        return;
-    }
-    lastRenderedMessageId = messageToRender.msgId;
-    let {
-        badges = [],
-        userId = '',
-        displayName = '',
-        emotes = [],
-        text = '',
-        msgId = '',
-        displayColor: color
-    } = messageToRender;
-    if(!color){
-        color = getColorBasedOnId(userId);
-    }
+const lastRenderedMessages = {
+   0: '',
+   1: '',
+   2: '',
+   3: '',
+   4: '',
+};
 
-    const messageContentsArray = processMessageText(htmlEncode(text), emotes);
-    const emoteSize = calcEmoteSize(messageContentsArray);
-    const eventClasses = '';
+const NUMBER_OF_MESSAGES = 5;
 
-    const html = createMessageHtml({
-        badges, userId, displayName, messageContentsArray, msgId, color, emoteSize, eventClasses
+const getMessagesToRender = () => {
+    const messagesToRender = {};
+    for(let x = 0; x < NUMBER_OF_MESSAGES; x++){
+        const messagesWithOffset = messages.filter((m) => m.messageIndex % NUMBER_OF_MESSAGES === x);
+        if(messagesWithOffset.length > 0){
+            const messageToRender = messagesWithOffset[messagesWithOffset.length -1];
+            if(messageToRender.msgId !== lastRenderedMessages[x]){
+                messagesToRender[x] = messageToRender;
+                lastRenderedMessages[x] = messageToRender.msgId;
+            }
+        }
+    }
+    return messagesToRender;
+};
+
+const renderMessages = () => {
+    const messagesToRender = getMessagesToRender();
+    Object.keys(messagesToRender).forEach(messageIndex => {
+        const messageToRender = messagesToRender[messageIndex];
+        let {
+            badges = [],
+            userId = '',
+            displayName = '',
+            emotes = [],
+            text = '',
+            msgId = '',
+            displayColor: color
+        } = messageToRender;
+        if(!color){
+            color = getColorBasedOnId(userId);
+        }
+
+        const messageContentsArray = processMessageText(htmlEncode(text), emotes);
+        const emoteSize = calcEmoteSize(messageContentsArray);
+        const eventClasses = '';
+
+        const html = createMessageHtml({
+            badges, userId, displayName, messageContentsArray, msgId, color, emoteSize, eventClasses
+        });
+
+        showMessage(msgId, html, messageIndex);
     });
-
-    showMessage(msgId, html);
 };
 
 const cleanUpMessages = () => {
@@ -304,7 +323,7 @@ const onMessage = (event) => {
         messageIndex,
     });
     messageIndex +=1;
-    renderMessage();
+    renderMessages();
     cleanUpMessages();
 };
 
@@ -315,7 +334,7 @@ const onDeleteMessage = (event) => {
         return;
     }
     messages = messages.filter(m => m.msgId !== event.msgId);
-    renderMessage();
+    renderMessages();
 };
 
 const onDeleteMessages = (event) => {
@@ -323,7 +342,7 @@ const onDeleteMessages = (event) => {
         return;
     }
     messages = messages.filter(m => m.userId !== event.userId);
-    renderMessage();
+    renderMessages();
 };
 
 /* Use Events */

@@ -11,12 +11,9 @@
 }
 
 main {
-    display: flex;
-    align-content: start;
-    overflow: visible;
-    padding: 30px;
-    flex-direction: column-reverse;
+    position: relative;
     height: 100%;
+    width: 100%;
 }
 
 @keyframes fade {
@@ -31,15 +28,39 @@ main {
 
 
 .chat-message {
-    margin-top: 15px;
     visibility: hidden;
     position: relative;
-    border: 3px solid #000;
-    border-radius: 20px;
-    overflow: hidden;
     min-width: 300px;
     max-width: 500px;
     width: var(--dynamicWidth);
+    background: #fff;
+    border-radius: 20px;
+}
+
+.chat-message:before {
+    content: '';
+    background: #fff;
+    border-radius: 30px;
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    top: 100%;
+    right: 100%;
+    margin-top: -5px;
+    margin-right: -5px;
+}
+
+.chat-message:after {
+    content: '';
+    background: #fff;
+    border-radius: 15px;
+    height: 15px;
+    width: 15px;
+    position: absolute;
+    top: 100%;
+    right: 100%;
+    margin-top: 20px;
+    margin-right: 20px;
 }
 
 .chat-message.animate {
@@ -62,7 +83,6 @@ animation: fade reverse .5s,
 .username-section {
     position: relative;
     z-index: 2;
-    background: #888;
     height: 40px;
     padding: 0 10px;
     font-size: 24px;
@@ -70,6 +90,9 @@ animation: fade reverse .5s,
     color: #000;
     line-height: 40px;
     display: inline-block;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin-top: -1px;
 }
 
 .username-section.white-text {
@@ -84,7 +107,6 @@ animation: fade reverse .5s,
 
 .message-section {
     padding: 10px;
-    background: #FFFAE4;
 }
 
 .message-wrapper {
@@ -119,4 +141,62 @@ animation: fade reverse .5s,
     top: 0;
     left: 0;
     background: transparent !important;
+}
+
+.image-background {
+    display: block;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+#main > div {
+    position: absolute;
+    transform: translate(0, -100%);
+}
+
+div[id="0"] {
+    left: 53%;
+    top: 60%;
+}
+
+div[id="1"] {
+    left: 16%;
+    top: 32%;
+}
+
+div[id="2"] {
+    left: 83%;
+    top: 30%;
+    transform: translate(-100%, -100%) !important;
+}
+
+div[id="3"] {
+    left: 93%;
+    top: 44%;
+    transform: translate(-100%, -100%) !important;
+}
+
+div[id="2"] .chat-message:before,
+div[id="4"] .chat-message:before,
+div[id="3"] .chat-message:before {
+    right: auto;
+    left: 100%;
+    margin-right: 0;
+    margin-left: -5px;
+}
+
+div[id="2"] .chat-message:after,
+div[id="4"] .chat-message:after,
+div[id="3"] .chat-message:after {
+    right: auto;
+    left: 100%;
+    margin-right: 0;
+    margin-left: 20px;
+}
+
+div[id="4"] {
+    left: 49%;
+    top: 47%;
+    transform: translate(-100%, -100%) !important;
 }
