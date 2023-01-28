@@ -1,0 +1,122 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+* {
+    font-family: Nunito, Arial, sans-serif;
+    font-size: 16px;
+    overflow-wrap: break-word;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    display: flex;
+    align-content: start;
+    overflow: visible;
+    padding: 30px;
+    flex-direction: column-reverse;
+    height: 100%;
+}
+
+@keyframes fade {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes up {
+    from { transform: translateY(50px); }
+    to { transform: translateY(0px); }
+}
+
+
+.chat-message {
+    margin-top: 15px;
+    visibility: hidden;
+    position: relative;
+    border: 3px solid #000;
+    border-radius: 20px;
+    overflow: hidden;
+    min-width: 300px;
+    max-width: 500px;
+    width: var(--dynamicWidth);
+}
+
+.chat-message.animate {
+    visibility: visible;
+animation: fade reverse .5s,
+                          fade .5s calc({lifetime}s - .5s) forwards,
+                                                           up .5s,
+                                                                up reverse .5s calc({lifetime}s - .5s) forwards;
+}
+
+.chat-message.animate .username-section {
+    width: 100%;
+}
+
+.chat-message.animate.forever {
+    visibility: visible;
+    animation: fade reverse .5s, up .5s;
+}
+
+.username-section {
+    position: relative;
+    z-index: 2;
+    background: #888;
+    height: 40px;
+    padding: 0 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+    line-height: 40px;
+    display: inline-block;
+}
+
+.username-section.white-text {
+    color: #fff;
+}
+
+.badge {
+    height: 20px;
+    width: 20px;
+    margin-right: 5px;
+}
+
+.message-section {
+    padding: 10px;
+    background: #FFFAE4;
+}
+
+.message-wrapper {
+    display: inline-block;
+}
+
+.large-emotes .message-section {
+    text-align: center;
+}
+
+.large-emotes .emote {
+    height: 112px;
+}
+
+.medium-emotes .emote {
+    height: 3.5rem;
+    max-height: 112px;
+}
+
+.small-emotes .emote {
+    height: 1.75rem;
+    max-height: 112px;
+}
+
+.complex-emote {
+    display: inline-block;
+    position: relative;
+}
+
+.emote.zero-width {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: transparent !important;
+}
