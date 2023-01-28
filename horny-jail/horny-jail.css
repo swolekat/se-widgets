@@ -36,17 +36,35 @@ html, body {
     transform: rotate(-45deg);
 }
 
-.bonkee {
+.jailed {
     display: block;
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 50%;
-    width: 50%;
+    height: 100%;
+    width: 100%;
     object-position: left;
     transition: all 1000ms;
 }
 
-.bonkee.animate {
-    height: 15%;
+.bars {
+    display: block;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    object-fit: cover;
+    transition: all 1000ms;
+    width: 100%;
+    height: 100%;
+}
+.bars.animate {
+    bottom: 0;
+}
+
+.title {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
