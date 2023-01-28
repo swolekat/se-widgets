@@ -8,7 +8,12 @@ const bonkee = document.getElementById('bonkee');
 const bat = document.getElementById('bat');
 const sound = document.getElementById('sound');
 
-const bonkUser = (user) => {
+const hideJail = () => {
+    mainContainer.className = 'main-container hidden';
+
+};
+
+const jailUser = (user) => {
     return new Promise((resolve) => {
         fetch(`https://decapi.me/twitch/avatar/${user}`)
             .then((data) => {
@@ -40,46 +45,16 @@ const bonkUser = (user) => {
 
 };
 
-const bonk = async () => {
-    if(isBonking){
-        return;
-    }
-    isBonking = true;
-
-    while(bonkQueue.length > 0){
-        const queueUser = bonkQueue.shift();
-        await bonkUser(queueUser);
-    }
-    isBonking = false;
-};
-
-const checkPrivileges = (data) => {
-    const {tags, userId} = data;
-    const {mod, subscriber, badges} = tags;
-    const required = fieldData.privileges;
-    const isMod = parseInt(mod);
-    const isSub = parseInt(subscriber);
-    const isVip = (badges.indexOf("vip") !== -1);
-    const isBroadcaster = (userId === tags['room-id']);
-    if (isBroadcaster) return true;
-    if (required === "mods" && isMod) return true;
-    if (required === "vips" && (isMod || isVip)) return true;
-    if (required === "subs" && (isMod || isVip || isSub)) return true;
-    return required === "everybody";
-};
-
 const handleMessage = (obj) => {
-    const bonkCommand = fieldData.bonkCommand;
+    const jailWords = (fieldData.jailWords || '').split(',');
     const data = obj.detail.event.data;
-    const {text} = data;
-    const textStartsWithCommand = text.toLowerCase().startsWith(bonkCommand.toLowerCase());
-    if (!textStartsWithCommand || !checkPrivileges(data)) {
+    const {text, name} = data;
+    const words = text.split(' ');
+    const shouldGoToJail = words.some(word => jailWords.includes(word.toLowerCase()));
+    if(!shouldGoToJail){
         return;
     }
-
-    const userToBonk = text.toLowerCase().replace(bonkCommand.toLowerCase(), '').trim();
-    bonkQueue.push(userToBonk);
-    bonk();
+    jailUser(name);
 };
 
 window.addEventListener('onEventReceived', function (obj) {

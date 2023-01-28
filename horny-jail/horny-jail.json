@@ -1,0 +1,30 @@
+{
+  "jailWords": {
+    "type": "text",
+    "label": "Words that Send People to Jail",
+    "value": "coom,cum,sexy,horny,penis,erotic,roleplay,horni,ass,butt,naughty"
+  },
+  "howLongSeconds": {
+    "label": "How Many Seconds to Keep in Jail",
+    "type": "number",
+    "value": 60,
+    "step": 1,
+    "min": 0
+  },
+  "widgetName": {
+    "type": "hidden",
+    "value": "Horny Jail by Swolekat"
+  },
+  "widgetAuthor": {
+    "type": "hidden",
+    "value": "swolekat"
+  },
+  "widgetVersion": {
+    "type": "hidden",
+    "value": "0.1"
+  },
+  "widgetUpdateUrl": {
+    "type": "hidden",
+    "value": "https://github.com/swolekat/se-widgets/tree/main/horny-jail"
+  }
+}
