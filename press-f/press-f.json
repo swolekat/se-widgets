@@ -37,6 +37,11 @@
       "broadcaster": "Broadcaster"
     }
   },
+  "roseImageUrl": {
+    "type": "text",
+    "label": "Rose Image Url",
+    "value": "https://swolekat.github.io/se-widgets/assets/press-f/rose.png"
+  },
 
   "widgetName": {
     "type": "hidden",
@@ -48,7 +53,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "0.1"
+    "value": "0.2"
   },
   "widgetUpdateUrl": {
     "type": "hidden",

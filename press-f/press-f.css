@@ -91,7 +91,7 @@ html, body {
 
 .rose {
     position: absolute;
-    background-image: url("https://swolekat.github.io/se-widgets/assets/press-f/rose.png");
+    background-image: url("{roseImageUrl}");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
