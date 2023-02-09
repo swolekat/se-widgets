@@ -29,6 +29,13 @@
     "max": 1,
     "steps": 0.1
   },
+  "cooldownSeconds": {
+  "label": "Cooldown in seconds",
+  "type": "number",
+  "value": 0,
+  "step": 1,
+  "min": 0
+  },
   "widgetName": {
     "type": "hidden",
     "value": "Singing TTS by Swolekat"
@@ -39,7 +46,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "1.0"
+    "value": "1.1"
   },
   "widgetUpdateUrl": {
     "type": "hidden",

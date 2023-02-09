@@ -7,6 +7,8 @@ const voices = [
     'en_female_ht_f08_wonderful_world',
 ];
 
+let isOnCooldown = false;
+
 const sayMessage = (message) => {
     const {volume, bannedWords} = fieldData;
 
@@ -38,6 +40,13 @@ const sayMessage = (message) => {
             myAudio.volume = volume;
             myAudio.play();
         });
+    const cooldownSeconds = fieldData.cooldownSeconds;
+    if(cooldownSeconds > 0){
+        isOnCooldown = true;
+        setTimeout(() => {
+            isOnCooldown = false;
+        }, cooldownSeconds * 1000);
+    }
 };
 
 const checkPrivileges = (data) => {
@@ -64,6 +73,9 @@ const handleMessage = (obj) => {
         return;
     }
 
+    if(isOnCooldown){
+        return;
+    }
     sayMessage(text.toLowerCase().replace(ttsCommand.toLowerCase(), '').trim());
 };
 
