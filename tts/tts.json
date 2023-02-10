@@ -14,6 +14,11 @@
     "label": "Ignore Links",
     "value": true
   },
+  "doUserSaid": {
+    "type": "checkbox",
+    "label": "Prefix message with user name",
+    "value": false
+  },
   "bannedWords": {
     "type": "text",
     "label": "Banned words, comma separated",
@@ -367,7 +372,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "2.1"
+    "value": "2.2"
   },
   "widgetUpdateUrl": {
     "type": "hidden",

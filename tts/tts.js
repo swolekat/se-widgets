@@ -1,7 +1,7 @@
 let fieldData, apiToken;
 
-const sayMessage = (message, messageVoice) => {
-    const {volume, bannedWords} = fieldData;
+const sayMessage = (message, messageVoice, userDisplayName) => {
+    const {volume, bannedWords, doUserSaid} = fieldData;
 
     const bannedArray = (bannedWords || '').split(',').filter(w => !!w);
     const sanitizedMessage = message.replace(/\W/g, '').toLowerCase();
@@ -10,7 +10,12 @@ const sayMessage = (message, messageVoice) => {
         return;
     }
 
-    const url = `//api.streamelements.com/kappa/v2/speech?voice=${messageVoice.replace('$', '')}&text=${encodeURI(message)}&key=${apiToken}`
+    let fullMessage = message;
+    if(doUserSaid){
+        fullMessage = `${userDisplayName} says ${message}`
+    }
+
+    const url = `//api.streamelements.com/kappa/v2/speech?voice=${messageVoice.replace('$', '')}&text=${encodeURI(fullMessage)}&key=${apiToken}`
     const myAudio = new Audio(url);
     myAudio.volume = volume;
     myAudio.play();
@@ -160,13 +165,13 @@ const handleMessage = (obj) => {
         if(bots.find(b => b.toLowerCase() === displayName.toLowerCase())){
             return;
         }
-        sayMessage(textToSay.toLowerCase().trim(), userVoice);
+        sayMessage(textToSay.toLowerCase().trim(), userVoice, displayName);
         return;
     }
 
     const activeRaiders = getActiveRaiders();
     if(activeRaiders.includes(displayName)) {
-        sayMessage(textToSay.toLowerCase().trim(), userVoice);
+        sayMessage(textToSay.toLowerCase().trim(), userVoice, displayName);
         return;
     }
     const textStartsWithCommand = text.toLowerCase().startsWith(ttsCommand.toLowerCase());
@@ -174,7 +179,7 @@ const handleMessage = (obj) => {
         return;
     }
 
-    sayMessage(textToSay.toLowerCase().replace(ttsCommand.toLowerCase(), '').trim(), voice);
+    sayMessage(textToSay.toLowerCase().replace(ttsCommand.toLowerCase(), '').trim(), voice, displayName);
 };
 
 window.addEventListener('onEventReceived', function (obj) {
