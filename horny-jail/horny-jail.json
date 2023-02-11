@@ -2,7 +2,7 @@
   "jailWords": {
     "type": "text",
     "label": "Words that Send People to Jail",
-    "value": "coom,cum,sexy,horny,penis,erotic,roleplay,horni,butt,naughty,yiff,coomer,hentai,yaoi,yuri,porn"
+    "value": "coom,cum,sexy,horny,penis,erotic,roleplay,horni,butt,naughty,yiff,coomer,hentai,yaoi,yuri,porn,jizz,coitus,shibari,anal,dicks,dick,pussy,69"
   },
   "howLongSeconds": {
     "label": "How Many Seconds to Keep in Jail",
@@ -21,7 +21,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "0.1"
+    "value": "0.2"
   },
   "widgetUpdateUrl": {
     "type": "hidden",
