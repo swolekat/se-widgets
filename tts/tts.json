@@ -19,6 +19,12 @@
     "label": "Ignore Links",
     "value": true
   },
+  "characterLimit": {
+    "label": "Character Limit (0 for All)",
+    "type": "number",
+    "value": 0,
+    "min": 0
+  },
   "doUserSaid": {
     "type": "checkbox",
     "label": "Prefix message with user name",
@@ -35,6 +41,7 @@
     "value": "everybody",
     "options": {
       "everybody": "Everybody",
+      "justSubs": "Subs",
       "subs": "Subs + VIPs + Mods",
       "vips": "VIPs + Mods",
       "mods": "Mods",
@@ -377,7 +384,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "2.3"
+    "value": "2.4"
   },
   "widgetUpdateUrl": {
     "type": "hidden",

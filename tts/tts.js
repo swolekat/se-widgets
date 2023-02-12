@@ -1,7 +1,7 @@
 let fieldData, apiToken;
 
 const sayMessage = (message, messageVoice, userDisplayName) => {
-    const {volume, bannedWords, doUserSaid} = fieldData;
+    const {volume, bannedWords, doUserSaid, characterLimit} = fieldData;
 
     const bannedArray = (bannedWords || '').split(',').filter(w => !!w);
     const sanitizedMessage = message.replace(/\W/g, '').toLowerCase();
@@ -13,6 +13,9 @@ const sayMessage = (message, messageVoice, userDisplayName) => {
     let fullMessage = message;
     if(doUserSaid){
         fullMessage = `${userDisplayName} says ${message}`
+    }
+    if(characterLimit > 0){
+        fullMessage = fullMessage.substr(0, characterLimit);
     }
 
     const url = `//api.streamelements.com/kappa/v2/speech?voice=${messageVoice.replace('$', '')}&text=${encodeURI(fullMessage)}&key=${apiToken}`
@@ -30,6 +33,7 @@ const checkPrivileges = (data, privileges) => {
     const isVip = (badges.indexOf("vip") !== -1);
     const isBroadcaster = (userId === tags['room-id']);
     if (isBroadcaster) return true;
+    if (required === "justSubs" && isSub) return true;
     if (required === "mods" && isMod) return true;
     if (required === "vips" && (isMod || isVip)) return true;
     if (required === "subs" && (isMod || isVip || isSub)) return true;
