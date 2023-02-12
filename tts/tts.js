@@ -50,13 +50,17 @@ const createEmoteRegex = (emotes) => {
 
 const htmlEncode  = (text) => text.replace(/[\<\>\"\'\^\=]/g, char => `&#${char.charCodeAt(0)};`);
 const processText = (text, emotes) => {
-    const ignoreEmotes = fieldData.ignoreEmotes;
-    if(!ignoreEmotes){
-        return text;
+    let processedText = '';
+    const { ignoreEmotes, ignoreEmojis } = fieldData;
+    if(ignoreEmotes){
+        const emoteRegex = createEmoteRegex(emotes.map(e => htmlEncode(e.name)))
+        const textParts = text.split(emoteRegex);
+        processedText = textParts.join('');
     }
-    const emoteRegex = createEmoteRegex(emotes.map(e => htmlEncode(e.name)))
-    const textParts = text.split(emoteRegex);
-    return textParts.join('');
+    if(ignoreEmojis){
+        processedText = processedText.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');
+    }
+    return processedText;
 };
 
 const handleRaid = (obj) => {
@@ -150,8 +154,7 @@ const handleMessage = (obj) => {
     const userVoice = voices[Number.parseInt(userId) % voices.length];
 
     const processedText = processText(text, emotes);
-    const ignoreEmotes = fieldData.ignoreEmotes;
-    const textToSay = ignoreEmotes ? processedText : text;
+    const textToSay = processedText;
     const textHasLinks = textToSay.includes('http://') || textToSay.includes('https://') || textToSay.includes('.com') || textToSay.includes('.tv') || textToSay.includes('.net') || textToSay.includes('.org');
     if(ignoreLinks && textHasLinks){
         return;

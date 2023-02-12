@@ -9,6 +9,11 @@
     "label": "Ignore Emotes",
     "value": true
   },
+  "ignoreEmojis": {
+    "type": "checkbox",
+    "label": "Ignore Emojis",
+    "value": true
+  },
   "ignoreLinks": {
     "type": "checkbox",
     "label": "Ignore Links",
@@ -372,7 +377,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "2.2"
+    "value": "2.3"
   },
   "widgetUpdateUrl": {
     "type": "hidden",
