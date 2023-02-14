@@ -15,6 +15,9 @@ const hideJail = () => {
 
 const jailUser = (user) => {
     hideJail();
+    cooldownTimeout = setTimeout(() => {
+        cooldownTimeout = undefined;
+    },fieldData.cooldown * 1000);
     return new Promise((resolve) => {
         fetch(`https://decapi.me/twitch/avatar/${user}`)
             .then((data) => {
@@ -39,13 +42,15 @@ const jailUser = (user) => {
 
 };
 
+let cooldownTimeout;
+
 const handleMessage = (obj) => {
     const jailWords = (fieldData.jailWords || '').split(',');
     const data = obj.detail.event.data;
     const {text, displayName} = data;
-    const words = text.split(' ');
+    const words = text.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,'').split(' ');
     const shouldGoToJail = words.some(word => jailWords.includes(word.toLowerCase()));
-    if(!shouldGoToJail){
+    if(!shouldGoToJail || cooldownTimeout){
         return;
     }
     jailUser(displayName);

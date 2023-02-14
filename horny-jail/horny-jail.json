@@ -2,12 +2,19 @@
   "jailWords": {
     "type": "text",
     "label": "Words that Send People to Jail",
-    "value": "coom,cum,sexy,horny,penis,erotic,roleplay,horni,butt,naughty,yiff,coomer,hentai,yaoi,yuri,porn,jizz,coitus,shibari,anal,dicks,dick,pussy,69"
+    "value": "coom,cum,sexy,horny,penis,erotic,roleplay,horni,naughty,yiff,coomer,hentai,yaoi,yuri,porn,jizz,coitus,shibari,anal,dicks,dick,pussy,69,cbt,cock,titty,titties,threesome,incest,butthole,anal,booty,scrotum,pp,peepee,lewd,poonani,poon"
   },
   "howLongSeconds": {
     "label": "How Many Seconds to Keep in Jail",
     "type": "number",
     "value": 60,
+    "step": 1,
+    "min": 0
+  },
+  "cooldown": {
+    "label": "Cooldown in Seconds",
+    "type": "number",
+    "value": 300,
     "step": 1,
     "min": 0
   },
@@ -21,7 +28,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "0.2"
+    "value": "1.0"
   },
   "widgetUpdateUrl": {
     "type": "hidden",
