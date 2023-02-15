@@ -148,17 +148,6 @@ const processFieldData = (fieldData) => {
 
 /* message handling */
 
-const shouldNotShowMessage = ({text, name ,nick}) => {
-    if(data.ignorePrefixList.some(prefix => text.startsWith(prefix))){
-        return true;
-    }
-    const names = [name.toLowerCase() , nick.toLowerCase()];
-    if(data.ignoreUserList.some(user => names.includes(user.toLowerCase()))){
-        return true;
-    }
-    return false;
-};
-
 const htmlEncode  = (text) => text.replace(/[\<\>\"\'\^\=]/g, char => `&#${char.charCodeAt(0)};`);
 const createEmoteRegex = (emotes) => {
     const regexStrings = emotes.sort().reverse().map(string => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
