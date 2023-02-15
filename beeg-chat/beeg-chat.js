@@ -143,6 +143,7 @@ const processFieldData = (fieldData) => {
     data.lifetime = fieldData.lifetime;
     data.privledges = fieldData.privledges;
     data.command = fieldData.command;
+    data.perUserCooldown = fieldData.perUserCooldown;
 };
 
 /* message handling */
@@ -283,12 +284,22 @@ const checkPrivileges = (data) => {
     return required === "everybody";
 };
 
+const userIdCooldowns = {};
+
 const onMessage = (event) => {
-    const { text = ''} = event.data;
+    const { text = '', userId} = event.data;
+
+    if(userIdCooldowns[userId]){
+        return;
+    }
 
     if(!checkPrivileges(event.data) || !text.startsWith(data.command)) {
         return;
     }
+
+    userIdCooldowns[userId] = setTimeout(() => {
+        delete userIdCooldowns[userId];
+    }, data.perUserCooldown * 1000);
     renderMessages(event.data);
 };
 
