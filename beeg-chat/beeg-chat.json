@@ -2,7 +2,7 @@
   "command": {
     "type": "text",
     "label": "Command to give out gold star",
-    "value": "!goldStar"
+    "value": "!text"
   },
   "privileges": {
     "type": "dropdown",
