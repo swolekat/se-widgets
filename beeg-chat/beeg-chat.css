@@ -1,0 +1,120 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+* {
+    font-family: Nunito, Arial, sans-serif;
+    font-size: 72px;
+    overflow-wrap: break-word;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+@keyframes fade {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes up {
+    from { transform: translateY(50px); }
+    to { transform: translateY(0px); }
+}
+
+
+.chat-message {
+    visibility: hidden;
+    position: relative;
+    min-width: 600px;
+    max-width: 100%;
+    width: var(--dynamicWidth);
+    background: #fff;
+    border-radius: 20px;
+}
+
+.chat-message.animate {
+    visibility: visible;
+animation: fade reverse .5s,
+                          fade .5s calc({lifetime}s - .5s) forwards,
+                                                           up .5s,
+                                                                up reverse .5s calc({lifetime}s - .5s) forwards;
+}
+
+.chat-message.animate .username-section {
+    width: 100%;
+}
+
+.chat-message.animate.forever {
+    visibility: visible;
+    animation: fade reverse .5s, up .5s;
+}
+
+.username-section {
+    position: relative;
+    z-index: 2;
+    height: 120px;
+    padding: 0 30px;
+    font-size: 72px;
+    font-weight: bold;
+    color: #000;
+    line-height: 120px;
+    display: inline-block;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin-top: -1px;
+}
+
+.username-section.white-text {
+    color: #fff;
+}
+
+.badge {
+    height: 80px;
+    width: 80px;
+    margin-right: 10px;
+}
+
+.message-section {
+    padding: 30px;
+}
+
+.message-wrapper {
+    display: inline-block;
+}
+
+.large-emotes .message-section {
+    text-align: center;
+}
+
+.large-emotes .emote {
+    height: 224px;
+}
+
+.medium-emotes .emote {
+    height: 3.5rem;
+    max-height: 224px;
+}
+
+.small-emotes .emote {
+    height: 1.75rem;
+    max-height: 224px;
+}
+
+.complex-emote {
+    display: inline-block;
+    position: relative;
+}
+
+.emote.zero-width {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: transparent !important;
+}
+
+
