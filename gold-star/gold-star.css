@@ -57,7 +57,7 @@ html, body {
     left: 0;
     height: 100%;
     width: 100%;
-    clip-path: polygon(50% 0%, 67% 31%, 101% 39%, 79% 61%, 81% 100%, 50% 84%, 16% 100%, 24% 67%, 2% 39%, 33% 32%);
+    clip-path: polygon(50% 0%, 66% 31%, 101% 39%, 77% 61%, 81% 100%, 50% 84%, 17% 100%, 24% 67%, -1% 38%, 33% 32%);
     mix-blend-mode: multiply;
     display: block;
     object-fit: cover;
