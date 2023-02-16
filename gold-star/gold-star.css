@@ -25,12 +25,12 @@ html, body {
     width: 200px;
 }
 
-#1 {
+.gold-star:nth-child(2) {
     left: 169px;
     top: 62px;
 }
 
-#2 {
+.gold-star:nth-child(3) {
     left: 344px;
 }
 
