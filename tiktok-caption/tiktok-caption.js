@@ -23,27 +23,24 @@ const processText = (text, emotes) => {
 };
 
 
-const sayMessage = (message, emotes) => {
-    const {volume, bannedWords, voice} = fieldData;
+const goToNextMessage = () => {
+    setTimeout(() => {
+        captionTextElement.innerHTML = '';
+        if(queuedMessages.length > 0){
+            const queuedMessage = queuedMessages.pop();
+            sayText(queuedMessage);
+            return;
+        }
+        isSpeakingMessage = false;
+    }, 10000);
+};
 
-    const bannedArray = (bannedWords || '').split(',').filter(w => !!w);
-    const sanitizedMessage = message.replace(/\W/g, '').toLowerCase();
-    const messageHasBannedWords = bannedArray.some(word => sanitizedMessage.includes(word));
-    if(messageHasBannedWords){
-        return;
-    }
-
-    if(isSpeakingMessage){
-        queuedMessages.push({message, emotes});
-    }
-
-    isSpeakingMessage = true;
-
-    const processedText = processText(message, emotes);
+const sayText = (text) => {
+    const {volume, voice} = fieldData;
     fetch('https://tiktok-tts.weilnet.workers.dev/api/generation', {
         method: 'POST',
         body: JSON.stringify({
-            text: processedText,
+            text,
             voice
         }),
         headers: {
@@ -52,28 +49,36 @@ const sayMessage = (message, emotes) => {
     }).then(response => response.json())
         .then(({data}) => {
             if(!data){
-                isSpeakingMessage = false;
-                if(queuedMessages.length > 0){
-                    const queuedMessage = queuedMessages.pop();
-                    sayMessage(queuedMessage.message, queuedMessage.emotes);
-                }
+                goToNextMessage();
                 return;
             }
+            captionTextElement.innerHTML = text;
+            captionTextElement.style = `color: ${fieldData.fontColor}`;
             const myAudio = new Audio();
             myAudio.src = `data:audio/mp3;base64,${data}`;
             myAudio.volume = volume;
+            myAudio.addEventListener('ended', () => {
+                goToNextMessage();
+            });
             myAudio.play();
-            captionTextElement.innerHTML = processedText;
-            captionTextElement.style = `color: ${fieldData.fontColor}`;
-            setTimeout(() => {
-                captionTextElement.innerHTML = '';
-                isSpeakingMessage = false;
-                if(queuedMessages.length > 0){
-                    const queuedMessage = queuedMessages.pop();
-                    sayMessage(queuedMessage.message, queuedMessage.emotes);
-                }
-            }, 10000);
         });
+};
+
+const sayMessage = (message, emotes) => {
+    const bannedWords = fieldData.bannedWords;
+    const bannedArray = (bannedWords || '').split(',').filter(w => !!w);
+    const sanitizedMessage = message.replace(/\W/g, '').toLowerCase();
+    const messageHasBannedWords = bannedArray.some(word => sanitizedMessage.includes(word));
+    if(messageHasBannedWords){
+        return;
+    }
+    const processedText = processText(message, emotes);
+    if(isSpeakingMessage){
+        queuedMessages.push(processedText);
+        return;
+    }
+    isSpeakingMessage = true;
+    sayText(processedText);
 };
 
 const checkPrivileges = (data) => {
