@@ -9,16 +9,12 @@ const voices = [
 
 let isOnCooldown = false;
 
-const sayMessage = (message) => {
-    const {volume, bannedWords} = fieldData;
+let queue = [];
+let isPlaying = false;
 
-    const bannedArray = (bannedWords || '').split(',').filter(w => !!w);
-    const sanitizedMessage = message.replace(/\W/g, '').toLowerCase();
-    const messageHasBannedWords = bannedArray.some(word => sanitizedMessage.includes(word));
-    if(messageHasBannedWords){
-        return;
-    }
-
+const saySanitizedMessage = (message) => {
+    isPlaying = true;
+    const {volume, cooldownSeconds} = fieldData;
     const voice = voices[Math.round(Math.random() * 1000) % voices.length];
 
     fetch('https://tiktok-tts.weilnet.workers.dev/api/generation', {
@@ -38,15 +34,43 @@ const sayMessage = (message) => {
             const myAudio = new Audio();
             myAudio.src = `data:audio/mp3;base64,${data}`;
             myAudio.volume = volume;
+            myAudio.addEventListener('ended', () => {
+                if(queue.length > 0){
+                    const nextMessage = queue.pop();
+                    saySanitizedMessage(nextMessage);
+                } else {
+                    isPlaying = false;
+                }
+            });
             myAudio.play();
         });
-    const cooldownSeconds = fieldData.cooldownSeconds;
     if(cooldownSeconds > 0){
         isOnCooldown = true;
         setTimeout(() => {
             isOnCooldown = false;
         }, cooldownSeconds * 1000);
     }
+};
+
+const sayMessage = (message) => {
+    const {bannedWords, useQueue} = fieldData;
+
+    const bannedArray = (bannedWords || '').split(',').filter(w => !!w);
+    const sanitizedMessage = message.replace(/\W/g, '').toLowerCase();
+    const messageHasBannedWords = bannedArray.some(word => sanitizedMessage.includes(word));
+    if(messageHasBannedWords){
+        return;
+    }
+
+    if(!useQueue){
+        saySanitizedMessage(message);
+    }
+
+    if(isPlaying){
+        queue.push(message);
+        return;
+    }
+    saySanitizedMessage(message);
 };
 
 const checkPrivileges = (data) => {

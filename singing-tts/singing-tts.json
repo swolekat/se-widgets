@@ -30,11 +30,16 @@
     "steps": 0.1
   },
   "cooldownSeconds": {
-  "label": "Cooldown in seconds",
-  "type": "number",
-  "value": 0,
-  "step": 1,
-  "min": 0
+    "label": "Cooldown in seconds",
+    "type": "number",
+    "value": 0,
+    "step": 1,
+    "min": 0
+  },
+  "useQueue": {
+    "type": "checkbox",
+    "label": "Use Queue (disables overlap)",
+    "value": false
   },
   "widgetName": {
     "type": "hidden",
@@ -46,7 +51,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "1.1"
+    "value": "1.2"
   },
   "widgetUpdateUrl": {
     "type": "hidden",
