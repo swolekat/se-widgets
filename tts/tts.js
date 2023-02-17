@@ -1,7 +1,26 @@
 let fieldData, apiToken;
 
+let isPlaying = false;
+let queue = [];
+const sayMassagedMessage = (fullMessage, messageVoice) => {
+    isPlaying = true;
+    const volume = fieldData.volume;
+    const url = `//api.streamelements.com/kappa/v2/speech?voice=${messageVoice.replace('$', '')}&text=${encodeURI(fullMessage)}&key=${apiToken}`
+    const myAudio = new Audio(url);
+    myAudio.volume = volume;
+    myAudio.addEventListener('ended', () => {
+        if(queue.length > 0){
+            const nextMessage = queue.pop();
+            sayMassagedMessage(nextMessage.fullMessage, nextMessage.messageVoice);
+        } else {
+            isPlaying = false;
+        }
+    });
+    myAudio.play();
+};
+
 const sayMessage = (message, messageVoice, userDisplayName) => {
-    const {volume, bannedWords, doUserSaid, characterLimit} = fieldData;
+    const {bannedWords, doUserSaid, characterLimit, useQueue} = fieldData;
 
     const bannedArray = (bannedWords || '').split(',').filter(w => !!w);
     const sanitizedMessage = message.replace(/\W/g, '').toLowerCase();
@@ -18,10 +37,12 @@ const sayMessage = (message, messageVoice, userDisplayName) => {
         fullMessage = fullMessage.substr(0, characterLimit);
     }
 
-    const url = `//api.streamelements.com/kappa/v2/speech?voice=${messageVoice.replace('$', '')}&text=${encodeURI(fullMessage)}&key=${apiToken}`
-    const myAudio = new Audio(url);
-    myAudio.volume = volume;
-    myAudio.play();
+
+    if(useQueue && isPlaying){
+        queue.push({fullMessage, messageVoice});
+        return;
+    }
+    sayMassagedMessage(fullMessage, messageVoice);
 };
 
 const checkPrivileges = (data, privileges) => {
@@ -44,7 +65,7 @@ const raids = [];
 const voices = ['Nicole', 'Russell', 'Raveena', 'Amy', 'Brian', 'Emma', 'Joanna', 'Matthew', 'Salli'];
 let isEnabledForEverybody = false;
 let everybodyTimeout = undefined;
-let isEnabled = true;
+let isEnabled = true
 
 const createEmoteRegex = (emotes) => {
     const regexStrings = emotes.sort().reverse().map(string => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));

@@ -19,6 +19,11 @@
     "label": "Ignore Links",
     "value": true
   },
+  "useQueue": {
+    "type": "checkbox",
+    "label": "Use Queue (disables overlap)",
+    "value": false
+  },
   "characterLimit": {
     "label": "Character Limit (0 for All)",
     "type": "number",
@@ -384,7 +389,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "2.4"
+    "value": "2.5"
   },
   "widgetUpdateUrl": {
     "type": "hidden",
