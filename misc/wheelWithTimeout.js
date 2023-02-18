@@ -6,23 +6,23 @@ const random_hex_color_code = () => {
     let n = (Math.random() * 0xfffff * 1000000).toString(16);
     return '#' + n.slice(0, 6);
 };
-const checkPrivileges = (data) => {
-    let required = fieldData.privileges;
-    let userState = {
-        'mod': parseInt(data.tags.mod),
-        'sub': parseInt(data.tags.subscriber),
-        'vip': (data.tags.badges.indexOf("vip") !== -1),
-        'badges': {
-            'broadcaster': (data.userId === data.tags['room-id']),
-        }
-    };
-    if (userState.badges.broadcaster) return true;
-    else if (required === "mods" && userState.mod) return true;
-    else if (required === "vips" && (userState.mod || userState.vip)) return true;
-    else if (required === "subs" && (userState.mod || userState.vip || userState.sub)) return true;
-    else if (required === "everybody") return true;
-    else return false;
+
+const checkPrivileges = (data, privileges) => {
+    const {tags, userId} = data;
+    const {mod, subscriber, badges} = tags;
+    const required = privileges || fieldData.privileges;
+    const isMod = parseInt(mod);
+    const isSub = parseInt(subscriber);
+    const isVip = (badges.indexOf("vip") !== -1);
+    const isBroadcaster = (userId === tags['room-id']);
+    if (isBroadcaster) return true;
+    if (required === "justSubs" && isSub) return true;
+    if (required === "mods" && isMod) return true;
+    if (required === "vips" && (isMod || isVip)) return true;
+    if (required === "subs" && (isMod || isVip || isSub)) return true;
+    return required === "everybody";
 };
+
 
 window.addEventListener('onEventReceived', function (obj) {
     const skippable = ["bot:counter", "event:test", "event:skip"]; //Array of events coming to widget that are not queued so they can come even queue is on hold

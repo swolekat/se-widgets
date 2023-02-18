@@ -141,7 +141,7 @@ const processSessionData = (sessionData) => {
 const processFieldData = (fieldData) => {
     data.largeEmotes = fieldData.largeEmotes === 'true';
     data.lifetime = fieldData.lifetime;
-    data.privledges = fieldData.privledges;
+    data.privileges = fieldData.privileges;
     data.command = fieldData.command;
     data.perUserCooldown = fieldData.perUserCooldown;
 };
@@ -258,15 +258,16 @@ const renderMessages = (messageData) => {
     showMessage(msgId, html);
 };
 
-const checkPrivileges = (data) => {
-    const {tags, userId} = data;
+const checkPrivileges = (event, privileges) => {
+    const {tags, userId} = event;
     const {mod, subscriber, badges} = tags;
-    const required = data.privileges;
+    const required = privileges || data.privileges;
     const isMod = parseInt(mod);
     const isSub = parseInt(subscriber);
     const isVip = (badges.indexOf("vip") !== -1);
     const isBroadcaster = (userId === tags['room-id']);
     if (isBroadcaster) return true;
+    if (required === "justSubs" && isSub) return true;
     if (required === "mods" && isMod) return true;
     if (required === "vips" && (isMod || isVip)) return true;
     if (required === "subs" && (isMod || isVip || isSub)) return true;

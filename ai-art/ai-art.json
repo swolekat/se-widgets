@@ -33,9 +33,10 @@
   "privileges": {
     "type": "dropdown",
     "label": "Who can participate:",
-    "value": "broadcaster",
+    "value": "everybody",
     "options": {
       "everybody": "Everybody",
+      "justSubs": "Subs",
       "subs": "Subs + VIPs + Mods",
       "vips": "VIPs + Mods",
       "mods": "Mods",
@@ -52,7 +53,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "0.2"
+    "value": "0.3"
   },
   "widgetUpdateUrl": {
     "type": "hidden",

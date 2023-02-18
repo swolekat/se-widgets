@@ -7,7 +7,7 @@
   "privileges": {
     "type": "dropdown",
     "label": "Who can participate:",
-    "value": "broadcaster",
+    "value": "everybody",
     "options": {
       "everybody": "Everybody",
       "justSubs": "Subs",
@@ -27,7 +27,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "0.1"
+    "value": "0.2"
   },
   "widgetUpdateUrl": {
     "type": "hidden",

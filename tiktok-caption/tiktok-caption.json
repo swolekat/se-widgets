@@ -20,6 +20,7 @@
     "value": "everybody",
     "options": {
       "everybody": "Everybody",
+      "justSubs": "Subs",
       "subs": "Subs + VIPs + Mods",
       "vips": "VIPs + Mods",
       "mods": "Mods",
@@ -77,7 +78,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "2.0"
+    "value": "2.1"
   },
   "widgetUpdateUrl": {
     "type": "hidden",

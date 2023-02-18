@@ -4,15 +4,16 @@ const mainContainer = document.getElementById('main-container');
 const fart = document.getElementById('fart');
 const sound = document.getElementById('sound');
 
-const checkPrivileges = (data) => {
+const checkPrivileges = (data, privileges) => {
     const {tags, userId} = data;
     const {mod, subscriber, badges} = tags;
-    const required = fieldData.privileges;
+    const required = privileges || fieldData.privileges;
     const isMod = parseInt(mod);
     const isSub = parseInt(subscriber);
     const isVip = (badges.indexOf("vip") !== -1);
     const isBroadcaster = (userId === tags['room-id']);
     if (isBroadcaster) return true;
+    if (required === "justSubs" && isSub) return true;
     if (required === "mods" && isMod) return true;
     if (required === "vips" && (isMod || isVip)) return true;
     if (required === "subs" && (isMod || isVip || isSub)) return true;
