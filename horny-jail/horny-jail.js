@@ -1,8 +1,5 @@
 let fieldData;
 
-const bonkQueue = [];
-let isBonking = false;
-
 const mainContainer = document.getElementById('main-container');
 const jailed = document.getElementById('jailed');
 const bars = document.getElementById('bars');
