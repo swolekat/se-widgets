@@ -373,6 +373,19 @@
     "type": "checkbox",
     "value": false
   },
+  "globalTTSPrivileges": {
+    "type": "dropdown",
+    "group": "Global TTS",
+    "label": "Say text from what groups?",
+    "value": "everybody",
+    "options": {
+      "everybody": "Everybody",
+      "subs": "Subs + VIPs + Mods",
+      "vips": "VIPs + Mods",
+      "mods": "Mods",
+      "broadcaster": "Broadcaster"
+    }
+  },
   "everybodyBotFilters": {
     "label": "Bots to filter out",
     "group": "Everybody TTS",
@@ -389,7 +402,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "2.6"
+    "value": "2.7"
   },
   "widgetUpdateUrl": {
     "type": "hidden",

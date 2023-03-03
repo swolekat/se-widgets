@@ -158,7 +158,7 @@ const handleShutoffCommands = (obj) => {
 };
 
 const handleMessage = (obj) => {
-    const {ttsCommand, voice, everybodyBotFilters, ignoreLinks, globalTTS} = fieldData;
+    const {ttsCommand, voice, everybodyBotFilters, ignoreLinks, globalTTS, globalTTSPrivileges} = fieldData;
     const data = obj.detail.event.data;
     const {text, userId, displayName, emotes} = data;
 
@@ -191,6 +191,9 @@ const handleMessage = (obj) => {
         }
         const bots = everybodyBotFilters.split(',');
         if(bots.find(b => b.toLowerCase() === displayName.toLowerCase())){
+            return;
+        }
+        if(globalTTS && !checkPrivileges(data, globalTTSPrivileges)){
             return;
         }
         sayMessage(textToSay.toLowerCase().trim(), userVoice, displayName);
