@@ -2,7 +2,7 @@
   "jailWords": {
     "type": "text",
     "label": "Words that Send People to Jail",
-    "value": "coom,cum,sexy,horny,penis,erotic,roleplay,horni,naughty,yiff,coomer,hentai,yaoi,yuri,porn,jizz,coitus,shibari,anal,dicks,dick,pussy,69,cbt,cock,titty,titties,threesome,incest,butthole,anal,booty,scrotum,pp,peepee,lewd,poonani,poon,cunt,booba,boobies"
+    "value": "coom,cum,sexy,horny,penis,erotic,roleplay,horni,naughty,yiff,coomer,hentai,yaoi,yuri,porn,jizz,coitus,shibari,anal,dicks,dick,pussy,69,cbt,cock,titty,titties,threesome,incest,butthole,anal,booty,scrotum,pp,peepee,lewd,poonani,poon,cunt,booba,boobies,clit,clitoris,nip,nipple"
   },
   "howLongSeconds": {
     "label": "How Many Seconds to Keep in Jail",
@@ -18,6 +18,24 @@
     "step": 1,
     "min": 0
   },
+  "jailCommand": {
+    "type": "text",
+    "label": "Command to send someone ",
+    "value": "!hornyjail"
+  },
+  "privileges": {
+    "type": "dropdown",
+    "label": "Who can participate:",
+    "value": "mods",
+    "options": {
+      "everybody": "Everybody",
+      "justSubs": "Subs",
+      "subs": "Subs + VIPs + Mods",
+      "vips": "VIPs + Mods",
+      "mods": "Mods",
+      "broadcaster": "Broadcaster"
+    }
+  },
   "widgetName": {
     "type": "hidden",
     "value": "Horny Jail by Swolekat"
@@ -28,7 +46,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "1.0"
+    "value": "1.1"
   },
   "widgetUpdateUrl": {
     "type": "hidden",
