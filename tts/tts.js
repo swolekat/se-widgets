@@ -158,7 +158,7 @@ const handleShutoffCommands = (obj) => {
 };
 
 const handleMessage = (obj) => {
-    const {ttsCommand, voice, everybodyBotFilters, ignoreLinks, globalTTS, globalTTSPrivileges} = fieldData;
+    const {ttsCommands, voice, everybodyBotFilters, ignoreLinks, globalTTS, globalTTSPrivileges} = fieldData;
     const data = obj.detail.event.data;
     const {text, userId, displayName, emotes} = data;
 
@@ -205,12 +205,13 @@ const handleMessage = (obj) => {
         sayMessage(textToSay.toLowerCase().trim(), userVoice, displayName);
         return;
     }
-    const textStartsWithCommand = text.toLowerCase().startsWith(ttsCommand.toLowerCase());
-    if (!textStartsWithCommand || !checkPrivileges(data)) {
+    const realCommands = ttsCommands.split(',').filter(s => !!s).map(s => s.trim());
+    const commandThatMatches = realCommands.find(command => text.toLowerCase().startsWith(command.toLowerCase()));
+    if (!commandThatMatches || !checkPrivileges(data)) {
         return;
     }
 
-    sayMessage(textToSay.toLowerCase().replace(ttsCommand.toLowerCase(), '').trim(), voice, displayName);
+    sayMessage(textToSay.toLowerCase().replace(commandThatMatches.toLowerCase(), '').trim(), voice, displayName);
 };
 
 window.addEventListener('onEventReceived', function (obj) {

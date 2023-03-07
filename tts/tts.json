@@ -1,7 +1,7 @@
 {
-  "ttsCommand": {
+  "ttsCommands": {
     "type": "text",
-    "label": "TTS Command",
+    "label": "TTS Commands (separate by comma for multiple commands)",
     "value": "!tts"
   },
   "ignoreEmotes": {
@@ -402,7 +402,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "2.7"
+    "value": "3.0"
   },
   "widgetUpdateUrl": {
     "type": "hidden",
