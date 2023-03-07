@@ -205,6 +205,9 @@ const handleMessage = (obj) => {
         sayMessage(textToSay.toLowerCase().trim(), userVoice, displayName);
         return;
     }
+    if(ttsCommands === ''){
+        return;
+    }
     const realCommands = ttsCommands.split(',').filter(s => !!s).map(s => s.trim());
     const commandThatMatches = realCommands.find(command => text.toLowerCase().startsWith(command.toLowerCase()));
     if (!commandThatMatches || !checkPrivileges(data)) {
