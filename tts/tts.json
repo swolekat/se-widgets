@@ -304,12 +304,8 @@
   "doRaidStuff": {
     "label": "Do Raid Stuff",
     "group": "Raid",
-    "type": "dropdown",
-    "value": "false",
-    "options": {
-      "true": "Yes",
-      "false": "No"
-    }
+    "type": "checkbox",
+    "value": false
   },
   "raidTime": {
     "label": "How Long? (seconds)",
@@ -402,7 +398,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "3.1"
+    "value": "3.2"
   },
   "widgetUpdateUrl": {
     "type": "hidden",
