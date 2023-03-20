@@ -58,8 +58,8 @@ const start = () => {
     setTimeout(() => {
         let xPosition = 10;
         let yPosition = 10;
-        let xSpeed = 4;
-        let ySpeed = 4;
+        let xSpeed = {xSpeed};
+        let ySpeed = {ySpeed};
         changeColor();
         updatePosition(xPosition, yPosition);
         let bounceInterval = setInterval(() => {

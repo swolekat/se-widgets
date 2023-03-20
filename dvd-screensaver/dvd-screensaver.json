@@ -9,6 +9,18 @@
     "label": "Image Url",
     "value": "https://swolekat.github.io/se-widgets/assets/dvd-screensaver/swolekat-logo.png"
   },
+  "xSpeed": {
+    "type": "number",
+    "label": "X Speed",
+    "value": 4,
+    "min": 1
+  },
+  "ySpeed": {
+    "type": "number",
+    "label": "Y Speed",
+    "value": 4,
+    "min": 1
+  },
   "privileges": {
     "type": "dropdown",
     "label": "Who can participate:",
