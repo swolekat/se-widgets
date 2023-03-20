@@ -56,8 +56,8 @@ const updatePosition = (x, y) => {
 const start = () => {
     show();
     setTimeout(() => {
-        let xPosition = 10;
-        let yPosition = 10;
+        let xPosition = Math.round(Math.random() * 40);
+        let yPosition = Math.round(Math.random() * 40);
         let xSpeed = {xSpeed};
         let ySpeed = {ySpeed};
         changeColor();
