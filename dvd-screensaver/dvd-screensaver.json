@@ -4,6 +4,12 @@
     "label": "Screensaver Command",
     "value": "!dvd"
   },
+  "cooldown": {
+    "type": "number",
+    "label": "Cooldown (in seconds 0 for none)",
+    "value": 300,
+    "min": 0
+  },
   "imageUrl": {
     "type": "text",
     "label": "Image Url",

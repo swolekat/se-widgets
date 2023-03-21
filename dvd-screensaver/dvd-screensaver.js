@@ -53,16 +53,27 @@ const updatePosition = (x, y) => {
     image.style.top = `${y}px`;
 };
 
+let bounceInterval;
+let id = 0;
+
 const start = () => {
+    if(bounceInterval){
+        clearInterval(bounceInterval);
+    }
     show();
     setTimeout(() => {
+        const myId = id + 1;
+        id = myId;
         let xPosition = Math.round(Math.random() * 40);
         let yPosition = Math.round(Math.random() * 40);
         let xSpeed = {xSpeed};
         let ySpeed = {ySpeed};
         changeColor();
         updatePosition(xPosition, yPosition);
-        let bounceInterval = setInterval(() => {
+        bounceInterval = setInterval(() => {
+            if(id !== myId){
+                return;
+            }
             const xLessOrAtZero = xPosition <= 0;
             const xPastBounds = xPosition + image.clientWidth >= window.innerWidth;
             const yLessOrAtZero = yPosition <= 0;
@@ -95,7 +106,12 @@ const start = () => {
     }, 0);
 };
 
+let cooldownTimeout;
+
 const handleMessage = (obj) => {
+    if(cooldownTimeout){
+        return;
+    }
     const command = fieldData.command;
     const data = obj.detail.event.data;
     const {text} = data;
@@ -104,6 +120,9 @@ const handleMessage = (obj) => {
         return;
     }
     start();
+    cooldownTimeout = setTimeout(() => {
+        cooldownTimeout = undefined;
+    }, fieldData.cooldown * 1000);
 };
 
 window.addEventListener('onEventReceived', function (obj) {
