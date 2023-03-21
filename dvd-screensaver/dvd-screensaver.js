@@ -56,10 +56,11 @@ const updatePosition = (x, y) => {
 let bounceInterval;
 let id = 0;
 
-const start = () => {
+const start = (emoteUrl) => {
     if(bounceInterval){
         clearInterval(bounceInterval);
     }
+    image.src = emoteUrl;
     show();
     setTimeout(() => {
         const myId = id + 1;
@@ -103,7 +104,7 @@ const start = () => {
 
             updatePosition(xPosition, yPosition)
         }, 1000 / 60);
-    }, 0);
+    }, 100);
 };
 
 let cooldownTimeout;
@@ -119,7 +120,12 @@ const handleMessage = (obj) => {
     if (!textStartsWithCommand || !checkPrivileges(data)) {
         return;
     }
-    start();
+    let emoteUrl = fieldData.imageUrl;
+    if(data.emotes.length > 0){
+        const emotes = Object.values(data.emotes[0].urls);
+        emoteUrl = emotes[emotes.length -1];
+    }
+    start(emoteUrl);
     cooldownTimeout = setTimeout(() => {
         cooldownTimeout = undefined;
     }, fieldData.cooldown * 1000);

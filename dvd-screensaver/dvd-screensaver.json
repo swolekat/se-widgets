@@ -10,6 +10,11 @@
     "value": 300,
     "min": 0
   },
+  "allowEmotes": {
+    "type": "checkbox",
+    "label": "Allow Emotes",
+    "value": true
+  },
   "imageUrl": {
     "type": "text",
     "label": "Image Url",
