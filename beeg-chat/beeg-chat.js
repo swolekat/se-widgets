@@ -38,6 +38,8 @@ const ZERO_WIDTH_EMOTES = [
     'Love',
     'SPEED',
     'vp',
+    'Wanking',
+    'spilledGlue'
 ];
 
 const convertMessageContentsArrayToHtml = (messageContentsArray, emoteSize) => {
