@@ -19,3 +19,68 @@ main {
 main.hidden {
     display: none;
 }
+
+.nice-cat-image,
+.nice-cat-name,
+.nice-cat-reason,
+.naughty-cat-image,
+.naughty-cat-name,
+.naughty-cat-reason {
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+}
+
+.nice-cat-image,
+.naughty-cat-image {
+    height: 210px;
+    width: 220px;
+    display: block;
+    object-fit: cover;
+    border-radius: 23px;
+}
+
+.nice-cat-image {
+    left: 22%;
+    top: 26%;
+}
+
+.naughty-cat-image {
+    left: 22%;
+    top: 74%;
+}
+
+.nice-cat-name,
+.naughty-cat-name {
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 36px;
+    width: 260px;
+}
+
+.nice-cat-name {
+    top: 25%;
+    left: 45%;
+}
+
+.naughty-cat-name {
+    top: 74%;
+    left: 45%;
+}
+
+.nice-cat-reason,
+.naughty-cat-reason {
+    font-size: 24px;
+    width: 260px;
+}
+
+.nice-cat-reason {
+    top: 29%;
+    left: 45%;
+}
+
+.naughty-cat-reason {
+    top: 78%;
+    left: 45%;
+}

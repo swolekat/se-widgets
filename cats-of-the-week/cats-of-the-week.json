@@ -4,11 +4,6 @@
     "type": "text",
     "value": "!cotw"
   },
-  "duration": {
-    "type": "number",
-    "label": "Duration to show (in seconds)",
-    "value": 60
-  },
   "privileges": {
     "type": "dropdown",
     "label": "Who can participate:",

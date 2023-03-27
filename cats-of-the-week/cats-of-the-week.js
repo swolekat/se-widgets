@@ -9,11 +9,11 @@ const naughtyCatName = document.getElementById('naughty-cat-name');
 const naughtyCatReason = document.getElementById('naughty-cat-reason');
 
 const shouldNotLogUser = ({text, name ,nick}) => {
-    if(data.ignorePrefixList.some(prefix => text.startsWith(prefix))){
+    if(fieldData.ignorePrefixList.split(',').some(prefix => text.startsWith(prefix))){
         return true;
     }
     const names = [name.toLowerCase() , nick.toLowerCase()];
-    if(data.ignoreUserList.some(user => names.includes(user.toLowerCase()))){
+    if(fieldData.ignoreUserList.split(',').some(user => names.includes(user.toLowerCase()))){
         return true;
     }
     return false;
@@ -38,29 +38,101 @@ const checkPrivileges = (data, privileges) => {
 
 const uniqueUsers = {};
 
-const show = () => {
-    mainContainer.className = '';
+const getRandomUser = (previousUser) => {
+    const users = Object.keys(uniqueUsers);
+    if(users.length === 1){
+        return users[0];
+    }
+    let user = previousUser;
+    do {
+        user = users[Math.round((Math.random() * 100000)) % users.length];
+    } while(user === previousUser);
+    return user;
+};
+
+const messageReason = (reason) => {
+    const reasonParts = reason.split('because');
+    let finalReason = reasonParts[1].trim();
+    if(finalReason.startsWith('he')){
+        finalReason = finalReason.replace('he ', '');
+    }
+    if(finalReason.startsWith('she')){
+        finalReason = finalReason.replace('she ', '');
+    }
+    if(finalReason.startsWith('it')){
+        finalReason = finalReason.replace('it ', '');
+    }
+    if(finalReason.startsWith('they')){
+        finalReason = finalReason.replace('they ', '');
+    }
+    return finalReason.trim();
+};
+
+const show = async () => {
+    const niceUser = getRandomUser();
+    niceCatName.innerHTML = niceUser;
+    const niceUserImageResponse = await fetch(`https://decapi.me/twitch/avatar/${niceUser}`);
+    const niceUserImageUrl = await niceUserImageResponse.text();
+    niceCatImage.src = niceUserImageUrl;
+    const niceUserReason = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${fieldData.openAIApiKey}`,
+        },
+        body: JSON.stringify({
+            model: 'gpt-3.5-turbo',
+            messages: [            {
+                role: 'user',
+                content: `Tell me why ${niceUser} is the nice cat of the week in one sentence. The reason should be very very strange.`,
+            }],
+        }),
+    });
+    const niceUserReasonJson = await niceUserReason.json();
+    niceCatReason.innerText = messageReason(niceUserReasonJson.choices[0].message.content);
+
+    const naughtyUser = getRandomUser(niceUser);
+    naughtyCatName.innerHTML = naughtyUser;
+    const naughtyUserImageResponse = await fetch(`https://decapi.me/twitch/avatar/${naughtyUser}`);
+    const naughtyUserImageUrl = await naughtyUserImageResponse.text();
+    naughtyCatImage.src = naughtyUserImageUrl;
+    const naughtyUserReason = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${fieldData.openAIApiKey}`,
+        },
+        body: JSON.stringify({
+            model: 'gpt-3.5-turbo',
+            messages: [            {
+                role: 'user',
+                content: `Tell me why ${naughtyUser} is the naughty cat of the week in one sentence. The reason should be very very strange.`,
+            }],
+        }),
+    });
+    const naughtyUserReasonJson = await naughtyUserReason.json();
+    naughtyCatReason.innerText = messageReason(naughtyUserReasonJson.choices[0].message.content);
+
+    main.className = '';
 };
 
 const hide = () => {
-    mainContainer.className = 'hidden';
+    main.className = 'hidden';
 };
 
 const onMessage = (event) => {
     const {nick = '', name = '', text = ''} = event.data;
-    const {command, duration, privileges} = fieldData;
+    const {command, privileges} = fieldData;
 
-    if(text === command && checkPrivileges(data, privileges)){
+    if(text === command && checkPrivileges(event.data, privileges)){
+        hide();
         show();
-        setTimeout(() => {
-            hide();
-        }, duration * 1000);
     }
 
     if(shouldNotLogUser({text, name, nick})){
         return;
     }
-    uniqueUsers[name] = 1;
+    uniqueUsers[nick] = 1;
 };
 
 window.addEventListener('onEventReceived', obj => {
