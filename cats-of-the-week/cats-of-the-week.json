@@ -1,0 +1,68 @@
+{
+  "command": {
+    "label": "Command",
+    "type": "text",
+    "value": "!cotw"
+  },
+  "duration": {
+    "type": "number",
+    "label": "Duration to show (in seconds)",
+    "value": 60
+  },
+  "privileges": {
+    "type": "dropdown",
+    "label": "Who can participate:",
+    "value": "broadcaster",
+    "options": {
+      "everybody": "Everybody",
+      "justSubs": "Subs",
+      "subs": "Subs + VIPs + Mods",
+      "vips": "VIPs + Mods",
+      "mods": "Mods",
+      "broadcaster": "Broadcaster"
+    }
+  },
+  "openAIApiKey": {
+    "type": "string",
+    "label": "OpenAI Api Key",
+    "value": "Nope. Not sharing."
+  },
+  "ignoreUserListLabel": {
+    "label": "Ignore these users:",
+    "group": "Bot Filters",
+    "type": "hidden"
+  },
+  "ignoreUserList": {
+    "label": "(Comma Separated)",
+    "group": "Bot Filters",
+    "type": "text",
+    "value": "StreamElements, Streamlabs, Nightbot"
+  },
+  "ignorePrefixListLabel": {
+    "label": "Ignore messages that start with:",
+    "group": "Bot Filters",
+    "type": "hidden"
+  },
+  "ignorePrefixList": {
+    "label": "(Comma Separated)",
+    "group": "Bot Filters",
+    "type": "text",
+    "value": "!"
+  },
+  "widgetName": {
+    "type": "hidden",
+    "value": "Cats of the Week by Swolekat"
+  },
+  "widgetAuthor": {
+    "type": "hidden",
+    "value": "swolekat"
+  },
+  "widgetVersion": {
+    "type": "hidden",
+    "value": "0.1"
+  },
+  "widgetUpdateUrl": {
+    "type": "hidden",
+    "value": "https://github.com/swolekat/se-widgets/tree/main/cats-of-the-week"
+  }
+}
