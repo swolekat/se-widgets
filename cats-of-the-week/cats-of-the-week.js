@@ -124,7 +124,7 @@ const onMessage = (event) => {
     const {nick = '', name = '', text = ''} = event.data;
     const {command, privileges} = fieldData;
 
-    if(text === command && checkPrivileges(event.data, privileges)){
+    if(text === command && checkPrivileges(event.data, privileges) && Object.keys(uniqueUsers).length > 0){
         hide();
         show();
     }
