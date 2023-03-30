@@ -1,5 +1,3 @@
 # Stream Elements Widgets
-Collection of stream elements widgets made by yours truly
+A collection of free streamelements widgets. Feel free to use these in any streams/youtube videos/tiktoks/whatever. No need to credit (would be nice but not a big deal). Please enjoy.
 
-## TTS
-Lets users the TTS. Has banned words. 
