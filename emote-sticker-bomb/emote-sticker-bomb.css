@@ -1,0 +1,40 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.main-container {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.sticker {
+    filter: drop-shadow(5px 0 0 white)
+    drop-shadow(0 5px 0 white)
+    drop-shadow(-5px 0 0 white)
+    drop-shadow(0 -5px 0 white);
+    position: absolute;
+}
+
+.sticker-content {
+    height: 200px;
+    width: 200px;
+    position: relative;
+}
+
+.emote {
+    position: absolute;
+    top:  0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
