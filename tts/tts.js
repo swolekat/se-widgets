@@ -75,7 +75,7 @@ const createEmoteRegex = (emotes) => {
 
 const htmlEncode  = (text) => text.replace(/[\<\>\"\'\^\=]/g, char => `&#${char.charCodeAt(0)};`);
 const processText = (text, emotes) => {
-    let processedText = '';
+    let processedText = text;
     const { ignoreEmotes, ignoreEmojis } = fieldData;
     if(ignoreEmotes){
         const emoteRegex = createEmoteRegex(emotes.map(e => htmlEncode(e.name)))
