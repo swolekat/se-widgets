@@ -44,6 +44,11 @@
       "broadcaster": "Broadcaster"
     }
   },
+  "botFilter": {
+    "label": "Bots to filter out",
+    "type": "text",
+    "value": "StreamElements,Moobot,Nightbot,SoundAlerts,WizeBot"
+  },
   "widgetName": {
     "type": "hidden",
     "value": "Horny Jail by Swolekat"
@@ -54,7 +59,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "1.2"
+    "value": "1.3"
   },
   "widgetUpdateUrl": {
     "type": "hidden",

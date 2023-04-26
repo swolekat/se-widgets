@@ -64,6 +64,11 @@ const handleMessage = (obj) => {
     const data = obj.detail.event.data;
     const {text, displayName} = data;
 
+    const bots = fieldData.botFilter.split(',');
+    if(bots.find(b => b.trim().toLowerCase() === displayName.toLowerCase())){
+        return;
+    }
+
     if(cooldownTimeout){
         return;
     }
