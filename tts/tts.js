@@ -62,7 +62,7 @@ const checkPrivileges = (data, privileges) => {
 };
 
 const raids = [];
-const voices = ['Nicole', 'Russell', 'Raveena', 'Amy', 'Brian', 'Emma', 'Joanna', 'Matthew', 'Salli'];
+const defaultPerUserVoices = ['Nicole', 'Russell', 'Raveena', 'Amy', 'Brian', 'Emma', 'Joanna', 'Matthew', 'Salli'];
 let isEnabledForEverybody = false;
 let everybodyTimeout = undefined;
 let isEnabled = true
@@ -158,7 +158,7 @@ const handleShutoffCommands = (obj) => {
 };
 
 const handleMessage = (obj) => {
-    const {ttsCommands, voice, everybodyBotFilters, ignoreLinks, globalTTS, globalTTSPrivileges} = fieldData;
+    const {ttsCommands, voice, everybodyBotFilters, ignoreLinks, globalTTS, globalTTSPrivileges, perUserVoices} = fieldData;
     const data = obj.detail.event.data;
     const {text, userId, displayName, emotes} = data;
 
@@ -175,8 +175,12 @@ const handleMessage = (obj) => {
     if(!isEnabled) {
         return;
     }
+    let userVoices = perUserVoices.split(',').map(v => v.trim()).filter(v => !!v);
+    if(userVoices.length === 0){
+        userVoices = defaultPerUserVoices;
+    }
 
-    const userVoice = voices[Number.parseInt(userId) % voices.length];
+    const userVoice = userVoices[Number.parseInt(userId) % userVoices.length];
 
     const processedText = processText(text, emotes);
     const textToSay = processedText;

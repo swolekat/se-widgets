@@ -275,6 +275,11 @@
       "Naayf": "Naayf"
     }
   },
+  "perUserVoices": {
+    "type": "text",
+    "label": "Voices used for individual users",
+    "value": "Nicole,Russell,Raveena,Amy,Brian,Emma,Joanna,Matthew,Salli"
+  },
   "globalShutoffCommand": {
     "type": "text",
     "group": "Global Shutoff",
@@ -398,7 +403,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "3.3"
+    "value": "3.4"
   },
   "widgetUpdateUrl": {
     "type": "hidden",
