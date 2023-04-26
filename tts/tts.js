@@ -187,7 +187,7 @@ const handleMessage = (obj) => {
     const processedText = processText(text, emotes);
     const textToSay = processedText;
     const textHasLinks = textToSay.includes('http://') || textToSay.includes('https://') || textToSay.includes('.com') || textToSay.includes('.tv') || textToSay.includes('.net') || textToSay.includes('.org');
-    if(ignoreLinks && textHasLinks){
+    if((ignoreLinks && textHasLinks) || !processedText){
         return;
     }
 
