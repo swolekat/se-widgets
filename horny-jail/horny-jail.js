@@ -39,6 +39,7 @@ const jailUser = (user) => {
                     mainContainer.className = 'main-container';
                     setTimeout(() => {
                         bars.className = 'bars animate';
+                        sound.volume = fieldData.volume;
                         sound.play();
                         setTimeout(() => {
                             hideJail();

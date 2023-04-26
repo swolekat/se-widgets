@@ -11,6 +11,14 @@
     "step": 1,
     "min": 0
   },
+  "volume": {
+    "type": "slider",
+    "label": "Volume",
+    "value": 1,
+    "min": 0,
+    "max": 1,
+    "steps": 0.1
+  },
   "cooldown": {
     "label": "Cooldown in Seconds",
     "type": "number",
@@ -46,7 +54,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "1.1"
+    "value": "1.2"
   },
   "widgetUpdateUrl": {
     "type": "hidden",
