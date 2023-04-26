@@ -3,6 +3,9 @@ let fieldData, apiToken;
 let isPlaying = false;
 let queue = [];
 const sayMassagedMessage = (fullMessage, messageVoice) => {
+    if(!fullMessage.trim()){
+        return;
+    }
     isPlaying = true;
     const volume = fieldData.volume;
     const url = `//api.streamelements.com/kappa/v2/speech?voice=${messageVoice.replace('$', '')}&text=${encodeURI(fullMessage)}&key=${apiToken}`
@@ -91,7 +94,7 @@ const processText = (text, emotes) => {
     if(ignoreEmojis){
         processedText = processedText.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');
     }
-    return processedText;
+    return processedText.trim();
 };
 
 const handleRaid = (obj) => {
