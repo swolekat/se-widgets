@@ -19,6 +19,11 @@
     "label": "Ignore Links",
     "value": true
   },
+  "ignoreRepeats": {
+    "type": "checkbox",
+    "label": "Ignore Repeats",
+    "value": true
+  },
   "useQueue": {
     "type": "checkbox",
     "label": "Use Queue (disables overlap)",
@@ -403,7 +408,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "3.5"
+    "value": "3.6"
   },
   "widgetUpdateUrl": {
     "type": "hidden",

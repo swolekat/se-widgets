@@ -20,7 +20,13 @@ const sayMassagedMessage = (fullMessage, messageVoice) => {
 };
 
 const sayMessage = (message, messageVoice, userDisplayName) => {
-    const {bannedWords, doUserSaid, characterLimit, useQueue} = fieldData;
+    const {bannedWords, doUserSaid, characterLimit, useQueue, ignoreRepeats} = fieldData;
+    if(ignoreRepeats){
+        const hasRepeats = `${message}${message}`.indexOf(message, 1) !== message.length;
+        if(hasRepeats){
+            return;
+        }
+    }
 
     const bannedArray = (bannedWords || '').split(',').filter(w => !!w);
     const sanitizedMessage = message.replace(/\W/g, '').toLowerCase();
