@@ -126,11 +126,13 @@ const handleEverybodyCommands = (obj) => {
     }
     if(messageIsEnable){
         isEnabledForEverybody = true;
-        everybodyTimeout = setTimeout(() => {
-            isEnabledForEverybody = false;
-            clearTimeout(everybodyTimeout);
-            everybodyTimeout = undefined;
-        }, everybodyTime * 1000);
+        if(everybodyTime > 0){
+            everybodyTimeout = setTimeout(() => {
+                isEnabledForEverybody = false;
+                clearTimeout(everybodyTimeout);
+                everybodyTimeout = undefined;
+            }, everybodyTime * 1000);
+        }
         return true;
     }
     isEnabledForEverybody = false;
