@@ -9,8 +9,12 @@ const timer = document.getElementById('timer');
 const sound = document.getElementById('sound');
 
 const formatTime = t => {
-    const minutes = Math.floor(t/60);
-    const seconds = t % 60;
+    let realTime = t;
+    if(fieldData.invertCount) {
+        realTime = time - t;
+    }
+    const minutes = Math.floor(realTime/60);
+    const seconds = realTime % 60;
 
     return `${minutes}:${seconds >= 10 ? '' : '0'}${seconds}`;
 };

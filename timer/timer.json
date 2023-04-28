@@ -18,6 +18,11 @@
     "label": "Restart Command",
     "value": "!restartTimer"
   },
+  "invertCount": {
+    "label": "Count up instead of down",
+    "type": "checkbox",
+    "value": false
+  },
   "privileges": {
     "type": "dropdown",
     "label": "Who can participate:",
@@ -67,7 +72,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "0.2"
+    "value": "0.3"
   },
   "widgetUpdateUrl": {
     "type": "hidden",
