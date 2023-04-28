@@ -48,7 +48,7 @@ const sayMessage = (message, messageVoice, userDisplayName) => {
 
 
     if(useQueue && isPlaying){
-        queue.push({fullMessage, messageVoice});
+        queue.unshift({fullMessage, messageVoice});
         return;
     }
     sayMassagedMessage(fullMessage, messageVoice);
