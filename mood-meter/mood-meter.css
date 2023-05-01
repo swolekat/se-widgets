@@ -1,0 +1,32 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+* {
+    font-family: Nunito, Arial, sans-serif;
+    font-size: 16px;
+    overflow-wrap: break-word;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.image-background {
+    height: 100%;
+    width: 100%;
+}
+
+.marker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3%;
+    height: 3%;
+    background: #f00;
+    border-radius: 50%;
+}
