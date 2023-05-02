@@ -21,9 +21,14 @@ const shouldIgnoreUser = ({text, name, nick}) => {
     return false;
 };
 
+const cleanString = (string) => {
+    return string.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,'').replace(/\s/g,'');
+};
+
 const hypeFromCaps = (text) => {
-    const allCaps = text.replace(/[^A-Z]+/g, "");
-    const percentageCaps = allCaps.length / text.length;
+    const cleanText = cleanString(text);
+    const allCaps = cleanText.replace(/[^A-Z]+/g, "");
+    const percentageCaps = allCaps.length / cleanText.length;
     if (percentageCaps >= .75) {
         return 2;
     }
@@ -37,12 +42,13 @@ const hypeFromCaps = (text) => {
 };
 
 const hypeFromEmotes = (text, emotes) => {
-    let textWithoutEmotes = text;
+    const cleanText = cleanString(text);
+    let textWithoutEmotes = cleanText;
     emotes.forEach(emote => {
         textWithoutEmotes = textWithoutEmotes.split(emote.name).join('');
     });
 
-    const percentageEmotes = 1 - (textWithoutEmotes.length / text.length);
+    const percentageEmotes = 1 - (textWithoutEmotes.length / cleanText.length);
     if (percentageEmotes >= .75) {
         return 2;
     }
@@ -67,8 +73,27 @@ const positiveModifierFromText = (text) => {
    return score;
 };
 
+const hypeFromPunctionation = (text) => {
+    let hype = 0;
+    if(text.includes('...')){
+        hype -=1;
+    }
+    if(text.includes('!!!')){
+        hype +=2;
+    } else {
+        if(text.includes('!!')){
+            hype +=1;
+        } else {
+            if(text.includes('!')){
+                hype +=1;
+            }
+        }
+    }
+    return hype;
+};
+
 const handleMessage = ({text, emotes}) => {
-    const hypeModifier = Math.max(hypeFromCaps(text), hypeFromEmotes(text, emotes));
+    const hypeModifier = Math.max(hypeFromCaps(text), hypeFromEmotes(text, emotes)) + hypeFromPunctionation(text);
     const positiveModifier = positiveModifierFromText(text);
     hype += hypeModifier;
     positive += positiveModifier;
@@ -91,7 +116,6 @@ const updateChart = () => {
 
 const onMessage = (event) => {
     const {nick = '', name = '', text = '', emotes} = event.data;
-    const {command, privileges} = fieldData;
 
     if (shouldIgnoreUser({text, name, nick})) {
         return;
