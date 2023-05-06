@@ -240,7 +240,11 @@ window.addEventListener('onEventReceived', function (obj) {
         handleRaid(obj);
         return;
     }
-    handleMessage(obj);
+    try {
+        handleMessage(obj);
+    } catch (e) {
+        console.log(e);
+    }
 });
 
 window.addEventListener('onWidgetLoad', function (obj) {
