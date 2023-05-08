@@ -204,8 +204,7 @@ const handleMessage = (obj) => {
         if(text.startsWith('!')){
             return;
         }
-        const bots = everybodyBotFilters.split(',');
-        if(bots.find(b => b.toLowerCase() === displayName.toLowerCase())){
+        if(everybodyBotFilters.toLowerCase().includes(displayName.toLowerCase())){
             return;
         }
         if(globalTTS && !checkPrivileges(data, globalTTSPrivileges)){
