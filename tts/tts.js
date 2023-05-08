@@ -169,7 +169,7 @@ const handleShutoffCommands = (obj) => {
 };
 
 const handleMessage = (obj) => {
-    const {ttsCommands, voice, everybodyBotFilters, ignoreLinks, globalTTS, globalTTSPrivileges, perUserVoices} = fieldData;
+    const {ttsCommands, voice, everybodyBotFilters, ignoreLinks, globalTTS, globalTTSPrivileges, perUserVoices, idToVoiceMap} = fieldData;
     const data = obj.detail.event.data;
     const {text, userId, displayName, emotes} = data;
 
@@ -191,7 +191,15 @@ const handleMessage = (obj) => {
         userVoices = defaultPerUserVoices;
     }
 
-    const userVoice = userVoices[Number.parseInt(userId) % userVoices.length];
+    let realIdtoVoiceMap = {};
+    try {
+        realIdtoVoiceMap = JSON.parse(idToVoiceMap) || {};
+    }
+    catch (e) {
+        console.log(e);
+    }
+
+    const userVoice = realIdtoVoiceMap[userId] || userVoices[Number.parseInt(userId) % userVoices.length];
 
     const processedText = processText(text, emotes);
     const textToSay = processedText;

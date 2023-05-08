@@ -310,7 +310,6 @@
       "broadcaster": "Broadcaster"
     }
   },
-
   "doRaidStuff": {
     "label": "Do Raid Stuff",
     "group": "Raid",
@@ -391,6 +390,11 @@
       "mods": "Mods",
       "broadcaster": "Broadcaster"
     }
+  },
+  "idToVoiceMap": {
+    "type": "Global TTS",
+    "label": "ID to voice map (JSON)",
+    "value": "{\"137237743\": \"Nicole\", \"583041704\": \"Mizuki\"}"
   },
   "everybodyBotFilters": {
     "label": "Bots to filter out",
