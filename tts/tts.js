@@ -94,6 +94,7 @@ const processText = (text, emotes) => {
     if(ignoreEmojis){
         processedText = processedText.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');
     }
+    processedText = processedText.replace(/#/g, ' hash tag ');
     return processedText.trim();
 };
 
@@ -255,6 +256,10 @@ window.addEventListener('onEventReceived', function (obj) {
 });
 
 window.addEventListener('onWidgetLoad', function (obj) {
+    // apparently sometimes the widget reloads and this resets the value.
+    if(!obj.detail.fieldData){
+        return;
+    }
     fieldData = obj.detail.fieldData;
     apiToken = obj.detail.channel.apiToken;
 });
