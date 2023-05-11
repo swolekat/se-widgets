@@ -241,6 +241,9 @@ const handleMessage = (obj) => {
 };
 
 window.addEventListener('onEventReceived', function (obj) {
+    if(!fieldData){
+        return;
+    }
     if (obj.detail.listener !== "message" && obj.detail.listener !== "raid-latest") {
         return;
     }
