@@ -15,7 +15,7 @@
   "voice": {
     "type": "dropdown",
     "label": "TTS Voice",
-    "value": "Ruth",
+    "value": "Nora",
     "options": {
       "Mizuki": "Mizuki",
       "Justin": "Justin",
@@ -250,6 +250,46 @@
     "group": "Chatbot personality",
     "value": "You are an assistant to a twitch streamer. You are about 70 years old. You call the streamer your grandchild. You often spoil your grandchild with candy."
   },
+  "showText": {
+    "group": "Text Section",
+    "type": "checkbox",
+    "label": "Show Text",
+    "value": false
+  },
+  "fontName": {
+    "group": "Text Section",
+    "type": "googleFont",
+    "label": "Select a font:",
+    "value": "Roboto"
+  },
+  "questionFontSize": {
+    "group": "Text Section",
+    "type": "number",
+    "label": "Question Font Size",
+    "value": 96,
+    "min": 12,
+    "step": 1
+  },
+  "questionFontColor": {
+    "group": "Text Section",
+    "type": "colorpicker",
+    "label": "Question Font Color",
+    "value": "#000000"
+  },
+  "answerFontSize": {
+    "group": "Text Section",
+    "type": "number",
+    "label": "Answer Font Size",
+    "value": 96,
+    "min": 12,
+    "step": 1
+  },
+  "answerFontColor": {
+    "group": "Text Section",
+    "type": "colorpicker",
+    "label": "Answer Font Color",
+    "value": "#000000"
+  },
   "widgetName": {
     "type": "hidden",
     "value": "Ask Chat GPT by Swolekat"
@@ -260,7 +300,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "0.1"
+    "value": "1.0"
   },
   "widgetUpdateUrl": {
     "type": "hidden",

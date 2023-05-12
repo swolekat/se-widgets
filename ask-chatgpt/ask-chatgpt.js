@@ -2,6 +2,10 @@ let fieldData;
 let chatAssistant;
 let apiToken;
 
+const mainContainer = document.getElementById('main-container');
+const question = document.getElementById('question');
+const answer = document.getElementById('answer');
+
 class ChatAssistant {
     static systemMessage = '{systemMessages}';
 
@@ -45,6 +49,7 @@ class ChatAssistant {
         myAudio.play();
         myAudio.addEventListener('ended', () => {
             this.talking = false;
+            mainContainer.className = 'main-container hidden';
         });
     }
 
@@ -70,14 +75,18 @@ class ChatAssistant {
 
     sayAndCaptionMessage(message){
         this.sayMessage(message);
+        answer.innerHTML = message;
+        if(fieldData.showText){
+            mainContainer.className = 'main-container';
+        }
     }
 
     async talk(message) {
         if(this.talking){
             return;
         }
+        question.innerHTML = message;
         this.talking = true;
-        const openAIApiKey = '{openAIApiKey}';
         const model = 'gpt-3.5-turbo';
         const response = await fetch('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
