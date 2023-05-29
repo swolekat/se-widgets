@@ -54,7 +54,7 @@ html, body {
 
 .front:after {
     content: '';
-    background-image: url("https://swolekat.github.io/se-widgets/assets/coin-flip/heads.png");
+    background-image: url("{headsImage}");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -67,7 +67,7 @@ html, body {
 }
 .back:after {
     content: '';
-    background-image: url("https://swolekat.github.io/se-widgets/assets/coin-flip/tails.png");
+    background-image: url("{tailsImage}");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;

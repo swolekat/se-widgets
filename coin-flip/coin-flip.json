@@ -21,6 +21,16 @@
       "broadcaster": "Broadcaster"
     }
   },
+  "headsImage": {
+    "type": "text",
+    "label": "Heads Image",
+    "value": "https://swolekat.github.io/se-widgets/assets/coin-flip/heads.png"
+  },
+  "tailsImage": {
+    "type": "text",
+    "label": "Tails Image",
+    "value": "https://swolekat.github.io/se-widgets/assets/coin-flip/tails.png"
+  },
   "widgetName": {
     "type": "hidden",
     "value": "Coin Flip by Swolekat"
@@ -31,7 +41,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "0.2"
+    "value": "1.0"
   },
   "widgetUpdateUrl": {
     "type": "hidden",
