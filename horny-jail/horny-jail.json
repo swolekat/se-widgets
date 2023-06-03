@@ -44,6 +44,26 @@
       "broadcaster": "Broadcaster"
     }
   },
+  "passCommand": {
+    "type": "text",
+    "label": "Command to give out pass ",
+    "value": "!hornyjailpass",
+    "group": "Pass"
+  },
+  "passPrivileges": {
+    "type": "dropdown",
+    "label": "Who can participate:",
+    "value": "mods",
+    "options": {
+      "everybody": "Everybody",
+      "justSubs": "Subs",
+      "subs": "Subs + VIPs + Mods",
+      "vips": "VIPs + Mods",
+      "mods": "Mods",
+      "broadcaster": "Broadcaster"
+    },
+    "group": "Pass"
+  },
   "botFilter": {
     "label": "Bots to filter out",
     "type": "text",
@@ -59,7 +79,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "1.3"
+    "value": "2.0"
   },
   "widgetUpdateUrl": {
     "type": "hidden",

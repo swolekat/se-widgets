@@ -26,7 +26,16 @@ const hideJail = () => {
     bars.className = 'bars';
 };
 
+let usersWithPasses = [];
+
+const addToPass = (user) => {
+    usersWithPasses.push(user.toLowerCase());
+};
+
 const jailUser = (user) => {
+    if(usersWithPasses.includes(user.toLowerCase())){
+        return;
+    }
     hideJail();
     cooldownTimeout = setTimeout(() => {
         cooldownTimeout = undefined;
@@ -60,9 +69,14 @@ let cooldownTimeout;
 
 const handleMessage = (obj) => {
     const jailWords = (fieldData.jailWords || '').split(',');
-    const {jailCommand, privileges} = fieldData;
+    const {jailCommand, privileges, passCommand, passPrivileges} = fieldData;
     const data = obj.detail.event.data;
     const {text, displayName} = data;
+
+    if(text.toLowerCase().startsWith(passCommand.toLowerCase()) && checkPrivileges(data, passPrivileges)){
+        addToPass(text.toLowerCase().replace(passCommand.toLowerCase(), '').trim());
+        return;
+    }
 
     const bots = fieldData.botFilter.split(',');
     if(bots.find(b => b.trim().toLowerCase() === displayName.toLowerCase())){
