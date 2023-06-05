@@ -19,7 +19,17 @@ const sayMassagedMessage = (fullMessage, messageVoice) => {
             isPlaying = false;
         }
     });
-    myAudio.play();
+    try {
+        const playPromise = myAudio.play();
+        if(!playPromise){
+            return;
+        }
+        playPromise.then(() => {
+            console.log('playing message');
+        }).catch(e => console.log(e));
+    } catch(e) {
+        console.log(e);
+    }
 };
 
 const sayMessage = (message, messageVoice, userDisplayName) => {
