@@ -2,6 +2,15 @@ let fieldData, apiToken;
 
 let isPlaying = false;
 let queue = [];
+let currentAudio;
+const endedListener = () => {
+    if(queue.length > 0){
+        const nextMessage = queue.pop();
+        sayMassagedMessage(nextMessage.fullMessage, nextMessage.messageVoice);
+    } else {
+        isPlaying = false;
+    }
+};
 const sayMassagedMessage = (fullMessage, messageVoice) => {
     if(!fullMessage.trim()){
         return;
@@ -9,18 +18,12 @@ const sayMassagedMessage = (fullMessage, messageVoice) => {
     isPlaying = true;
     const volume = fieldData.volume;
     const url = `//api.streamelements.com/kappa/v2/speech?voice=${messageVoice.replace('$', '')}&text=${encodeURI(fullMessage)}&key=${apiToken}`
-    const myAudio = new Audio(url);
-    myAudio.volume = volume;
-    myAudio.addEventListener('ended', () => {
-        if(queue.length > 0){
-            const nextMessage = queue.pop();
-            sayMassagedMessage(nextMessage.fullMessage, nextMessage.messageVoice);
-        } else {
-            isPlaying = false;
-        }
-    });
+    currentAudio = new Audio(url);
+    currentAudio.volume = volume;
+
+    currentAudio.addEventListener('ended', endedListener);
     try {
-        const playPromise = myAudio.play();
+        const playPromise = currentAudio.play();
         if(!playPromise){
             return;
         }
@@ -180,7 +183,7 @@ const handleShutoffCommands = (obj) => {
 };
 
 const handleMessage = (obj) => {
-    const {ttsCommands, voice, everybodyBotFilters, ignoreLinks, globalTTS, globalTTSPrivileges, perUserVoices, idToVoiceMap} = fieldData;
+    const {ttsCommands, voice, everybodyBotFilters, ignoreLinks, globalTTS, globalTTSPrivileges, perUserVoices, idToVoiceMap, skipCommand, skipPrivileges} = fieldData;
     const data = obj.detail.event.data;
     const {text, userId, displayName, emotes} = data;
 
@@ -238,6 +241,16 @@ const handleMessage = (obj) => {
         sayMessage(textToSay.toLowerCase().trim(), userVoice, displayName);
         return;
     }
+    if (text.toLowerCase().startsWith(skipCommand.toLowerCase().trim()) && checkPrivileges(data, skipPrivileges)) {
+        try {
+            currentAudio?.pause();
+            endedListener();
+        } catch (e) {
+            console.log(e);
+        }
+        return;
+    }
+
     if(ttsCommands === ''){
         return;
     }

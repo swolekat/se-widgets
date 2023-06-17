@@ -285,6 +285,26 @@
     "label": "Voices used for individual users",
     "value": "Nicole,Russell,Raveena,Amy,Brian,Emma,Joanna,Matthew,Salli"
   },
+  "skipCommand": {
+    "type": "text",
+    "label": "Skip TTS Command",
+    "value": "!skiptts",
+    "group": "Skip Command"
+  },
+  "skipPrivileges": {
+    "type": "dropdown",
+    "label": "Who can participate:",
+    "value": "broadcaster",
+    "options": {
+      "everybody": "Everybody",
+      "justSubs": "Subs",
+      "subs": "Subs + VIPs + Mods",
+      "vips": "VIPs + Mods",
+      "mods": "Mods",
+      "broadcaster": "Broadcaster"
+    },
+    "group": "Skip Command"
+  },
   "globalShutoffCommand": {
     "type": "text",
     "group": "Global Shutoff",
@@ -412,7 +432,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "3.13"
+    "value": "3.14"
   },
   "widgetUpdateUrl": {
     "type": "hidden",
