@@ -1,8 +1,13 @@
 {
+  "soundUrl": {
+    "type": "text",
+    "label": "Sound Url",
+    "value": "https://swolekat.github.io/se-widgets/assets/horny-jail/goToHornyJail.mp3"
+  },
   "jailWords": {
     "type": "text",
     "label": "Words that Send People to Jail",
-    "value": "coom,cum,sexy,horny,penis,erotic,roleplay,horni,naughty,yiff,coomer,hentai,yaoi,yuri,porn,jizz,coitus,shibari,anal,dicks,dick,pussy,69,cbt,cock,titty,titties,threesome,incest,butthole,anal,booty,scrotum,pp,peepee,lewd,poonani,poon,cunt,booba,boobies,clit,clitoris,nip,nipple,cummies,tits,boner,blowjob,furburger,arouse,engorge,bulge,bulging,chesticles,areiolas,chode,grope,penetrate,motorboating,tities,tahtas,throbbing,erect,erection,shlong,shmeat"
+    "value": "coom,cum,sexy,horny,penis,erotic,roleplay,horni,naughty,yiff,coomer,hentai,yaoi,yuri,porn,jizz,coitus,shibari,anal,dicks,dick,pussy,69,cbt,cock,titty,titties,threesome,incest,butthole,anal,booty,scrotum,pp,peepee,lewd,poonani,poon,cunt,booba,boobies,clit,clitoris,nip,nipple,cummies,tits,boner,blowjob,furburger,arouse,engorge,bulge,bulging,chesticles,areiolas,chode,grope,penetrate,motorboating,tities,tahtas,throbbing,erect,erection,shlong,shmeat,sexual"
   },
   "howLongSeconds": {
     "label": "How Many Seconds to Keep in Jail",
@@ -79,7 +84,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "2.0"
+    "value": "2.1"
   },
   "widgetUpdateUrl": {
     "type": "hidden",
