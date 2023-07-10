@@ -87,7 +87,7 @@ class ChatAssistant {
         }
         question.innerHTML = message;
         this.talking = true;
-        const model = 'gpt-3.5-turbo';
+        const model = 'gpt-4';
         const response = await fetch('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
             headers: {

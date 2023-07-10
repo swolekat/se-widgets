@@ -54,7 +54,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "0.1"
+    "value": "1.0"
   },
   "widgetUpdateUrl": {
     "type": "hidden",

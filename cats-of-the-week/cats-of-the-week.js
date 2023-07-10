@@ -81,7 +81,7 @@ const show = async () => {
             'Authorization': `Bearer ${fieldData.openAIApiKey}`,
         },
         body: JSON.stringify({
-            model: 'gpt-3.5-turbo',
+            model: 'gpt-4',
             messages: [            {
                 role: 'user',
                 content: `Tell me why ${niceUser} is the nice cat of the week in one sentence. The reason should be very very strange.`,
@@ -103,7 +103,7 @@ const show = async () => {
             'Authorization': `Bearer ${fieldData.openAIApiKey}`,
         },
         body: JSON.stringify({
-            model: 'gpt-3.5-turbo',
+            model: 'gpt-4',
             messages: [            {
                 role: 'user',
                 content: `Tell me why ${naughtyUser} is the naughty cat of the week in one sentence. The reason should be very very strange.`,
