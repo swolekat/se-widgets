@@ -59,6 +59,14 @@ const restart = () => {
     }
 };
 
+const pause = () => {
+    clearInterval(interval);
+};
+
+const unpause = () => {
+    interval = setInterval(tick, 1000);
+};
+
 
 const checkPrivileges = (data, privileges) => {
     const {tags, userId} = data;
@@ -83,11 +91,13 @@ const handleMessage = (obj) => {
         return;
     }
 
-    const { startCommand, endCommand, restartCommand } = fieldData;
+    const { startCommand, endCommand, restartCommand, pauseCommand, unpauseCommand } = fieldData;
     const {text} = data;
     const startsWithStart = text.toLowerCase().startsWith(startCommand.toLowerCase());
     const startsWithEnd = text.toLowerCase().startsWith(endCommand.toLowerCase());
     const startsWithRestart = text.toLowerCase().startsWith(restartCommand.toLowerCase());
+    const startsWithPause = text.toLowerCase().startsWith(pauseCommand.toLowerCase());
+    const startsWithUnpause = text.toLowerCase().startsWith(unpauseCommand.toLowerCase());
 
     if(startsWithStart){
         const duration = text.toLowerCase().replace(startCommand.toLowerCase(), '').trim();
@@ -102,6 +112,16 @@ const handleMessage = (obj) => {
 
     if(startsWithRestart){
         restart();
+        return;
+    }
+
+    if(startsWithPause){
+        pause();
+        return;
+    }
+
+    if(startsWithUnpause){
+        unpause();
         return;
     }
 };

@@ -18,6 +18,16 @@
     "label": "Restart Command",
     "value": "!restartTimer"
   },
+  "pauseCommand": {
+    "type": "text",
+    "label": "Pause Command",
+    "value": "!pauseTimer"
+  },
+  "unpauseCommand": {
+    "type": "text",
+    "label": "Unpause Command",
+    "value": "!unpauseTimer"
+  },
   "invertCount": {
     "label": "Count up instead of down",
     "type": "checkbox",
@@ -72,7 +82,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "0.3"
+    "value": "1.0"
   },
   "widgetUpdateUrl": {
     "type": "hidden",
