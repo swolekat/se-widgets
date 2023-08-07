@@ -5,7 +5,7 @@ const sound = document.getElementById('sound');
 const backgroundText = document.getElementById('background-text');
 const mainText = document.getElementById('main-text');
 
-let isShowing = true;
+let isShowing = false;
 
 const hide = () => mainContainer.className = 'main-container hidden';
 const show = () => mainContainer.className = 'main-container';
@@ -34,7 +34,7 @@ const handleMessage = (obj) => {
         return;
     }
 
-    const { command, } = fieldData;
+    const command = fieldData.command;
     const startsWithCommand = text.toLowerCase().startsWith(command.toLowerCase());
 
     if(!startsWithCommand || isShowing){
@@ -45,19 +45,18 @@ const handleMessage = (obj) => {
     const caption = text.toLowerCase().replace(command.toLowerCase(), '').trim().toUpperCase();
     backgroundText.innerText = caption;
     mainText.innerText = caption;
+    sound.volume = fieldData.volume;
     sound.play();
 
     show();
-    // setTimeout(() => {
-    //     const nextFace = getNextFace();
-    //     coin.className = `coin ${currentFace}-to-${nextFace}`;
-    //     currentFace = nextFace;
-    //     setTimeout(() => {
-    //         hide();
-    //         coin.className = `coin ${currentFace}`;
-    //         isShowing = false;
-    //     }, 5000);
-    // }, 2000);
+    setTimeout(() => {
+        backgroundText.className = 'background-text move';
+        setTimeout(() => {
+            backgroundText.className = 'background-text';
+            hide();
+            isShowing = false;
+        }, 5000);
+    }, 0);
 };
 
 window.addEventListener('onEventReceived', function (obj) {
