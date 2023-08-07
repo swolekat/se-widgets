@@ -3,10 +3,15 @@
     "type": "checkbox",
     "label": "Preview"
   },
-  "flipCommand": {
+  "command": {
     "type": "text",
-    "label": "Start Command",
-    "value": "!flipCoin"
+    "label": "Command",
+    "value": "!darkSouls"
+  },
+  "fontColor": {
+    "type": "colorpicker",
+    "label": "Some color",
+    "value": "#0000FF"
   },
   "privileges": {
     "type": "dropdown",
@@ -21,19 +26,9 @@
       "broadcaster": "Broadcaster"
     }
   },
-  "headsImage": {
-    "type": "text",
-    "label": "Heads Image",
-    "value": "https://swolekat.github.io/se-widgets/assets/coin-flip/heads.png"
-  },
-  "tailsImage": {
-    "type": "text",
-    "label": "Tails Image",
-    "value": "https://swolekat.github.io/se-widgets/assets/coin-flip/tails.png"
-  },
   "widgetName": {
     "type": "hidden",
-    "value": "Coin Flip by Swolekat"
+    "value": "Dark Souls Text by Swolekat"
   },
   "widgetAuthor": {
     "type": "hidden",
@@ -41,10 +36,10 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "1.0"
+    "value": "0.1"
   },
   "widgetUpdateUrl": {
     "type": "hidden",
-    "value": "https://github.com/swolekat/se-widgets/tree/main/coin-flip"
+    "value": "https://github.com/swolekat/se-widgets/tree/main/dark-souls-text"
   }
 }
