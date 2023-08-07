@@ -11,7 +11,7 @@
   "fontColor": {
     "type": "colorpicker",
     "label": "Some color",
-    "value": "#0000FF"
+    "value": "#FFFF64"
   },
   "privileges": {
     "type": "dropdown",
