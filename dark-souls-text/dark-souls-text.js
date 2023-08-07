@@ -1,20 +1,14 @@
 let fieldData;
 
 const mainContainer = document.getElementById('main-container');
-const coin = document.getElementById('coin');
+const sound = document.getElementById('sound');
+const backgroundText = document.getElementById('background-text');
+const mainText = document.getElementById('main-text');
+
+let isShowing = true;
 
 const hide = () => mainContainer.className = 'main-container hidden';
 const show = () => mainContainer.className = 'main-container';
-let currentFace = 'heads';
-let isFlipping = false;
-
-const getNextFace = () => {
-    const number = Math.random();
-    if(number < 0.5){
-        return 'heads';
-    }
-    return 'tails';
-};
 
 const checkPrivileges = (data, privileges) => {
     const {tags, userId} = data;
@@ -40,26 +34,30 @@ const handleMessage = (obj) => {
         return;
     }
 
-    const { flipCommand, } = fieldData;
-    const startsWithFlip = text.toLowerCase().startsWith(flipCommand.toLowerCase());
+    const { command, } = fieldData;
+    const startsWithCommand = text.toLowerCase().startsWith(command.toLowerCase());
 
-    if(!startsWithFlip || isFlipping){
+    if(!startsWithCommand || isShowing){
         return;
     }
 
-    isFlipping = true;
+    isShowing = true;
+    const caption = text.toLowerCase().replace(command.toLowerCase(), '').trim().toUpperCase();
+    backgroundText.innerText = caption;
+    mainText.innerText = caption;
+    sound.play();
 
     show();
-    setTimeout(() => {
-        const nextFace = getNextFace();
-        coin.className = `coin ${currentFace}-to-${nextFace}`;
-        currentFace = nextFace;
-        setTimeout(() => {
-            hide();
-            coin.className = `coin ${currentFace}`;
-            isFlipping = false;
-        }, 5000);
-    }, 2000);
+    // setTimeout(() => {
+    //     const nextFace = getNextFace();
+    //     coin.className = `coin ${currentFace}-to-${nextFace}`;
+    //     currentFace = nextFace;
+    //     setTimeout(() => {
+    //         hide();
+    //         coin.className = `coin ${currentFace}`;
+    //         isShowing = false;
+    //     }, 5000);
+    // }, 2000);
 };
 
 window.addEventListener('onEventReceived', function (obj) {
@@ -71,8 +69,6 @@ window.addEventListener('onEventReceived', function (obj) {
 
 window.addEventListener('onWidgetLoad', function (obj) {
     fieldData = obj.detail.fieldData;
-    currentFace = getNextFace();
-    coin.className = `coin ${currentFace}`;
 
     if(fieldData.preview){
         show();
