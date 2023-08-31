@@ -422,6 +422,32 @@
     "type": "text",
     "value": "StreamElements,Moobot,Nightbot"
   },
+  "userTTSPrivileges": {
+    "type": "dropdown",
+    "label": "User TTS Privileges",
+    "group": "User TTS",
+    "value": "broadcaster",
+    "options": {
+      "everybody": "Everybody",
+      "justSubs": "Subs",
+      "subs": "Subs + VIPs + Mods",
+      "vips": "VIPs + Mods",
+      "mods": "Mods",
+      "broadcaster": "Broadcaster"
+    }
+  },
+  "userTTSOnCommand": {
+    "label": "User On command",
+    "group": "User TTS",
+    "type": "text",
+    "value": "!userttson"
+  },
+  "userTTSOffCommand": {
+    "label": "User Off command",
+    "group": "User TTS",
+    "type": "text",
+    "value": "!userttsoff"
+  },
   "widgetName": {
     "type": "hidden",
     "value": "TTS by Swolekat"
@@ -432,7 +458,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "3.15"
+    "value": "3.16"
   },
   "widgetUpdateUrl": {
     "type": "hidden",

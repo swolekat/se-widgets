@@ -3,6 +3,7 @@ let fieldData, apiToken;
 let isPlaying = false;
 let queue = [];
 let currentAudio;
+let usersWithTTSOn = [];
 const endedListener = () => {
     if(queue.length > 0){
         const nextMessage = queue.pop();
@@ -182,10 +183,36 @@ const handleShutoffCommands = (obj) => {
     return true;
 };
 
+const handleUserCommands = (obj) => {
+    const data = obj.detail.event.data;
+    const text = data.text;
+    const { userTTSOnCommand, userTTSOffCommand, userTTSPrivileges } = fieldData;
+    const messageIsOn = text.toLowerCase().startsWith(userTTSOnCommand.toLowerCase());
+    const messageIsOff = text.toLowerCase().startsWith(userTTSOffCommand.toLowerCase());
+    if((!messageIsOn && !messageIsOff) || !checkPrivileges(data, userTTSPrivileges)){
+        return false;
+    }
+    const user = text.toLowerCase().replace(userTTSOnCommand.toLowerCase(), '').replace(userTTSOffCommand.toLowerCase(), '').trim();
+
+    if(messageIsOn){
+        usersWithTTSOn.push(user);
+    }
+    if(messageIsOff){
+        usersWithTTSOn = usersWithTTSOn.filter(u => u!== user);
+    }
+
+    return true;
+};
+
 const handleMessage = (obj) => {
     const {ttsCommands, voice, everybodyBotFilters, ignoreLinks, globalTTS, globalTTSPrivileges, perUserVoices, idToVoiceMap, skipCommand, skipPrivileges} = fieldData;
     const data = obj.detail.event.data;
     const {text, userId, displayName, emotes} = data;
+
+    const isUserCommand = handleUserCommands(obj);
+    if(isUserCommand){
+        return;
+    }
 
     const isEverybodyCommand = handleEverybodyCommands(obj);
     if(isEverybodyCommand){
@@ -237,7 +264,7 @@ const handleMessage = (obj) => {
     }
 
     const activeRaiders = getActiveRaiders();
-    if(activeRaiders.includes(displayName)) {
+    if(activeRaiders.includes(displayName) || usersWithTTSOn.includes(displayName.toLowerCase())) {
         sayMessage(textToSay.toLowerCase().trim(), userVoice, displayName);
         return;
     }
