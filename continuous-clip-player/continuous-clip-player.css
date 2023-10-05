@@ -1,5 +1,11 @@
+@font-face {
+    font-family: Sonic;
+    src: url(https://swolekat.github.io/se-widgets/assets/continuous-clip-player/sonic.ttf);
+}
+
 *, *:before, *:after {
     box-sizing: border-box;
+    font-family: Sonic, Impact, sans-serif;;
 }
 
 html, body {
@@ -24,6 +30,7 @@ html, body {
     position: absolute;
     bottom: 20px;
     left: 20px;
+    background: rgba(0, 0, 0, 0.7);
 }
 
 #clip-name {
