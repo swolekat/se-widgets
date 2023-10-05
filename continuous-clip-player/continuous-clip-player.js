@@ -26,6 +26,9 @@ const getVideoUrl = (broadcaster) => {
 
 const getRandomBroadcaster = () => {
     const broadcasters = fieldData.peopleToShoutOut.split(',').filter(a => a !== lastBroadcaster);
+    if(broadcasters.length === 0){
+        return lastBroadcaster;
+    }
     lastBroadcaster = broadcasters[Math.round(Math.random() * 1000000) % broadcasters.length];
     return lastBroadcaster;
 };
