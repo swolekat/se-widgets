@@ -5,7 +5,7 @@
 
 *, *:before, *:after {
     box-sizing: border-box;
-    font-family: Sonic, Impact, sans-serif;;
+    font-family: {fonts};
 }
 
 html, body {
@@ -43,4 +43,5 @@ html, body {
 #channel-name {
     font-size: 64px;
     color: #fff;
+    margin-bottom: 10px;
 }

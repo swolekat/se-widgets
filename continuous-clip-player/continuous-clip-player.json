@@ -2,7 +2,12 @@
   "peopleToShoutOut": {
     "type": "text",
     "label": "People to Shout Out (comma seperated",
-    "value": "swolekat,sparkstarvt"
+    "value": "swolekat,sparkstarvt,chaoticnature_"
+  },
+  "fonts": {
+    "type": "text",
+    "label": "Fonts to use",
+    "value": "Sonic, Impact, sans-serif"
   },
   "widgetName": {
     "type": "hidden",
