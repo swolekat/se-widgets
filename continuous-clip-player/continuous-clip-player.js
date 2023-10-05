@@ -3,6 +3,7 @@ let fieldData;
 const video = document.getElementById('video');
 const clipName = document.getElementById('clip-name');
 const channelName = document.getElementById('channel-name');
+let lastBroadcaster = '';
 
 const getDateRange = () => {
     // Get client current date
@@ -24,8 +25,9 @@ const getVideoUrl = (broadcaster) => {
 };
 
 const getRandomBroadcaster = () => {
-    const broadcasters = fieldData.peopleToShoutOut.split(',');
-    return broadcasters[Math.round(Math.random() * 1000000) % broadcasters.length];
+    const broadcasters = fieldData.peopleToShoutOut.split(',').filter(a => a !== lastBroadcaster);
+    lastBroadcaster = broadcasters[Math.round(Math.random() * 1000000) % broadcasters.length];
+    return lastBroadcaster;
 };
 
 
