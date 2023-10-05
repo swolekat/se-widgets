@@ -31,15 +31,16 @@ html, body {
     bottom: 20px;
     left: 20px;
     background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
 }
 
 #clip-name {
-    font-size: 36px;
-    color: #fff;
+    font-size: 30px;
+    color: #ccc;
     font-style: italic;
 }
 
 #channel-name {
-    font-size: 72px;
+    font-size: 64px;
     color: #fff;
 }
