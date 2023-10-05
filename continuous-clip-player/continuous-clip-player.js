@@ -30,15 +30,20 @@ const getRandomBroadcaster = () => {
 
 
 const playNextVideo = async () => {
-    const response = await fetch(getVideoUrl(getRandomBroadcaster()));
-    const responseJson = await response.json();
-    const clips = responseJson.data;
-    const randomClip = clips[Math.round(Math.random() * 100000) % clips.length];
-    const {title, broadcaster_name, clip_url} = randomClip;
-    clipName.innerText = title;
-    channelName.innerText = broadcaster_name;
-    video.src = clip_url;
-    video.play();
+    try {
+        const response = await fetch(getVideoUrl(getRandomBroadcaster()));
+        const responseJson = await response.json();
+        const clips = responseJson.data;
+        const randomClip = clips[Math.round(Math.random() * 100000) % clips.length];
+        const {title, broadcaster_name, clip_url} = randomClip;
+        clipName.innerText = title;
+        channelName.innerText = broadcaster_name;
+        video.src = clip_url;
+        video.play();
+    }
+    catch {
+        playNextVideo();
+    }
 };
 
 const setup = () => {
