@@ -1,7 +1,7 @@
 let fieldData;
 
 const mainContainer = document.getElementById('main-container');
-const text = document.getElementById('text');
+const textElement = document.getElementById('text');
 
 let isShowing = false;
 
@@ -41,11 +41,12 @@ const handleMessage = (obj) => {
 
     isShowing = true;
     const whoWillRemember = text.toLowerCase().replace(command.toLowerCase(), '').trim();
-    text.innerText = whoWillRemember;
+    textElement.innerText = `${whoWillRemember} will remember that.`;
 
     show();
     setTimeout(() => {
         hide();
+        isShowing = false;
     }, 5000);
 };
 
