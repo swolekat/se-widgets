@@ -1,0 +1,40 @@
+@font-face {
+    font-family: creatinin;
+    src: url(https://swolekat.github.io/se-widgets/assets/clemetine-will-remember/creatinin-pro.otf);
+}
+
+
+*, *:before, *:after {
+    box-sizing: border-box;
+    font-family: creatinin;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+
+}
+
+.main-container.hidden {
+    opacity: 0;
+}
+
+.main-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 100%;
+    transition: all 2s ease;
+    opacity: 1;
+    display: flex;
+}
+
+.image {
+    margin-right: 20px;
+}
+
+.text {
+    font-size: 36px;
+}
