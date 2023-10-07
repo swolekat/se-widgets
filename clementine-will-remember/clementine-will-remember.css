@@ -33,9 +33,11 @@ html, body {
 
 .image {
     margin-right: 20px;
+    height: 75px;
+    width: 75px;
 }
 
 .text {
-    font-size: 36px;
+    font-size: 72px;
     color: #fff;
 }
