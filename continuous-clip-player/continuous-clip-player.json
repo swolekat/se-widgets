@@ -9,6 +9,16 @@
     "label": "Fonts to use",
     "value": "Sonic, Impact, sans-serif"
   },
+  "userFontSize": {
+    "type": "number",
+    "label": "Channel Font Size",
+    "value": 64
+  },
+  "clipFontSize": {
+    "type": "number",
+    "label": "Clip Name Font size",
+    "value": 30
+  },
   "widgetName": {
     "type": "hidden",
     "value": "Continuous Clip Player by Swolekat"
@@ -19,7 +29,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "0.0.1"
+    "value": "0.0.2"
   },
   "widgetUpdateUrl": {
     "type": "hidden",

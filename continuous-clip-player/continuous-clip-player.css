@@ -35,13 +35,13 @@ html, body {
 }
 
 #clip-name {
-    font-size: 30px;
+    font-size: {clipFontSize}px;
     color: #ccc;
     font-style: italic;
 }
 
 #channel-name {
-    font-size: 64px;
+    font-size: {userFontSize}px;
     color: #fff;
     margin-bottom: 10px;
 }
