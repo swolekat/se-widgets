@@ -99,10 +99,15 @@ const createEmoteRegex = (emotes) => {
 const htmlEncode  = (text) => text.replace(/[\<\>\"\'\^\=]/g, char => `&#${char.charCodeAt(0)};`);
 const processText = (text, emotes) => {
     let processedText = text;
-    const { ignoreEmotes, ignoreEmojis } = fieldData;
+    const { ignoreEmotes, ignoreEmojis, stripResponses } = fieldData;
+    if(stripResponses && processedText.startsWith('@')){
+        const textParts = processedText.split(' ');
+        textParts.shift();
+        processedText = textParts.join(' ');
+    }
     if(ignoreEmotes){
         const emoteRegex = createEmoteRegex(emotes.map(e => htmlEncode(e.name)))
-        const textParts = text.split(emoteRegex);
+        const textParts = processedText.split(emoteRegex);
         processedText = textParts.join('');
     }
     if(ignoreEmojis){
@@ -205,7 +210,7 @@ const handleUserCommands = (obj) => {
 };
 
 const handleMessage = (obj) => {
-    const {ttsCommands, voice, everybodyBotFilters, ignoreLinks, globalTTS, globalTTSPrivileges, perUserVoices, idToVoiceMap, skipCommand, skipPrivileges} = fieldData;
+    const {ttsCommands, voice, everybodyBotFilters, ignoreLinks, globalTTS, globalTTSPrivileges, perUserVoices, idToVoiceMap, skipCommand, skipPrivileges, ignoreBits} = fieldData;
     const data = obj.detail.event.data;
     const {text, userId, displayName, emotes} = data;
 
@@ -227,6 +232,11 @@ const handleMessage = (obj) => {
     if(!isEnabled) {
         return;
     }
+
+    if(ignoreBits && emotes.some(e => e.type === 'cheer')){
+        return;
+    }
+
     let userVoices = perUserVoices.split(',').map(v => v.trim()).filter(v => !!v);
     if(userVoices.length === 0){
         userVoices = defaultPerUserVoices;

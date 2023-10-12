@@ -24,6 +24,16 @@
     "label": "Ignore Repeats",
     "value": true
   },
+  "stripResponses": {
+    "label": "Remove username from responses",
+    "type": "checkbox",
+    "value": true
+  },
+  "ignoreBits": {
+    "label": "Ignore Bits",
+    "type": "checkbox",
+    "value": true
+  },
   "useQueue": {
     "type": "checkbox",
     "label": "Use Queue (disables overlap)",
