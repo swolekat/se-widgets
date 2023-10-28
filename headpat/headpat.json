@@ -17,6 +17,14 @@
       "broadcaster": "Broadcaster"
     }
   },
+  "volume": {
+    "type": "slider",
+    "label": "Volume",
+    "value": 1,
+    "min": 0,
+    "max": 1,
+    "steps": 0.1
+  },
   "widgetName": {
     "type": "hidden",
     "value": "Headpat by Swolekat"
@@ -27,7 +35,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "0.2"
+    "value": "1.0"
   },
   "widgetUpdateUrl": {
     "type": "hidden",

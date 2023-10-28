@@ -84,5 +84,6 @@ window.addEventListener('onEventReceived', function (obj) {
 
 window.addEventListener('onWidgetLoad', function (obj) {
     fieldData = obj.detail.fieldData;
+    sound.volume = fieldData.volume;
 });
 
