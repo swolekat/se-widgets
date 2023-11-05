@@ -5,6 +5,8 @@ let queue = [];
 let currentAudio;
 let usersWithTTSOn = [];
 const endedListener = () => {
+    currentAudio.removeEventListener('ended', endedListener);
+    currentAudio = undefined;
     if(queue.length > 0){
         const nextMessage = queue.pop();
         sayMassagedMessage(nextMessage.fullMessage, nextMessage.messageVoice);
@@ -26,6 +28,8 @@ const sayMassagedMessage = (fullMessage, messageVoice) => {
     try {
         const playPromise = currentAudio.play();
         if(!playPromise){
+            currentAudio.removeEventListener('ended', endedListener);
+            currentAudio = undefined;
             return;
         }
         playPromise.then(() => {
