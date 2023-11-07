@@ -18,7 +18,7 @@
   },
   "items": {
     "type": "text",
-    "label": "Segment colors, comma separated",
+    "label": "Items for the wheel, comma separated",
     "value": "item1,item2,item3,item4,item5,item6,item7,item8,item9,item10"
   },
   "segmentColors": {
