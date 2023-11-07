@@ -121,8 +121,11 @@ const checkPrivileges = (data, privileges) => {
 };
 
 const showWheel = () => {
-    $('#octagon').velocity({rotateX: '0'}, {duration: 0});
     container.className = '';
+    octagon.style = 'transform: rotateX(0deg)';
+    drawWheel();
+    currentItemIndex = 0;
+    currentFaceIndex = 0;
 };
 
 const hideWheel = () => {
@@ -186,7 +189,7 @@ const getSpeed = () => {
     const segmentsAlreadyGone = maxSegments - segmentsToGo;
     const segmentPercentage = segmentsAlreadyGone / maxSegments;
     const easingValue =  segmentPercentage < 0.5 ? 4 * segmentPercentage * segmentPercentage * segmentPercentage : 1 - Math.pow(-2 * segmentPercentage + 2, 3) / 2;
-    return 200 + (700 * easingValue);
+    return 200 + (fieldData.longestSegmentDuration * easingValue);
 };
 
 const spinSection = () => {
@@ -206,7 +209,10 @@ const spinSection = () => {
     currentFaceIndex = (currentFaceIndex + 1) % 8;
     const speed = getSpeed();
     segmentsToGo -=1;
-    $('#octagon').velocity({rotateX: '+=45'}, {duration: speed, easing: 'linear', complete: spinSection});
+    const currentAngle = Number.parseInt(octagon.style.transform.replace('rotateX(', '').replace('deg)', ''), 10);
+    const newAngle = currentAngle + 45;
+
+    $('#octagon').velocity({rotateX: `${newAngle}deg`}, {duration: speed, easing: 'linear', complete: spinSection});
 
 };
 
@@ -217,9 +223,8 @@ const spin = () => {
     isSpinning = true;
 
     showWheel();
-    const numberOfSpins = 3;
     winnerIndex = Math.round((Math.random() * 10000)) % realItems.length;
-    segmentsToGo = (numberOfSpins * realItems.length) + winnerIndex;
+    segmentsToGo = (fieldData.numberOfSpins * realItems.length) + winnerIndex;
     maxSegments = segmentsToGo;
 
     setTimeout( () => {
