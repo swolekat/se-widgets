@@ -1,39 +1,22 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
 #container {
     width: 100%;
     height: 100%;
     perspective: none;
-    background: green;
 }
 
 #container.hidden {
     display: none;
 }
 
-.origin {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100px;
-    width: 100px;
-    background: purple;
-    transform: translateX(0) translateY(0) translateZ(0);
-    transform-origin: 0 0;
-}
-
-.origin2 {
-    top: 0;
-    left: 0;
-    height: 100px;
-    width: 100px;
-    background: magenta;
-    transform: translateX(0) translateY(0) translateZ(0) rotateY(90deg);
-    transform-origin: 0 0;
-}
-
 .octagon-wrapper {
-    height: 50%;
-    width: 50%;
-    background: orange;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
 }
 
 
@@ -43,47 +26,27 @@
     position: relative;
     perspective-origin: 50% 50%;
     transform-style:preserve-3d;
-    transform:translateX(0px) rotateX(180deg) rotateY(0deg);
+    transform:translateX(0px) rotateX(0deg) rotateY(0deg);
 }
 
 .octagon-face {
     position:absolute;
     width: 100%;
-    /*uncomment previous line*/
-    /*width: 50%;*/
     height:50%;
     top: 50%;
     left: 0;
-    background: blue;
-    /*todo remove opacity and assign colors*/
-    opacity:0.4;
     text-align: center;
     font-size: 72px;
     color: #fff;
 }
 
-.octagon-face:nth-child(odd){
-    background: red;
-}
-
 .face-content {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    font-size: 72px;
+    font-family: 'Trebuchet MS', sans-serif;
 }
 
-
-#face0 {
-}
-
-#face1 {
-
-}
-
-/*.sideface1{-webkit-transform:translateY(-135px) rotateX(90deg)translateZ(-175px)rotate(180deg)rotateY(180deg);}*/
-
-/*.sideface2{-webkit-transform:translateY(-135px) rotateX(90deg)translateZ(175px)rotate(180deg);}*/
-
-/*.sideface3{-webkit-transform:translateY(-135px)  rotateX(90deg)translateZ(350/4 + px) translateX(350/2 * 1.73/2 + px)rotateY(60deg)rotate(180deg);}*/
-
-/*.sideface4{-webkit-transform:translateY(-135px) rotateX(90deg)translateZ(350/4 + px) translateX(-350/2 * 1.73/2 + px)rotateY(-60deg)rotate(180deg);}*/
-/*.sideface5{-webkit-transform:translateY(-135px) rotateX(90deg)translateZ(-350/4 + px) translateX(-350/2 * 1.73/2 + px)rotateY(60deg)rotate(180deg)rotateY(180deg);}*/
-
-/*.sideface6{-webkit-transform:translateY(-135px) rotateX(90deg)translateZ(-350/4 + px) translateX(350/2 * 1.73/2 + px)rotateY(-60deg)rotate(180deg)rotateY(180deg);}*/

@@ -4,16 +4,6 @@
     "label": "Spin Command",
     "value": "!spin"
   },
-  "addCommand": {
-    "type": "text",
-    "label": "Add Command",
-    "value": "!addRaider"
-  },
-  "removeCommand": {
-    "type": "text",
-    "label": "Remove Command",
-    "value": "!removeRaider"
-  },
   "privileges": {
     "type": "dropdown",
     "label": "Who can use the command",
@@ -26,10 +16,15 @@
       "broadcaster": "Broadcaster"
     }
   },
+  "items": {
+    "type": "text",
+    "label": "Segment colors, comma separated",
+    "value": "item1,item2,item3,item4,item5,item6,item7,item8,item9,item10"
+  },
   "segmentColors": {
     "type": "text",
     "label": "Segment colors, comma separated",
-    "value": "#ff0000,#00ff00,#ffffff,#123123,#421221"
+    "value": "#5E5651,#C61618,#38312C"
   },
   "showDuration": {
     "type": "number",
@@ -261,7 +256,7 @@
     "group": "On Spin End",
     "type": "text",
     "label": "TTS Message",
-    "value": "We're raiding $NAME!"
+    "value": "The winner is $NAME!"
   },
   "volume": {
     "group": "On Spin End",
@@ -272,36 +267,9 @@
     "max": 1,
     "steps": 0.1
   },
-  "wheelSize": {
-    "group": "Display",
-    "type": "number",
-    "label": "Wheel size",
-    "value": 412
-  },
-  "textSize": {
-    "group": "Display",
-    "type": "number",
-    "label": "Text Size",
-    "value": 20
-  },
-  "spins": {
-    "group": "Display",
-    "type": "number",
-    "label": "Number of spins",
-    "value": 5
-  },
-  "duration": {
-    "group": "Display",
-    "type": "slider",
-    "label": "Duration (s)",
-    "value": 3,
-    "min": 0,
-    "max": 10,
-    "steps": 1
-  },
   "widgetName": {
     "type": "hidden",
-    "value": "Raid Wheel"
+    "value": "3D Wheel"
   },
   "widgetAuthor": {
     "type": "hidden",
@@ -313,6 +281,6 @@
   },
   "widgetUpdateUrl": {
     "type": "hidden",
-    "value": "https://github.com/swolekat/se-widgets/tree/main/raid-wheel"
+    "value": "https://github.com/swolekat/se-widgets/tree/main/3d-wheel"
   }
 }

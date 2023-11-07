@@ -1,25 +1,3 @@
-var elemclass= '.octagon';
-var px = 0,xx = 100,yy=100;
-var py = 180;
-var sp = 1;
-$('*').keydown(
-    function(e)
-    {
-        pers1 = parseInt($('body').css("perspective"));
-        if(event.which == 38)
-        {py+=sp;     $(elemclass).css("transform","rotateY("+px+"deg)rotateX("+py +"deg)");}
-        if(event.which == 40)
-        {py-=sp;      $(elemclass).css("transform","rotateY("+px+"deg)rotateX("+py +"deg)");}
-        if(event.which == 37)
-        {px+=sp;     $(elemclass).css("transform","rotateY("+px+"deg)rotateX("+py +"deg)");}
-        if(event.which == 39)
-        {px-=sp;     $(elemclass).css("transform","rotateY("+px+"deg)rotateX("+py +"deg)");}
-        if(event.which == 83)
-        {xx--;$('body').css("perspective",(pers1+xx)+"");}
-        if(event.which == 87)
-        {xx++;$('body').css("perspective",(pers1-xx)+"");}
-    });
-
 const octagon = document.getElementById('octagon');
 const face0 = document.getElementById('face0');
 const face1 = document.getElementById('face1');
@@ -29,8 +7,49 @@ const face4 = document.getElementById('face4');
 const face5 = document.getElementById('face5');
 const face6 = document.getElementById('face6');
 const face7 = document.getElementById('face7');
-const origin = document.getElementById('origin');
-const origin2 = document.getElementById('origin2');
+const face0Content = document.getElementById('face0Content');
+const face1Content = document.getElementById('face1Content');
+const face2Content = document.getElementById('face2Content');
+const face3Content = document.getElementById('face3Content');
+const face4Content = document.getElementById('face4Content');
+const face5Content = document.getElementById('face5Content');
+const face6Content = document.getElementById('face6Content');
+const face7Content = document.getElementById('face7Content');
+
+const faceElements = [
+    {
+    face: face0,
+    content: face0Content,
+},
+    {
+        face: face1,
+        content: face1Content,
+    },
+    {
+        face: face2,
+        content: face2Content,
+    },
+    {
+        face: face3,
+        content: face3Content,
+    },
+    {
+        face: face4,
+        content: face4Content,
+    },
+    {
+        face: face5,
+        content: face5Content,
+    },
+    {
+        face: face6,
+        content: face6Content,
+    },
+    {
+        face: face7,
+        content: face7Content,
+    },
+];
 
 let octagonInterval = setInterval(() => {
     const width = face0.getBoundingClientRect()?.width;
@@ -42,191 +61,204 @@ let octagonInterval = setInterval(() => {
 }, 300);
 
 const initOctagon = () => {
-    const { width, height } = face0.getBoundingClientRect();
+    const { height } = face0.getBoundingClientRect();
     //22.5 is half of 45
-    const zDistance = (height / (Math.sin(22.5 * (Math.PI / 180)))) * -1;
-    face0.style = `transform: translateY(-${height/2}px) translateZ(${zDistance}px) rotateX(180deg)`;
-    const face1Y = height * 0.3555;
-    const face1Z = zDistance * 0.8638;
-    face1.style = `transform: translateY(${face1Y}px) translateZ(${face1Z}px) rotateX(225deg)`;
-    const face2Y = height * 0.7074;
+    const zDistance = (height / (Math.sin(22.5 * (Math.PI / 180)))) * 0.5;
+    face0.style = `transform: rotateX(0deg) translateY(-${height/2}px) translateZ(${zDistance}px)`;
+    const face1Y = height * -0.4296;
+    const face1Z = zDistance * 0.70738;
+    face1.style = `transform: rotateX(315deg) translateY(${face1Y}px) translateZ(${face1Z}px) `;
+    const face2Y = height * -0.1074;
     const face2Z = zDistance * 0.5404;
-    face2.style = `transform: translateY(${face2Y}px) translateZ(${face2Z}px) rotateX(270deg)`;
-    const face3Y = height * 0.3518;
-    const face3Z = zDistance * 0.2156;
-    face3.style = `transform: translateY(${face3Y}px) translateZ(${face3Z}px) rotateX(315deg)`;
-    const face4Y = (height/2) * -1;
-    const face4Z = zDistance * 0.0809;
-    face4.style = `transform: translateY(${face4Y}px) translateZ(${face4Z}px) rotateX(0deg)`;
-    const face5Y = height * -1.3519;
-    const face5Z = zDistance * 0.2170;
-    face5.style = `transform: translateY(${face5Y}px) translateZ(${face5Z}px) rotateX(45deg)`;
-    const face6Y = height * -1.7111111;
-    const face6Z = zDistance * 0.5404;
-    face6.style = `transform: translateY(${face6Y}px) translateZ(${face6Z}px) rotateX(90deg)`;
-    const face7Y = height * -1.3519;
-    const face7Z = zDistance * 0.863;
-    face7.style = `transform: translateY(${face7Y}px) translateZ(${face7Z}px) rotateX(135deg)`;
+    face2.style = `transform: rotateX(270deg) translateY(${face2Y}px) translateZ(${face2Z}px) `;
+    const face3Y = height * 0.2704;
+    const face3Z = zDistance * 0.59375;
+    face3.style = `transform: rotateX(225deg) translateY(${face3Y}px) translateZ(${face3Z}px)`;
+    const face4Y = height * 0.4962;
+    const face4Z = zDistance * 0.835227;
+    face4.style = `transform: rotateX(180deg) translateY(${face4Y}px) translateZ(${face4Z}px) `;
+    const face5Y = height * 0.4296;
+    const face5Z = zDistance * 1.125;
+    face5.style = `transform: rotateX(135deg) translateY(${face5Y}px) translateZ(${face5Z}px) `;
+    const face6Y = height * 0.1185;
+    const face6Z = zDistance * 1.298;
+    face6.style = `transform: rotateX(90deg) translateY(${face6Y}px) translateZ(${face6Z}px) `;
+    const face7Y = height * -0.2777;
+    const face7Z = zDistance * 1.2443;
+    face7.style = `transform: rotateX(45deg) translateY(${face7Y}px) translateZ(${face7Z}px)`;
 
-    const octagonRect = octagon.getBoundingClientRect();
-    // roughly should be 854
-    const transformOriginX = zDistance * -1.2113
-    octagon.style = `transform-origin: ${octagonRect.width/2}px ${octagonRect.height/2}px translateZ(${zDistance/2}px)`;
-    origin.style = `transform: translateX(${octagonRect.width/2}px) translateY(${octagonRect.height/2}px) translateZ(${zDistance/2}px)`;
-    origin2.style = `transform: translateX(${octagonRect.width/2}px) translateY(${octagonRect.height/2}px) translateZ(${zDistance/2}px) rotateY(90deg)`;
-
+    drawWheel();
 };
 
 
 
-// let fieldData = {};
-// let apiToken;
-// let isSpinning = false;
-// let theWheel;
-// let raiders = [];
-//
-// let container = document.getElementById('container');
-//
-// const altColors = [
-//     '#FF4A80', '#FF7070', '#FA8E4B', '#FEE440',
-//     '#5FFF77', '#00F5D4', '#00BBF9', '#4371FB',
-//     '#9B5DE5', '#F670DD',
-// ];
-//
-// const getColorBasedOnId = (userId) => {
-//     const number = Number.parseInt(userId, 10);
-//     return altColors[number % altColors.length];
-// };
-//
-// const checkPrivileges = (data, privileges) => {
-//     const {tags, userId} = data;
-//     const {mod, subscriber, badges} = tags;
-//     const required = privileges || fieldData.privileges;
-//     const isMod = parseInt(mod);
-//     const isSub = parseInt(subscriber);
-//     const isVip = (badges.indexOf("vip") !== -1);
-//     const isBroadcaster = (userId === tags['room-id']);
-//     if (isBroadcaster) return true;
-//     if (required === "justSubs" && isSub) return true;
-//     if (required === "mods" && isMod) return true;
-//     if (required === "vips" && (isMod || isVip)) return true;
-//     if (required === "subs" && (isMod || isVip || isSub)) return true;
-//     return required === "everybody";
-// };
-//
-// const showWheel = () => {
-//     container.className = '';
-// };
-//
-// const hideWheel = () => {
-//     container.className = 'hidden';
-//     isSpinning = false;
-// };
-//
-// const spinEnd = () => {
-//     const {doTTS, ttsVoice, ttsMessage, showDuration, volume} = fieldData;
-//     if(showDuration > 0){
-//         setTimeout(hideWheel, showDuration * 1000);
-//     } else {
-//         isSpinning = false;
-//     }
-//
-//     if(!doTTS){
-//         return;
-//     }
-//     const winningSegment = theWheel.getIndicatedSegment();
-//     const message = ttsMessage.replace('$NAME', winningSegment.text);
-//     const url = `//api.streamelements.com/kappa/v2/speech?voice=${ttsVoice.replace('$', '')}&text=${encodeURI(message)}&key=${apiToken}`
-//     const myAudio = new Audio(url);
-//     myAudio.volume = volume;
-//     myAudio.play();
-// };
-//
-// const getWeightData = () => {
-//     const colors = fieldData.segmentColors.split(',')
-//     return raiders.map((raider, index) => {
-//         return {
-//             text: raider,
-//             weight: 1,
-//             fillStyle: colors[index % colors.length],
-//         }
-//     })
-// };
-//
-// const getSegments = () => {
-//     const weightData = getWeightData();
-//     const sumOfWeights = weightData.reduce((sum, segment)  => sum + segment.weight, 0);
-//     return weightData.map(segment => ({...segment, size: 360 * (segment.weight / sumOfWeights) }));
-// };
-//
-// const drawWheel = () => {
-//     const {wheelSize, textSize, cooldown, spins} = fieldData;
-//     const segments = getSegments();
-//     theWheel = new Winwheel({
-//         'outerRadius': wheelSize / 2,        // Set outer radius so wheel fits inside the background.
-//         'innerRadius': 0,
-//         'textFontSize': textSize,         // Set default font size for the segments.
-//         'textOrientation': 'vertical', // Make text vertial so goes down from the outside of wheel.
-//         'textAlignment': 'outer',    // Align text to outside of wheel.
-//         'numSegments': segments.length,         // Specify number of segments.
-//         'segments': segments,          // Define segments including colour and text.
-//         'animation':           // Specify the animation to use.
-//             {
-//                 'type': 'spinToStop',
-//                 'duration': cooldown,     // Duration in seconds.
-//                 'spins': spins,     // Default number of complete spins.
-//                 'callbackFinished' : 'spinEnd()'
-//             }
-//     });
-// };
-//
-// const spin = () => {
-//     if(isSpinning){
-//         return;
-//     }
-//     isSpinning = true;
-//     drawWheel();
-//     showWheel();
-//     setTimeout( () => {
-//         theWheel.rotationAngle = 0;
-//         theWheel.stopAnimation(false);
-//         theWheel.animation.spins = fieldData.spins;
-//         theWheel.startAnimation();
-//     }, 0);
-//
-// };
-//
-// window.addEventListener('onEventReceived', function (obj) {
-//     const {listener, event} = obj.detail;
-//     if (listener !== "message") {
-//         return;
-//     }
-//     const {data} = event;
-//     if(!checkPrivileges(data)) {
-//         return;
-//     }
-//     const { spinCommand, addCommand, removeCommand } = fieldData;
-//     const {text} = data;
-//     const textIsSpin = text.toLowerCase() === spinCommand.toLowerCase();
-//     const textIsAdd = text.toLowerCase().startsWith(addCommand.toLowerCase());
-//     const textIsRemove = text.toLowerCase().startsWith(removeCommand.toLowerCase());
-//     if(textIsSpin){
-//         spin();
-//         return;
-//     }
-//     if(textIsAdd){
-//         const raiderToAdd = text.substr(addCommand.length).trim();
-//         raiders.push(raiderToAdd);
-//         return;
-//     }
-//     if(textIsRemove){
-//         const raiderToRemove = text.substr(removeCommand.length).trim();
-//         raiders = raiders.filter(r => r !== raiderToRemove);
-//         return;
-//     }
-// });
-//
-// window.addEventListener('onWidgetLoad', function (obj) {
-//     fieldData = obj.detail.fieldData;
-//     apiToken = obj.detail.channel.apiToken;
-// });
+let fieldData = {};
+let apiToken;
+let isSpinning = false;
+let realItems = [];
+let currentItemIndex = 0;
+let currentFaceIndex = 0;
+let segmentsToGo = 0;
+let winnerIndex;
+let maxSegments;
+
+let container = document.getElementById('container');
+
+const checkPrivileges = (data, privileges) => {
+    const {tags, userId} = data;
+    const {mod, subscriber, badges} = tags;
+    const required = privileges || fieldData.privileges;
+    const isMod = parseInt(mod);
+    const isSub = parseInt(subscriber);
+    const isVip = (badges.indexOf("vip") !== -1);
+    const isBroadcaster = (userId === tags['room-id']);
+    if (isBroadcaster) return true;
+    if (required === "justSubs" && isSub) return true;
+    if (required === "mods" && isMod) return true;
+    if (required === "vips" && (isMod || isVip)) return true;
+    if (required === "subs" && (isMod || isVip || isSub)) return true;
+    return required === "everybody";
+};
+
+const showWheel = () => {
+    $('#octagon').velocity({rotateX: '0'}, {duration: 0});
+    container.className = '';
+};
+
+const hideWheel = () => {
+    container.className = 'hidden';
+    isSpinning = false;
+};
+
+const spinEnd = () => {
+    const {doTTS, ttsVoice, ttsMessage, showDuration, volume} = fieldData;
+    if(showDuration > 0){
+        setTimeout(hideWheel, showDuration * 1000);
+    } else {
+        isSpinning = false;
+    }
+
+    if(!doTTS){
+        return;
+    }
+    const winningSegment = realItems[winnerIndex];
+    const message = ttsMessage.replace('$NAME', winningSegment);
+    const url = `//api.streamelements.com/kappa/v2/speech?voice=${ttsVoice.replace('$', '')}&text=${encodeURI(message)}&key=${apiToken}`
+    const myAudio = new Audio(url);
+    myAudio.volume = volume;
+    myAudio.play();
+};
+
+// going up increase the degrees
+
+const drawWheel = () => {
+    // render previous item and that's it.
+    const colors = fieldData.segmentColors.split(',');
+
+    face0.style.background = colors[0];
+    face0Content.innerHTML = realItems[0];
+
+    face1.style.background = colors[1 % colors.length];
+    face1Content.innerHTML = realItems[1];
+
+    face2.style.background = colors[2 % colors.length];
+    face2Content.innerHTML = realItems[2];
+
+    face3.style.background = colors[3 % colors.length];
+    face3Content.innerHTML = realItems[3];
+
+    face4.style.background = colors[4 % colors.length];
+    face4Content.innerHTML = realItems[4];
+
+    face5.style.background = colors[5 % colors.length];
+    face5Content.innerHTML = realItems[5];
+
+    face6.style.background = colors[6 % colors.length];
+    face6Content.innerHTML = realItems[6];
+
+    // last face is special. Need to give it the illusion that it's the last item in the array
+    face7.style.background = colors[(realItems.length -1) % colors.length];
+    face7Content.innerHTML = realItems[(realItems.length -1)];
+
+};
+
+const getSpeed = () => {
+    const segmentsAlreadyGone = maxSegments - segmentsToGo;
+    const segmentPercentage = segmentsAlreadyGone / maxSegments;
+    const easingValue =  segmentPercentage < 0.5 ? 4 * segmentPercentage * segmentPercentage * segmentPercentage : 1 - Math.pow(-2 * segmentPercentage + 2, 3) / 2;
+    return 200 + (700 * easingValue);
+};
+
+const spinSection = () => {
+    if(segmentsToGo === 0){
+        spinEnd();
+        return;
+    }
+    const newSelectedIndex = currentItemIndex + 1;
+    const newItemIndex = (newSelectedIndex + 5) % realItems.length;
+    const faceToUpdateIndex = (currentFaceIndex + 6) % 8;
+
+    const colors = fieldData.segmentColors.split(',');
+    const faceToUpdate = faceElements[faceToUpdateIndex];
+    faceToUpdate.face.style.background = colors[newItemIndex % colors.length];
+    faceToUpdate.content.innerHTML = realItems[newItemIndex];
+    currentItemIndex = (currentItemIndex + 1) % realItems.length;
+    currentFaceIndex = (currentFaceIndex + 1) % 8;
+    const speed = getSpeed();
+    segmentsToGo -=1;
+    $('#octagon').velocity({rotateX: '+=45'}, {duration: speed, easing: 'linear', complete: spinSection});
+
+};
+
+const spin = () => {
+    if(isSpinning){
+        return;
+    }
+    isSpinning = true;
+
+    showWheel();
+    const numberOfSpins = 3;
+    winnerIndex = Math.round((Math.random() * 10000)) % realItems.length;
+    segmentsToGo = (numberOfSpins * realItems.length) + winnerIndex;
+    maxSegments = segmentsToGo;
+
+    setTimeout( () => {
+        spinSection();
+    }, 0);
+
+};
+
+window.addEventListener('onEventReceived', function (obj) {
+    const {listener, event} = obj.detail;
+    if (listener !== "message") {
+        return;
+    }
+    const {data} = event;
+    if(!checkPrivileges(data)) {
+        return;
+    }
+    const { spinCommand } = fieldData;
+    const {text} = data;
+    const textIsSpin = text.toLowerCase() === spinCommand.toLowerCase();
+    if(textIsSpin){
+        spin();
+        return;
+    }
+});
+
+const processItems = () => {
+    const items = fieldData.items.split(',');
+    if(items.length >= 8) {
+        realItems = [...items];
+        return;
+    }
+    do {
+        realItems = [...realItems, ...items];
+    } while(realItems.length < 8)
+};
+
+window.addEventListener('onWidgetLoad', function (obj) {
+    fieldData = obj.detail.fieldData;
+    apiToken = obj.detail.channel.apiToken;
+    processItems();
+});
