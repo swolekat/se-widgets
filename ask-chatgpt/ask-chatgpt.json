@@ -4,6 +4,11 @@
     "type": "text",
     "value": "!ask"
   },
+  "messagesToRemember": {
+    "type": "number",
+    "label": "Number of chat messages to store",
+    "value": 0
+  },
   "volume": {
     "type": "slider",
     "label": "Volume",
@@ -300,7 +305,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "2.0"
+    "value": "2.1"
   },
   "widgetUpdateUrl": {
     "type": "hidden",

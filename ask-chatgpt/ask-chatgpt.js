@@ -38,6 +38,7 @@ class ChatAssistant {
 
     constructor() {
         this.talking = false;
+        this.messageList = [];
     }
 
 
@@ -61,19 +62,42 @@ class ChatAssistant {
     }
 
     getMessagesToSend(message) {
-        return [
-            {
+        if(fieldData.messagesToRemember === 0){
+            return [
+                {
+                    role: 'system',
+                    content: ChatAssistant.systemMessage,
+                },
+                {
+                    role: 'user',
+                    content: message
+                }
+            ];
+        }
+        if(this.messageList.length === 0){
+            this.messageList.push({
                 role: 'system',
                 content: ChatAssistant.systemMessage,
-            },
-            {
-                role: 'user',
-                content: message
-            }
-        ];
+            });
+        }
+
+        const numberOfMessages = this.messageList.filter(m => m.role === 'user').length;
+        if(numberOfMessages > fieldData.messagesToRemember) {
+            this.messageList.splice(1, 2);
+        }
+        this.messageList.push({
+            role: 'user',
+            content: message
+        });
+
+        return this.messageList;
     }
 
     sayAndCaptionMessage(message){
+        this.messageList.push({
+            role: 'assistant',
+            content: message,
+        })
         this.sayMessage(message);
         answer.innerHTML = message;
         if(fieldData.showText){
