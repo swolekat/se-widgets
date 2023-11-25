@@ -13,40 +13,36 @@ html, body {
     height: 100%;
     width: 100%;
     margin: 0;
-    padding: 0;
     position: relative;
+    padding: 50px;
 }
 
-.main-container.hidden {
+.card-grid {
+    display: grid;
+    height: 100%;
+    max-height: 100%;
+    width: 100%;
+    grid-template-columns:  repeat(3, minmax(0, 1fr));
+    grid-template-rows: minmax(0,1fr);
+    grid-gap: 50px;
+}
+
+.card-wrapper {
+    height: 100%;
+    width: 100%;
+    contain: size paint;
+}
+
+.card-wrapper.hidden {
     display: none;
 }
 
-.bonk {
-    position: absolute;
-    bottom: 50%;
-    left: 20%;
-    transition: all 1000ms;
-    transform: rotate(0deg);
-    transform-origin: 100% 100%;
-    display: block;
-    height: 50%;
+.card {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
 }
 
-.bonk.animate {
-    transform: rotate(-45deg);
-}
-
-.bonkee {
-    display: block;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 50%;
-    width: 50%;
-    object-position: left;
-    transition: all 1000ms;
-}
-
-.bonkee.animate {
-    height: 15%;
+.card.reversed {
+    transform: rotate(180deg);
 }

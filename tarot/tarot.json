@@ -1,4 +1,8 @@
 {
+  "preview": {
+    "type": "checkbox",
+    "label": "Preview"
+  },
   "drawThreeCommand": {
     "type": "text",
     "label": "Draw Three Command",
