@@ -165,7 +165,7 @@ const handleMessage = (obj) => {
 
     const show = text.toLowerCase().startsWith(showCommand.toLowerCase());
     if (show) {
-        showCard(text.replace(showCommand, '').trim());
+        showCard(text.replace(showCommand, '').replace(showCommand.toLowerCase(), '').trim());
         return;
     }
 
