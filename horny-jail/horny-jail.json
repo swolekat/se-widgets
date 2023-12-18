@@ -72,7 +72,7 @@
   "botFilter": {
     "label": "Bots to filter out",
     "type": "text",
-    "value": "StreamElements,Moobot,Nightbot,SoundAlerts,WizeBot"
+    "value": "StreamElements,Moobot,Nightbot,SoundAlerts,WizeBot,KofiStreamBot"
   },
   "widgetName": {
     "type": "hidden",

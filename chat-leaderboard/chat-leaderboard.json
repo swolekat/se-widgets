@@ -7,7 +7,7 @@
   "ignoredUsers": {
     "type": "text",
     "label": "Ignored Users",
-    "value": "StreamElements,Moobot,Nightbot,WizeBot"
+    "value": "StreamElements,Moobot,Nightbot,WizeBot,KofiStreamBot"
   },
   "ignoreBroadcaster": {
     "type": "checkbox",
