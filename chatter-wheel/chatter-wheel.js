@@ -34,7 +34,12 @@ const checkPrivileges = (data, privileges) => {
 };
 
 const handleRegularMessage = (data) => {
-    const {tags, userId, displayName, time, displayColor} = data;
+    const {tags, userId, displayName, time, displayColor, text} = data;
+    if(!!fieldData.enterCommand){
+        if(!text.toLowerCase().includes(fieldData.enterCommand.toLowerCase())){
+            return;
+        }
+    }
     if(chatters[userId]){
         chatters[userId].time = time;
         return;

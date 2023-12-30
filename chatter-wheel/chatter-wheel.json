@@ -318,6 +318,11 @@
     "label": "Broadcaster Weight",
     "value": 1
   },
+  "enterCommand": {
+    "type": "text",
+    "label": "Command to enter (leave blank for any chat)",
+    "value": ""
+  },
   "widgetName": {
     "type": "hidden",
     "value": "Chatter Wheel"
@@ -328,7 +333,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "0.1"
+    "value": "1.0"
   },
   "widgetUpdateUrl": {
     "type": "hidden",
