@@ -32,6 +32,16 @@
     "value": 4,
     "min": 1
   },
+  "dontDisappear": {
+    "type": "checkbox",
+    "label": "Don't Disappear",
+    "value": false
+  },
+  "startOn": {
+    "type": "checkbox",
+    "label": "Start On",
+    "value": false
+  },
   "privileges": {
     "type": "dropdown",
     "label": "Who can participate:",
@@ -55,7 +65,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "0.1"
+    "value": "1.0"
   },
   "widgetUpdateUrl": {
     "type": "hidden",

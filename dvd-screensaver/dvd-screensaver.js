@@ -5,10 +5,7 @@ const image = document.getElementById('image');
 
 
 
-const section = document.querySelector("section");
 const logo = document.querySelector(".logo");
-const FPS = 60;
-
 
 // Logo moving velocity Variables
 
@@ -84,7 +81,7 @@ const start = (emoteUrl) => {
             const bottomLeftCorner = xLessOrAtZero && yPastBounds;
             const topRightCorner = xPastBounds && yLessOrAtZero;
             const bottomRightCorner = xPastBounds && yPastBounds;
-            if(topLetCorner || topRightCorner || bottomRightCorner || bottomLeftCorner) {
+            if(!fieldData.dontDisappear && (topLetCorner || topRightCorner || bottomRightCorner || bottomLeftCorner)) {
                 clearInterval(bounceInterval);
                 hide();
                 return;
@@ -140,5 +137,10 @@ window.addEventListener('onEventReceived', function (obj) {
 
 window.addEventListener('onWidgetLoad', function (obj) {
     fieldData = obj.detail.fieldData;
+    setTimeout(() => {
+        if(fieldData.startOn){
+            start(fieldData.imageUrl);
+        }
+    }, 0);
 });
 
