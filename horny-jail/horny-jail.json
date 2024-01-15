@@ -69,6 +69,20 @@
     },
     "group": "Pass"
   },
+  "rarePercentage": {
+    "label": "Rare Percentage (1 is 100%)",
+    "type": "number",
+    "value": 0,
+    "min": 0,
+    "max": 1,
+    "group": "Rare"
+  },
+  "rareSounds": {
+    "label": "Rare Sounds (comma seperated)",
+    "type": "text",
+    "value": "https://swolekat.github.io/se-widgets/assets/horny-jail/bayoBadBoy.wav,https://swolekat.github.io/se-widgets/assets/horny-jail/bayoNaughty.wav",
+    "group": "Rare"
+  },
   "botFilter": {
     "label": "Bots to filter out",
     "type": "text",
@@ -84,7 +98,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "2.1"
+    "value": "2.2"
   },
   "widgetUpdateUrl": {
     "type": "hidden",

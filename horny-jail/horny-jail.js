@@ -32,6 +32,20 @@ const addToPass = (user) => {
     usersWithPasses.push(user.toLowerCase());
 };
 
+const playSound = () => {
+    const rareNumber = Math.random();
+    if(!fieldData.rarePercentage || rareNumber > fieldData.rarePercentage) {
+        sound.volume = fieldData.volume;
+        sound.play();
+        return;
+    }
+    const rareSounds = fieldData.rareSounds.split(',').filter(x => !!x);
+    const soundToPlay = rareSounds[Math.round(Math.random() * 1000) % rareSounds.length];
+    const myAudio = new Audio(soundToPlay);
+    myAudio.volume = fieldData.volume;
+    myAudio.play();
+};
+
 const jailUser = (user) => {
     if(usersWithPasses.includes(user.toLowerCase())){
         return;
@@ -48,8 +62,7 @@ const jailUser = (user) => {
                     mainContainer.className = 'main-container';
                     setTimeout(() => {
                         bars.className = 'bars animate';
-                        sound.volume = fieldData.volume;
-                        sound.play();
+                        playSound();
                         setTimeout(() => {
                             hideJail();
                         }, fieldData.howLongSeconds * 1000);
