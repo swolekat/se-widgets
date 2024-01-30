@@ -4,6 +4,11 @@
     "label": "ignoreBroadcaster",
     "value": true
   },
+  "ignoreUserList": {
+    "label": "Ignore these users (Comma Separated)",
+    "type": "text",
+    "value": "StreamElements, Streamlabs, Nightbot"
+  },
   "spinCommand": {
     "type": "text",
     "label": "Spin Command",
@@ -333,7 +338,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "1.0"
+    "value": "1.1"
   },
   "widgetUpdateUrl": {
     "type": "hidden",

@@ -40,6 +40,10 @@ const handleRegularMessage = (data) => {
             return;
         }
     }
+    const ignoreUsers = fieldData.ignoreUserList.split(',').map(x => x.trim().toLowerCase());
+    if(ignoreUsers.includes(displayName.toLowerCase())){
+        return;
+    }
     if(chatters[userId]){
         chatters[userId].time = time;
         return;
