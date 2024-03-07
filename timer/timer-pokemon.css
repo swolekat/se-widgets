@@ -1,0 +1,21 @@
+@font-face {
+    font-family: pokemon;
+    src: url(https://swolekat.github.io/se-widgets/assets/timer/pokemon.otf);
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+    font-family: pokemon;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.main-container.hidden {
+    display: none;
+}
+
