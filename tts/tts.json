@@ -295,6 +295,26 @@
     "label": "Voices used for individual users",
     "value": "Nicole,Russell,Raveena,Amy,Brian,Emma,Joanna,Matthew,Salli"
   },
+  "changeVoiceCommand": {
+    "type": "text",
+    "label": "Change Default Voice Command",
+    "value": "!changeVoice",
+    "group": "Change Voice Command"
+  },
+  "changePrivileges": {
+    "type": "dropdown",
+    "label": "Who can participate:",
+    "value": "broadcaster",
+    "options": {
+      "everybody": "Everybody",
+      "justSubs": "Subs",
+      "subs": "Subs + VIPs + Mods",
+      "vips": "VIPs + Mods",
+      "mods": "Mods",
+      "broadcaster": "Broadcaster"
+    },
+    "group": "Change Voice Command"
+  },
   "skipCommand": {
     "type": "text",
     "label": "Skip TTS Command",
@@ -468,7 +488,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "3.18"
+    "value": "3.19"
   },
   "widgetUpdateUrl": {
     "type": "hidden",

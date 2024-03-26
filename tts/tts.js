@@ -192,6 +192,19 @@ const handleShutoffCommands = (obj) => {
     return true;
 };
 
+const handleChangeVoiceCommand = (obj) => {
+    const {changeVoiceCommand, changePrivileges} = fieldData;
+    const data = obj.detail.event.data;
+    const {text} = data;
+
+    const messageIsChange = text.toLowerCase().startsWith(changeVoiceCommand.toLowerCase());
+    if(!messageIsChange || !checkPrivileges(data, changePrivileges)){
+        return false;
+    }
+    fieldData.voice = text.replace(changeVoiceCommand, '').trim();
+    return true;
+};
+
 const handleUserCommands = (obj) => {
     const data = obj.detail.event.data;
     const text = data.text;
@@ -230,6 +243,11 @@ const handleMessage = (obj) => {
 
     const isShutoffCommand = handleShutoffCommands(obj);
     if(isShutoffCommand){
+        return;
+    }
+
+    const isChangeVoiceCommand = handleChangeVoiceCommand(obj);
+    if(isChangeVoiceCommand){
         return;
     }
 
