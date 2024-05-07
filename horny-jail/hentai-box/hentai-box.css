@@ -1,0 +1,55 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.main-container {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.main-container.hidden {
+    display: none;
+}
+
+
+.jailed {
+    display: block;
+    position: absolute;
+    top: -50%;
+    left: 20%;
+    height: 50%;
+    width: 50%;
+    object-position: left;
+    transition: all 1000ms;
+    z-index: 2;
+    transform: rotate(-45deg);
+}
+
+.jailed.animate {
+    top: 15%;
+}
+
+.box,
+.box-top {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    object-position: bottom;
+    z-index: 1;
+}
+
+.box-top {
+    z-index: 3;
+}

@@ -1,0 +1,107 @@
+{
+  "soundUrl": {
+    "type": "text",
+    "label": "Sound Url",
+    "value": "https://swolekat.github.io/se-widgets/assets/horny-jail/theBox.mp3"
+  },
+  "jailWords": {
+    "type": "text",
+    "label": "Words that Send People to Jail",
+    "value": "coom,cum,sexy,horny,penis,erotic,roleplay,horni,naughty,yiff,coomer,hentai,yaoi,yuri,porn,jizz,coitus,shibari,anal,dicks,dick,pussy,69,cbt,cock,titty,titties,threesome,incest,butthole,anal,booty,scrotum,pp,peepee,lewd,poonani,poon,cunt,booba,boobies,clit,clitoris,nip,nipple,cummies,tits,boner,blowjob,furburger,arouse,engorge,bulge,bulging,chesticles,areiolas,chode,grope,penetrate,motorboating,tities,tahtas,throbbing,erect,erection,shlong,shmeat,sexual"
+  },
+  "howLongSeconds": {
+    "label": "How Many Seconds to Keep in Jail",
+    "type": "number",
+    "value": 60,
+    "step": 1,
+    "min": 0
+  },
+  "volume": {
+    "type": "slider",
+    "label": "Volume",
+    "value": 1,
+    "min": 0,
+    "max": 1,
+    "steps": 0.1
+  },
+  "cooldown": {
+    "label": "Cooldown in Seconds",
+    "type": "number",
+    "value": 300,
+    "step": 1,
+    "min": 0
+  },
+  "jailCommand": {
+    "type": "text",
+    "label": "Command to send someone ",
+    "value": "!hornyjail"
+  },
+  "privileges": {
+    "type": "dropdown",
+    "label": "Who can participate:",
+    "value": "mods",
+    "options": {
+      "everybody": "Everybody",
+      "justSubs": "Subs",
+      "subs": "Subs + VIPs + Mods",
+      "vips": "VIPs + Mods",
+      "mods": "Mods",
+      "broadcaster": "Broadcaster"
+    }
+  },
+  "passCommand": {
+    "type": "text",
+    "label": "Command to give out pass ",
+    "value": "!hornyjailpass",
+    "group": "Pass"
+  },
+  "passPrivileges": {
+    "type": "dropdown",
+    "label": "Who can participate:",
+    "value": "mods",
+    "options": {
+      "everybody": "Everybody",
+      "justSubs": "Subs",
+      "subs": "Subs + VIPs + Mods",
+      "vips": "VIPs + Mods",
+      "mods": "Mods",
+      "broadcaster": "Broadcaster"
+    },
+    "group": "Pass"
+  },
+  "rarePercentage": {
+    "label": "Rare Percentage (1 is 100%)",
+    "type": "number",
+    "value": 0,
+    "min": 0,
+    "max": 1,
+    "group": "Rare"
+  },
+  "rareSounds": {
+    "label": "Rare Sounds (comma seperated)",
+    "type": "text",
+    "value": "https://swolekat.github.io/se-widgets/assets/horny-jail/bayoBadBoy.wav,https://swolekat.github.io/se-widgets/assets/horny-jail/bayoNaughty.wav",
+    "group": "Rare"
+  },
+  "botFilter": {
+    "label": "Bots to filter out",
+    "type": "text",
+    "value": "StreamElements,Moobot,Nightbot,SoundAlerts,WizeBot,KofiStreamBot"
+  },
+  "widgetName": {
+    "type": "hidden",
+    "value": "Hentai Box by Swolekat"
+  },
+  "widgetAuthor": {
+    "type": "hidden",
+    "value": "swolekat"
+  },
+  "widgetVersion": {
+    "type": "hidden",
+    "value": "0.1"
+  },
+  "widgetUpdateUrl": {
+    "type": "hidden",
+    "value": "https://github.com/swolekat/se-widgets/tree/main/horny-jail/hentai-box"
+  }
+}
