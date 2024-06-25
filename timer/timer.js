@@ -37,6 +37,9 @@ const tick = () => {
 };
 
 const start = (duration) => {
+    if(Number.isNaN(duration)){
+        duration = 999999999;
+    }
     time = duration * 60;
     timeRemaining = time + 1;
     if(interval){
