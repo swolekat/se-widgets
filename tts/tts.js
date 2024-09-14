@@ -20,7 +20,7 @@ const sayMassagedMessage = (fullMessage, messageVoice) => {
     }
     isPlaying = true;
     const volume = fieldData.volume;
-    const url = `//api.streamelements.com/kappa/v2/speech?voice=${messageVoice.replace('$', '')}&text=${encodeURI(fullMessage.replace(/&/g, ' and '))}&key=${apiToken}`
+    const url = `https://api.streamelements.com/kappa/v2/speech?voice=${messageVoice.replace('$', '')}&text=${encodeURI(fullMessage.replace(/&/g, ' and '))}&key=${apiToken}`
     currentAudio = new Audio(url);
     currentAudio.volume = volume;
 

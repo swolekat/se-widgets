@@ -146,7 +146,7 @@ const spinEnd = () => {
     }
     const winningSegment = realItems[winnerIndex];
     const message = ttsMessage.replace('$NAME', winningSegment);
-    const url = `//api.streamelements.com/kappa/v2/speech?voice=${ttsVoice.replace('$', '')}&text=${encodeURI(message)}&key=${apiToken}`
+    const url = `https://api.streamelements.com/kappa/v2/speech?voice=${ttsVoice.replace('$', '')}&text=${encodeURI(message)}&key=${apiToken}`
     const myAudio = new Audio(url);
     myAudio.volume = volume;
     myAudio.play();
