@@ -145,7 +145,7 @@ const getActiveRaiders = () => {
 };
 
 const handleEverybodyCommands = (obj) => {
-    const {doEverybodyStuff, everybodyPrivileges, everybodyEnableCommand, everybodyDisableCommand, everybodyTime } = fieldData;
+    const {doEverybodyStuff, everybodyPrivileges, everybodyEnableCommand, everybodyDisableCommand, everybodyTime, voice } = fieldData;
     const data = obj.detail.event.data;
     const {text} = data;
     if(!doEverybodyStuff){
@@ -166,16 +166,18 @@ const handleEverybodyCommands = (obj) => {
                 everybodyTimeout = undefined;
             }, everybodyTime * 1000);
         }
+        sayMassagedMessage('Everybody tts enabled', voice);
         return true;
     }
     isEnabledForEverybody = false;
     clearTimeout(everybodyTimeout);
     everybodyTimeout = undefined;
+    sayMassagedMessage('Everybody tts disabled', voice);
     return true;
 };
 
 const handleShutoffCommands = (obj) => {
-    const {globalShutoffCommand, globalEnableCommand, globalShutOffPrivileges} = fieldData;
+    const {globalShutoffCommand, globalEnableCommand, globalShutOffPrivileges, voice} = fieldData;
     const data = obj.detail.event.data;
     const {text} = data;
 
@@ -186,9 +188,11 @@ const handleShutoffCommands = (obj) => {
     }
     if(messageIsEnable){
         isEnabled = true;
+        sayMassagedMessage('Global tts enabled', voice);
         return true;
     }
     isEnabled = false;
+    sayMassagedMessage('Global tts disabled', voice);
     return true;
 };
 
