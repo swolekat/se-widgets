@@ -328,6 +328,23 @@
     "label": "Command to enter (leave blank for any chat)",
     "value": ""
   },
+  "clearCommand": {
+    "type": "text",
+    "label": "Command to clear",
+    "value": "!clearChatterWheel"
+  },
+  "clearPrivileges": {
+    "type": "dropdown",
+    "label": "Who can use the clear command",
+    "value": "mods",
+    "options": {
+      "everybody": "Everybody",
+      "subs": "Subs",
+      "vips": "VIPS",
+      "mods": "Mods",
+      "broadcaster": "Broadcaster"
+    }
+  },
   "widgetName": {
     "type": "hidden",
     "value": "Chatter Wheel"
@@ -338,7 +355,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "1.1"
+    "value": "1.2"
   },
   "widgetUpdateUrl": {
     "type": "hidden",

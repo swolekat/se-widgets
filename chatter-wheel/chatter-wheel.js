@@ -158,8 +158,13 @@ window.addEventListener('onEventReceived', function (obj) {
         return;
     }
     const spinCommand = fieldData.spinCommand;
+    const clearCommand = fieldData.clearCommand;
     const {data} = event;
     const {text} = data;
+    if(text.toLowerCase() === clearCommand.toLowerCase() && checkPrivileges(data, fieldData.clearPrivileges)){
+        chatters = {};
+        return;
+    }
     const textIsCommand = text.toLowerCase() === spinCommand.toLowerCase();
     if(textIsCommand && checkPrivileges(data)){
         spin();
