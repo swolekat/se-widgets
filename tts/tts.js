@@ -295,7 +295,8 @@ const handleMessage = (obj) => {
         if(globalTTS && !checkPrivileges(data, globalTTSPrivileges)){
             return;
         }
-        sayMessage(textToSay.toLowerCase().trim(), userVoice, displayName);
+        // Use the selected voice (fieldData.voice) for global TTS
+        sayMessage(textToSay.toLowerCase().trim(), voice, displayName);
         return;
     }
 
