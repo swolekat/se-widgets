@@ -9,9 +9,22 @@ const sound = document.getElementById('sound');
 
 const patUser = (user) => {
     return new Promise((resolve) => {
+        if(!user.trim() || fieldData.ignoreUsers){
+            patee.style.display = 'none';
+            mainContainer.className = 'main-container';
+            setTimeout(() => {
+                sound.play();
+                setTimeout(() => {
+                    mainContainer.className = 'main-container hidden';
+                    resolve();
+                }, 1500);
+            }, 1000);
+            return;
+        }
         fetch(`https://decapi.me/twitch/avatar/${user}`)
             .then((data) => {
                 data.text().then((img) => {
+                    patee.style.display = '';
                     patee.src = img;
                     mainContainer.className = 'main-container';
                     setTimeout(() => {

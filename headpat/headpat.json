@@ -25,6 +25,11 @@
     "max": 1,
     "steps": 0.1
   },
+  "ignoreUsers": {
+    "type": "checkbox",
+    "label": "Ignore Users (turn on to never show the profile picture)",
+    "value": false
+  },
   "widgetName": {
     "type": "hidden",
     "value": "Headpat by Swolekat"
@@ -35,7 +40,7 @@
   },
   "widgetVersion": {
     "type": "hidden",
-    "value": "1.0"
+    "value": "1.1"
   },
   "widgetUpdateUrl": {
     "type": "hidden",
